@@ -23,9 +23,10 @@
 }
 
 html {
+  --header-height: 78px;
   min-width: 320px;
-  scroll-behavior: smooth;
-  scroll-padding-top: 24px;
+  scroll-behavior: auto;
+  scroll-padding-top: calc(var(--header-height) + 16px);
 }
 
 body {
@@ -52,8 +53,4 @@ select {
 :focus-visible {
   outline: 3px solid #8bb5ff;
   outline-offset: 3px;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
 }

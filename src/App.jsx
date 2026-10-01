@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
 import {
   ArrowDown,
   ArrowRight,
@@ -37,12 +37,57 @@ const reveal = {
   hidden: { opacity: 0, y: 22 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.55 } },
 }
+const scrollReveal = {
+  hidden: { opacity: 0, y: 22, rotateX: 4 },
+  visible: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+}
+
+function FaqAnswer({ answer, answerId, isOpen, questionId, shouldReduceMotion }) {
+  const contentRef = useRef(null)
+  const [contentHeight, setContentHeight] = useState(0)
+
+  useLayoutEffect(() => {
+    const content = contentRef.current
+    if (!content) return undefined
+
+    const updateHeight = () => setContentHeight(content.scrollHeight)
+    updateHeight()
+
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', updateHeight)
+      return () => window.removeEventListener('resize', updateHeight)
+    }
+
+    const observer = new ResizeObserver(updateHeight)
+    observer.observe(content)
+    return () => observer.disconnect()
+  }, [answer])
+
+  return (
+    <motion.div
+      animate={{ height: isOpen ? contentHeight : 0, opacity: isOpen ? 1 : 0 }}
+      className="faq-answer"
+      id={answerId}
+      initial={false}
+      role="region"
+      aria-hidden={!isOpen}
+      aria-labelledby={questionId}
+      transition={{ duration: shouldReduceMotion ? 0.2 : 0.48, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div ref={contentRef}><p>{answer}</p></div>
+    </motion.div>
+  )
+}
 
 function App() {
   const { t, i18n } = useTranslation()
   const [menuOpen, setMenuOpen] = useState(false)
   const [courseFilter, setCourseFilter] = useState('all')
   const [courseSearch, setCourseSearch] = useState('')
+  const [openFaqItems, setOpenFaqItems] = useState(() => new Set())
+  const shouldReduceMotion = useReducedMotion()
+  const scrollRevealVariants = shouldReduceMotion ? reveal : scrollReveal
+  const scrollFrame = useRef(0)
   const [darkMode, setDarkMode] = useState(() => (
     window.localStorage.getItem('edtech-theme') === 'dark'
   ))
@@ -72,6 +117,28 @@ function App() {
     return () => i18n.off('languageChanged', updateDocumentLanguage)
   }, [i18n])
 
+  useEffect(() => {
+    const cancelScroll = () => {
+      window.cancelAnimationFrame(scrollFrame.current)
+      scrollFrame.current = 0
+    }
+    const cancelScrollFromKey = (event) => {
+      if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' '].includes(event.key)) {
+        cancelScroll()
+      }
+    }
+
+    window.addEventListener('wheel', cancelScroll, { passive: true })
+    window.addEventListener('touchstart', cancelScroll, { passive: true })
+    window.addEventListener('keydown', cancelScrollFromKey)
+    return () => {
+      cancelScroll()
+      window.removeEventListener('wheel', cancelScroll)
+      window.removeEventListener('touchstart', cancelScroll)
+      window.removeEventListener('keydown', cancelScrollFromKey)
+    }
+  }, [])
+
   const changeLanguage = (event) => {
     window.localStorage.setItem('edtech-language', event.target.value)
     i18n.changeLanguage(event.target.value)
@@ -86,82 +153,156 @@ function App() {
 
   const closeMenu = () => setMenuOpen(false)
 
-  const handleInternalAnchorClick = (event) => {
+  useEffect(() => {
+    if (!menuOpen) return undefined
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') closeMenu()
+    }
+    window.addEventListener('keydown', closeOnEscape)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [menuOpen])
+
+  const handleInternalNavigation = (event) => {
+    if (!(event.target instanceof Element)) return
+
+    const link = event.target.closest('a[href*="#"]')
+    if (!link) return
+
+    const destination = new URL(link.href, window.location.href)
     if (
-      event.defaultPrevented
-      || event.button !== 0
-      || event.metaKey
-      || event.ctrlKey
-      || event.shiftKey
-      || event.altKey
+      destination.origin !== window.location.origin
+      || destination.pathname !== window.location.pathname
+      || destination.search !== window.location.search
+      || !destination.hash
     ) return
 
-    const clickedElement = event.target instanceof Element ? event.target : null
-    const link = clickedElement?.closest('a[href^="#"]')
-    if (!link || link.target === '_blank') return
-
-    const target = document.getElementById(link.hash.slice(1))
+    const target = document.getElementById(decodeURIComponent(destination.hash.slice(1)))
     if (!target) return
 
     event.preventDefault()
-    if (window.location.hash !== link.hash) {
-      window.history.pushState(null, '', link.hash)
+    window.cancelAnimationFrame(scrollFrame.current)
+    closeMenu()
+    window.history.pushState(null, '', destination.hash)
+
+    const headerHeight = document.querySelector('.site-header')?.getBoundingClientRect().height ?? 0
+    const targetTop = Math.max(
+      0,
+      Math.min(
+        target.getBoundingClientRect().top + window.scrollY - headerHeight - 16,
+        document.documentElement.scrollHeight - window.innerHeight,
+      ),
+    )
+    const startTop = window.scrollY
+    const distance = targetTop - startTop
+    const duration = Math.min(850, Math.max(450, Math.abs(distance) * 0.35))
+    let startTime
+
+    const animateScroll = (time) => {
+      startTime ??= time
+      const progress = Math.min((time - startTime) / duration, 1)
+      const easedProgress = progress < 0.5
+        ? 4 * progress ** 3
+        : 1 - ((-2 * progress + 2) ** 3) / 2
+
+      window.scrollTo(0, startTop + distance * easedProgress)
+      if (progress < 1) {
+        scrollFrame.current = window.requestAnimationFrame(animateScroll)
+      } else {
+        scrollFrame.current = 0
+      }
     }
-    const targetTop = target.getBoundingClientRect().top + window.scrollY
-    window.scrollTo({ top: targetTop, behavior: 'smooth' })
+
+    scrollFrame.current = window.requestAnimationFrame(animateScroll)
+  }
+
+  const toggleFaqItem = (index) => {
+    setOpenFaqItems((openItems) => {
+      const nextOpenItems = new Set(openItems)
+      if (nextOpenItems.has(index)) nextOpenItems.delete(index)
+      else nextOpenItems.add(index)
+      return nextOpenItems
+    })
   }
 
   return (
-    <div
-      className="site-shell"
-      data-theme={darkMode ? 'dark' : 'light'}
-      onClickCapture={handleInternalAnchorClick}
-    >
+    <div className="site-shell" data-theme={darkMode ? 'dark' : 'light'} onClick={handleInternalNavigation}>
       <header className="site-header">
-        <a className="brand" href="#home" onClick={closeMenu} aria-label="EduFuture home">
-          <span className="brand-mark"><Globe2 size={19} strokeWidth={2.2} /></span>
-          <span>Edu<span className="brand-accent">Future</span></span>
-        </a>
-
-        <button
-          aria-label={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
-          aria-expanded={menuOpen}
-          className="menu-toggle"
-          onClick={() => setMenuOpen((open) => !open)}
-          type="button"
-        >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
-
-        <nav className={`main-nav${menuOpen ? ' is-open' : ''}`} aria-label={t('nav.label')}>
-          <a href="#about" onClick={closeMenu}>{t('nav.about')}</a>
-          <a href="#how-it-works" onClick={closeMenu}>{t('nav.how')}</a>
-          <a href="#courses" onClick={closeMenu}>{t('nav.courses')}</a>
-          <a href="#insights" onClick={closeMenu}>{t('nav.insights')}</a>
-          <a href="#faq" onClick={closeMenu}>{t('nav.faq')}</a>
-          <label className="language-picker">
-            <span className="sr-only">{t('nav.language')}</span>
-            <Globe2 aria-hidden="true" size={16} />
-            <select value={currentLanguage} onChange={changeLanguage} aria-label={t('nav.language')}>
-              {languages.map(({ code, label }) => (
-                <option key={code} value={code}>{label}</option>
-              ))}
-            </select>
-          </label>
-          <button
-            className="theme-toggle"
-            type="button"
-            onClick={toggleTheme}
-            aria-label={darkMode ? t('theme.switchToLight') : t('theme.switchToDark')}
-            title={darkMode ? t('theme.switchToLight') : t('theme.switchToDark')}
-          >
-            {darkMode ? <Sun size={17} /> : <Moon size={17} />}
-            <span>{darkMode ? t('theme.light') : t('theme.dark')}</span>
-          </button>
-          <a className="nav-cta" href="#programs" onClick={closeMenu}>
-            {t('nav.cta')} <ArrowRight aria-hidden="true" size={16} />
+        <div className="site-header-inner">
+          <a className="brand" href="#home" onClick={closeMenu} aria-label="EduFuture home">
+            <span className="brand-mark"><Globe2 size={19} strokeWidth={2.2} /></span>
+            <span>Edu<span className="brand-accent">Future</span></span>
           </a>
-        </nav>
+
+          <button
+            aria-label={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
+            aria-expanded={menuOpen}
+            className="menu-toggle"
+            onClick={() => setMenuOpen((open) => !open)}
+            type="button"
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+
+          <button
+            aria-hidden={!menuOpen}
+            aria-label={t('nav.closeMenu')}
+            className={`menu-backdrop${menuOpen ? ' is-open' : ''}`}
+            onClick={closeMenu}
+            tabIndex={menuOpen ? 0 : -1}
+            type="button"
+          />
+          <nav className={`main-nav${menuOpen ? ' is-open' : ''}`} aria-label={t('nav.label')}>
+            <div className="mobile-nav-heading">
+              <span className="mobile-nav-brand-mark"><Globe2 size={19} strokeWidth={2.2} /></span>
+              <span className="mobile-nav-brand-copy">
+                <strong>Edu<span className="brand-accent">Future</span></strong>
+                <small>{t('nav.label')}</small>
+              </span>
+              <button
+                aria-label={t('nav.closeMenu')}
+                className="mobile-nav-close"
+                onClick={closeMenu}
+                type="button"
+              >
+                <X size={21} />
+              </button>
+            </div>
+            <a href="#about" onClick={closeMenu}>{t('nav.about')}</a>
+            <a href="#how-it-works" onClick={closeMenu}>{t('nav.how')}</a>
+            <a href="#courses" onClick={closeMenu}>{t('nav.courses')}</a>
+            <a href="#insights" onClick={closeMenu}>{t('nav.insights')}</a>
+            <a href="#faq" onClick={closeMenu}>{t('nav.faq')}</a>
+            <label className="language-picker">
+              <span className="sr-only">{t('nav.language')}</span>
+              <Globe2 aria-hidden="true" size={16} />
+              <select value={currentLanguage} onChange={changeLanguage} aria-label={t('nav.language')}>
+                {languages.map(({ code, label }) => (
+                  <option key={code} value={code}>{label}</option>
+                ))}
+              </select>
+            </label>
+            <button
+              className="theme-toggle"
+              type="button"
+              onClick={toggleTheme}
+              aria-label={darkMode ? t('theme.switchToLight') : t('theme.switchToDark')}
+              title={darkMode ? t('theme.switchToLight') : t('theme.switchToDark')}
+            >
+              {darkMode ? <Sun size={17} /> : <Moon size={17} />}
+              <span>{darkMode ? t('theme.light') : t('theme.dark')}</span>
+            </button>
+            <a className="nav-cta" href="#programs" onClick={closeMenu}>
+              {t('nav.cta')} <ArrowRight aria-hidden="true" size={16} />
+            </a>
+          </nav>
+        </div>
       </header>
 
       <main>
@@ -236,7 +377,7 @@ function App() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.25 }}
-            variants={reveal}
+            variants={scrollRevealVariants}
           >
             <div>
               <p className="eyebrow">{t('about.eyebrow')}</p>
@@ -269,7 +410,7 @@ function App() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.35 }}
-                  variants={reveal}
+                  variants={scrollRevealVariants}
                   transition={{ delay: index * 0.08 }}
                 >
                   <span className="workflow-number">0{index + 1}</span>
@@ -294,11 +435,11 @@ function App() {
             {impactItems.map((item, index) => (
               <motion.div
                 className="impact-item"
-                key={`${item.value}-${index}`}
+                key={`${item.label}-${index}`}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.4 }}
-                variants={reveal}
+                variants={scrollRevealVariants}
                 transition={{ delay: index * 0.08 }}
               >
                 <span className="impact-value">{item.value}</span>
@@ -365,7 +506,7 @@ function App() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.2 }}
-                  variants={reveal}
+                  variants={scrollRevealVariants}
                   transition={{ delay: index * 0.06 }}
                 >
                   <div className={`course-visual course-visual-${index % 4}`}>
@@ -409,7 +550,7 @@ function App() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.25 }}
-                    variants={reveal}
+                    variants={scrollRevealVariants}
                     transition={{ delay: index * 0.08 }}
                   >
                     <span className="card-number">0{index + 1}</span>
@@ -481,12 +622,32 @@ function App() {
             <p>{t('faq.description')}</p>
           </div>
           <div className="faq-list">
-            {faqItems.map((item) => (
-              <details className="faq-item" key={item.question}>
-                <summary>{item.question}<ChevronDown size={18} /></summary>
-                <p>{item.answer}</p>
-              </details>
-            ))}
+            {faqItems.map((item, index) => {
+              const isOpen = openFaqItems.has(index)
+              const questionId = `faq-question-${index}`
+              const answerId = `faq-answer-${index}`
+              return (
+                <div className={`faq-item${isOpen ? ' is-open' : ''}`} key={item.question}>
+                  <button
+                    aria-controls={answerId}
+                    aria-expanded={isOpen}
+                    className="faq-trigger"
+                    id={questionId}
+                    onClick={() => toggleFaqItem(index)}
+                    type="button"
+                  >
+                    {item.question}<ChevronDown size={18} />
+                  </button>
+                  <FaqAnswer
+                    answer={item.answer}
+                    answerId={answerId}
+                    isOpen={isOpen}
+                    questionId={questionId}
+                    shouldReduceMotion={shouldReduceMotion}
+                  />
+                </div>
+              )
+            })}
           </div>
         </section>
 
@@ -543,6 +704,6 @@ function App() {
       </footer>
     </div>
   )
-};
+}
 
 export default App
