@@ -86,8 +86,37 @@ function App() {
 
   const closeMenu = () => setMenuOpen(false)
 
+  const handleInternalAnchorClick = (event) => {
+    if (
+      event.defaultPrevented
+      || event.button !== 0
+      || event.metaKey
+      || event.ctrlKey
+      || event.shiftKey
+      || event.altKey
+    ) return
+
+    const clickedElement = event.target instanceof Element ? event.target : null
+    const link = clickedElement?.closest('a[href^="#"]')
+    if (!link || link.target === '_blank') return
+
+    const target = document.getElementById(link.hash.slice(1))
+    if (!target) return
+
+    event.preventDefault()
+    if (window.location.hash !== link.hash) {
+      window.history.pushState(null, '', link.hash)
+    }
+    const targetTop = target.getBoundingClientRect().top + window.scrollY
+    window.scrollTo({ top: targetTop, behavior: 'smooth' })
+  }
+
   return (
-    <div className="site-shell" data-theme={darkMode ? 'dark' : 'light'}>
+    <div
+      className="site-shell"
+      data-theme={darkMode ? 'dark' : 'light'}
+      onClickCapture={handleInternalAnchorClick}
+    >
       <header className="site-header">
         <a className="brand" href="#home" onClick={closeMenu} aria-label="EduFuture home">
           <span className="brand-mark"><Globe2 size={19} strokeWidth={2.2} /></span>
@@ -265,7 +294,7 @@ function App() {
             {impactItems.map((item, index) => (
               <motion.div
                 className="impact-item"
-                key={item.value}
+                key={`${item.value}-${index}`}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.4 }}

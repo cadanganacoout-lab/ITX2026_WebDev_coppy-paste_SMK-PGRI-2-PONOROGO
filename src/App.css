@@ -3,7 +3,7 @@
 }
 
 .site-shell {
-  overflow: hidden;
+  overflow: clip;
 }
 
 .section-wrap,
@@ -13,11 +13,15 @@
 }
 
 .site-header {
-  height: 78px;
+  height: 58px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #fff;
 }
 
 .brand {
@@ -1318,6 +1322,7 @@
   --blue-soft: #1d3557;
   color: #e8eef8;
   background: #101927;
+  background-color: #152235
 }
 
 .site-shell[data-theme='dark'] .site-header,
@@ -1783,7 +1788,6 @@
   *,
   *::before,
   *::after {
-    scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
