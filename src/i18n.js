@@ -2122,6 +2122,175 @@ const localizedHeroWords = {
   fr: ["Apprendre ensemble", "Grandir chaque jour", "Créer l’avenir", "Apprendre pour tous"],
 };
 
+const localizedDisplayContent = {
+  id: {
+    heroMetrics: [
+      { value: "5K+", label: "Pembelajar aktif" },
+      { value: "4.9/5", label: "Rating pengalaman" },
+      { value: "92%", label: "Tingkat kembali belajar" },
+    ],
+    aboutHighlights: [
+      {
+        title: "Pembelajaran adaptif",
+        detail: "Rute belajar yang menyesuaikan kebutuhan dan ritme setiap pembelajar.",
+      },
+      {
+        title: "Praktik nyata",
+        detail: "Tugas dan proyek yang menghubungkan teori dengan penerapan.",
+      },
+      {
+        title: "Komunitas aktif",
+        detail: "Umpan balik dan kolaborasi untuk menjaga motivasi serta rasa memiliki.",
+      },
+    ],
+    ui: {
+      homeLabel: "Beranda EduFuture",
+      heroMetricsLabel: "Statistik platform",
+      highlightsLabel: "Keunggulan platform",
+      roadmapMapLabel: "Klik area kosong peta atau tekan Enter untuk melihat bagian berikutnya",
+    },
+  },
+  en: {
+    heroMetrics: [
+      { value: "5K+", label: "Active learners" },
+      { value: "4.9/5", label: "Experience rating" },
+      { value: "92%", label: "Learners returning to study" },
+    ],
+    aboutHighlights: [
+      {
+        title: "Adaptive learning",
+        detail: "Learning paths that adapt to each learner’s needs and pace.",
+      },
+      {
+        title: "Hands-on practice",
+        detail: "Assignments and projects that connect theory with real-world use.",
+      },
+      {
+        title: "Active community",
+        detail: "Feedback and collaboration that build motivation and belonging.",
+      },
+    ],
+    ui: {
+      homeLabel: "EduFuture home",
+      heroMetricsLabel: "Platform statistics",
+      highlightsLabel: "Platform highlights",
+      roadmapMapLabel: "Click an empty area of the map or press Enter to view the next section",
+    },
+  },
+  zh: {
+    heroMetrics: [
+      { value: "5K+", label: "活跃学习者" },
+      { value: "4.9/5", label: "体验评分" },
+      { value: "92%", label: "继续学习率" },
+    ],
+    aboutHighlights: [
+      {
+        title: "自适应学习",
+        detail: "根据每位学习者的需求和节奏调整学习路径。",
+      },
+      {
+        title: "实践应用",
+        detail: "通过任务和项目将理论与实际应用联系起来。",
+      },
+      {
+        title: "活跃社区",
+        detail: "通过反馈与协作提升学习动力和归属感。",
+      },
+    ],
+    ui: {
+      homeLabel: "EduFuture 首页",
+      heroMetricsLabel: "平台统计数据",
+      highlightsLabel: "平台特色",
+      roadmapMapLabel: "点击地图空白区域或按 Enter 查看下一部分",
+    },
+  },
+  es: {
+    heroMetrics: [
+      { value: "5K+", label: "Estudiantes activos" },
+      { value: "4.9/5", label: "Valoración de la experiencia" },
+      { value: "92%", label: "Estudiantes que vuelven a aprender" },
+    ],
+    aboutHighlights: [
+      {
+        title: "Aprendizaje adaptativo",
+        detail: "Rutas de aprendizaje que se ajustan a las necesidades y al ritmo de cada persona.",
+      },
+      {
+        title: "Práctica real",
+        detail: "Tareas y proyectos que conectan la teoría con su aplicación.",
+      },
+      {
+        title: "Comunidad activa",
+        detail: "Comentarios y colaboración para fortalecer la motivación y el sentido de pertenencia.",
+      },
+    ],
+    ui: {
+      homeLabel: "Inicio de EduFuture",
+      heroMetricsLabel: "Estadísticas de la plataforma",
+      highlightsLabel: "Ventajas de la plataforma",
+      roadmapMapLabel: "Haz clic en un espacio vacío del mapa o pulsa Enter para ver la siguiente sección",
+    },
+  },
+  ar: {
+    heroMetrics: [
+      { value: "5K+", label: "متعلمون نشطون" },
+      { value: "4.9/5", label: "تقييم التجربة" },
+      { value: "92%", label: "معدل العودة إلى التعلم" },
+    ],
+    aboutHighlights: [
+      {
+        title: "تعلم تكيفي",
+        detail: "مسارات تعلم تتكيف مع احتياجات كل متعلم ووتيرته.",
+      },
+      {
+        title: "تطبيق عملي",
+        detail: "مهام ومشروعات تربط النظرية بالتطبيق العملي.",
+      },
+      {
+        title: "مجتمع نشط",
+        detail: "تغذية راجعة وتعاون يعززان الدافعية والشعور بالانتماء.",
+      },
+    ],
+    ui: {
+      homeLabel: "الصفحة الرئيسية لـ EduFuture",
+      heroMetricsLabel: "إحصاءات المنصة",
+      highlightsLabel: "مزايا المنصة",
+      roadmapMapLabel: "انقر على مساحة فارغة في الخريطة أو اضغط Enter لعرض القسم التالي",
+    },
+  },
+  fr: {
+    heroMetrics: [
+      { value: "5K+", label: "Apprenants actifs" },
+      { value: "4.9/5", label: "Note de l’expérience" },
+      { value: "92%", label: "Taux de retour à l’apprentissage" },
+    ],
+    aboutHighlights: [
+      {
+        title: "Apprentissage adaptatif",
+        detail: "Des parcours qui s’adaptent aux besoins et au rythme de chaque apprenant.",
+      },
+      {
+        title: "Pratique concrète",
+        detail: "Des exercices et projets qui relient la théorie à la pratique.",
+      },
+      {
+        title: "Communauté active",
+        detail: "Des retours et une collaboration qui renforcent la motivation et le sentiment d’appartenance.",
+      },
+    ],
+    ui: {
+      homeLabel: "Accueil EduFuture",
+      heroMetricsLabel: "Statistiques de la plateforme",
+      highlightsLabel: "Atouts de la plateforme",
+      roadmapMapLabel: "Cliquez sur une zone vide de la carte ou appuyez sur Entrée pour afficher la section suivante",
+    },
+  },
+};
+
+for (const [language, translation] of Object.entries(localizedDisplayContent)) {
+  Object.assign(resources[language].translation, translation);
+}
+
 for (const [language, translation] of Object.entries(additionalTranslations)) {
   Object.assign(resources[language].translation, translation);
 }

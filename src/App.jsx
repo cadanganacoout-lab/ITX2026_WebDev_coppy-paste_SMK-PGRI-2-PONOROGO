@@ -38,16 +38,6 @@ const languages = [
 
 const featureIcons = [BrainCircuit, MonitorPlay, Award, Lightbulb]
 const workflowIcons = [Globe2, BookOpen, BrainCircuit, Award]
-const aboutHighlights = [
-  { title: 'Pembelajaran adaptif', detail: 'Rute belajar yang menyesuaikan kebutuhan dan ritme setiap pembelajar.' },
-  { title: 'Praktik nyata', detail: 'Tugas dan proyek yang menutup kesenjangan antara teori dan penerapan.' },
-  { title: 'Komunitas aktif', detail: 'Feedback dan kolaborasi untuk menjaga motivasi serta rasa memiliki.' },
-]
-const heroMetrics = [
-  { value: '5K+', label: 'Pembelajar aktif' },
-  { value: '4.9/5', label: 'Rating pengalaman' },
-  { value: '92%', label: 'Tingkat kembali belajar' },
-]
 const revealEase = [0.22, 1, 0.36, 1]
 const roadmapTargets = [
   'home',
@@ -240,6 +230,8 @@ function App() {
   const courses = t('courses.items', { returnObjects: true })
   const faqItems = t('faq.items', { returnObjects: true })
   const movingWords = t('hero.movingWords', { returnObjects: true })
+  const heroMetrics = t('heroMetrics', { returnObjects: true })
+  const aboutHighlights = t('aboutHighlights', { returnObjects: true })
   const filteredCourses = useMemo(() => courses.filter((course) => {
     const matchesFilter = courseFilter === 'all' || course.category === courseFilter
     const query = courseSearch.trim().toLocaleLowerCase()
@@ -413,7 +405,7 @@ function App() {
             className="brand"
             href="#home"
             onClick={closeMenu}
-            aria-label="EduFuture home"
+            aria-label={t("ui.homeLabel")}
           >
             <span className="brand-mark">
               <Globe2 size={19} strokeWidth={2.2} />
@@ -563,7 +555,7 @@ function App() {
                 {t("hero.secondary")}
               </a>
             </div>
-            <div className="hero-metrics" aria-label="Statistik platform">
+            <div className="hero-metrics" aria-label={t("ui.heroMetricsLabel")}>
               {heroMetrics.map((metric) => (
                 <div className="hero-metric" key={metric.label}>
                   <strong>{metric.value}</strong>
@@ -672,7 +664,7 @@ function App() {
                 {t("about.link")} <ArrowRight aria-hidden="true" size={17} />
               </a>
             </div>
-            <div className="intro-highlights" aria-label="Keunggulan platform">
+            <div className="intro-highlights" aria-label={t("ui.highlightsLabel")}>
               {aboutHighlights.map((item) => (
                 <article className="intro-highlight" key={item.title}>
                   <span className="intro-highlight-mark" aria-hidden="true" />
@@ -695,7 +687,7 @@ function App() {
 
           <div className="roadmap-map">
             <div
-              aria-label="Klik area kosong roadmap atau tekan Enter untuk maju melihat navigasi berikutnya"
+              aria-label={t("ui.roadmapMapLabel")}
               className={`roadmap-scene${roadmapCamera >= roadmapNodes.length - 1 ? ' is-max-zoom' : ''}`}
               onClick={(event) => {
                 if (
