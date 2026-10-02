@@ -2310,23 +2310,25 @@ const demoContent = {
     impact: {
       eyebrow: "Data contoh",
       title: "Dampak pembelajaran.",
-      description:
-        "",
+      description: "",
       items: [
         {
-          value: "85%%",
+          value: "85%",
           label: "Penyelesaian kursus",
-          detail: "Berdasarkan data riset efektivitas e-learning dan platform pendidikan digital",
+          detail:
+            "Berdasarkan data riset efektivitas e-learning dan platform pendidikan digital",
         },
         {
           value: "81,1%",
           label: "Kemajuan belajar",
-          detail: "Data peningkatan hasil belajar pasca-penggunaan platform edukasi digital interaktif dari pengujian kelas eksperimen pendidikan.",
+          detail:
+            "Data peningkatan hasil belajar pasca-penggunaan platform edukasi digital interaktif dari pengujian kelas eksperimen pendidikan.",
         },
         {
           value: "97,6%",
           label: "Pembelajar aktif",
-          detail: "Estimasi persentase penerapan pembelajaran jarak jauh dan pemanfaatan platform digital bagi dunia pendidikan di Indonesia oleh Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi",
+          detail:
+            "Estimasi persentase penerapan pembelajaran jarak jauh dan pemanfaatan platform digital bagi dunia pendidikan di Indonesia oleh Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi",
         },
       ],
     },
@@ -2338,38 +2340,116 @@ const demoContent = {
       source: "UNICEF Indonesia",
       url: "https://www.unicef.org/indonesia/media/13421/file/AnalisisSituasiuntukLanskapPembelajaranDigitaldiIndonesia.pdf",
     },
-   insights: { 
-  eyebrow: 'Berita & wawasan · contoh', 
-  title: 'Sorotan pendidikan digital.', 
-  description: 'Kartu dan isi berikut adalah data dummy. Ganti judul, tanggal, ringkasan, sumber, dan tautan sebelum publikasi.', 
-  readMore: 'Tautan contoh', 
-  items: [
-    { 
-      category: '[Kategori]', 
-      title: 'Teknologi Informasi Ubah Wajah Pendidikan: Menyiapkan Generasi Emas Lewat Digitalisasi', 
-      description: 'JAKARTA – Dunia pendidikan kini memasuki babak baru yang penuh dengan inovasi. Dengan mengusung tema besar "BELAJAR UNTUK MASA DEPAN: Empowering Minds: Digitalizing the Future of Education", berbagai institusi pendidikan, pakar, dan pemangku kebijakan mulai mempercepat transisi menuju ekosistem belajar berbasis digital demi melahirkan generasi siap kerja di masa depan. Pergeseran ini bukan lagi sekadar tren teknologi, melainkan sebuah kebutuhan mutlak. Pemanfaatan teknologi seperti kecerdasan buatan (Artificial Intelligence), platform belajar berbasis awan (cloud), dan metode interaktif tidak hanya mengubah cara mengajar, tetapi juga memberdayakan pikiran (empowering minds) siswa agar mampu berpikir kritis, kreatif, dan adaptif menghadapi tantangan global.', 
-      source: '[Refo Indonesia] · [10 Agustus]', 
-      url: 'https://www.refoindonesia.com/pentingnya-digitalisasi-pendidikan-menuju-generasi-indonesia-emas-2045/' 
-    }, 
-    { 
-      category: '[Riset]', 
-      title: 'Dampak dan Batasan Teknologi Pembelajaran Modern: Ringkasan Riset', 
-      description: `• Temuan Utama: Integrasi teknologi pembelajaran—seperti Learning Management Systems (LMS), kecerdasan buatan (AI), dan media interaktif—terbukti secara signifikan meningkatkan keterlibatan, motivasi, dan hasil akademik siswa melalui pembelajaran yang mandiri (personalized learning). Namun, riset juga menemukan dampak negatif berupa risiko ketergantungan gawai, maraknya jalan pintas pengerjaan tugas lewat AI (cognitive outsourcing), serta penurunan rentang konsentrasi (shorter attention span) akibat paparan distraksi digital.
+    insights: {
+      eyebrow: "Berita & wawasan · contoh",
+      title: "Sorotan pendidikan digital.",
+      description:
+        "Kartu dan isi berikut adalah data dummy. Ganti judul, tanggal, ringkasan, sumber, dan tautan sebelum publikasi.",
+      readMore: "Tautan contoh",
+      items: [
+        {
+          category: "[Kategori]",
+          title:
+            "Teknologi Informasi Ubah Wajah Pendidikan: Menyiapkan Generasi Emas Lewat Digitalisasi",
+          description:
+            'JAKARTA – Dunia pendidikan kini memasuki babak baru yang penuh dengan inovasi. Dengan mengusung tema besar "BELAJAR UNTUK MASA DEPAN: Empowering Minds: Digitalizing the Future of Education", berbagai institusi pendidikan, pakar, dan pemangku kebijakan mulai mempercepat transisi menuju ekosistem belajar berbasis digital demi melahirkan generasi siap kerja di masa depan. Pergeseran ini bukan lagi sekadar tren teknologi, melainkan sebuah kebutuhan mutlak. Pemanfaatan teknologi seperti kecerdasan buatan (Artificial Intelligence), platform belajar berbasis awan (cloud), dan metode interaktif tidak hanya mengubah cara mengajar, tetapi juga memberdayakan pikiran (empowering minds) siswa agar mampu berpikir kritis, kreatif, dan adaptif menghadapi tantangan global.',
+          source: "[Refo Indonesia] · [10 Agustus]",
+          url: "https://www.refoindonesia.com/pentingnya-digitalisasi-pendidikan-menuju-generasi-indonesia-emas-2045/",
+        },
+        {
+          category: "[Riset]",
+          title:
+            "Dampak dan Batasan Teknologi Pembelajaran Modern: Ringkasan Riset",
+          description: `• Temuan Utama: Integrasi teknologi pembelajaran—seperti Learning Management Systems (LMS), kecerdasan buatan (AI), dan media interaktif—terbukti secara signifikan meningkatkan keterlibatan, motivasi, dan hasil akademik siswa melalui pembelajaran yang mandiri (personalized learning). Namun, riset juga menemukan dampak negatif berupa risiko ketergantungan gawai, maraknya jalan pintas pengerjaan tugas lewat AI (cognitive outsourcing), serta penurunan rentang konsentrasi (shorter attention span) akibat paparan distraksi digital.
 • Konteks Penelitian: Studi dilakukan dalam masa akselerasi transformasi digital pasca-pandemi. Fokus utamanya adalah mengevaluasi transisi metode belajar konvensional ke arah blended learning (pembelajaran campuran) demi mempersiapkan kompetensi digital siswa untuk bersaing di era modern.
-• Batasan Penelitian: Efektivitas temuan positif tersebut sangat bergantung pada kestabilan infrastruktur internet dan kelengkapan gawai. Akibatnya, hasil penelitian ini belum bisa digeneralisasi untuk wilayah pelosok atau sekolah dengan keterbatasan fasilitas digital dan rendahnya literasi digital guru. Selain itu, sebagian besar riset masih bersifat jangka pendek sehingga memiliki keterbatasan dalam mengukur dampak psikologis jangka panjang pada anak.`, 
-      source: '[Kompas.com] · [15 Oktober 2025]', 
-      url: 'https://www.kompas.com/skola/read/2024/08/06/210000769/bagaimana-teknologi-pembelajaran-memengaruhi-proses-pembelajaran-' 
-    }, 
-    { 
-      category: '[Inovasi]', 
-      title: 'Peta Inovasi Pendidikan Modern: Manfaat dan Pengakuan Global Aplikasi Sekolah', 
-      description: `• Ringkasan Inovasi: Pengembangan Superaplikasi Rumah Pendidikan yang menyediakan modul belajar interaktif dan ruang kelas dinamis, didukung oleh pengadaan Papan Interaktif Digital di ruang kelas [Kementerian Pendidikan Dasar dan Menengah].
+• Batasan Penelitian: Efektivitas temuan positif tersebut sangat bergantung pada kestabilan infrastruktur internet dan kelengkapan gawai. Akibatnya, hasil penelitian ini belum bisa digeneralisasi untuk wilayah pelosok atau sekolah dengan keterbatasan fasilitas digital dan rendahnya literasi digital guru. Selain itu, sebagian besar riset masih bersifat jangka pendek sehingga memiliki keterbatasan dalam mengukur dampak psikologis jangka panjang pada anak.`,
+          source: "[Kompas.com] · [15 Oktober 2025]",
+          url: "https://www.kompas.com/skola/read/2024/08/06/210000769/bagaimana-teknologi-pembelajaran-memengaruhi-proses-pembelajaran-",
+        },
+        {
+          category: "[Inovasi]",
+          title:
+            "Peta Inovasi Pendidikan Modern: Manfaat dan Pengakuan Global Aplikasi Sekolah",
+          description: `• Ringkasan Inovasi: Pengembangan Superaplikasi Rumah Pendidikan yang menyediakan modul belajar interaktif dan ruang kelas dinamis, didukung oleh pengadaan Papan Interaktif Digital di ruang kelas [Kementerian Pendidikan Dasar dan Menengah].
 • Pihak Terkait: Digerakkan oleh Kementerian Pendidikan Dasar dan Menengah (Kemendikdasmen) RI [Kementerian Pendidikan Dasar dan Menengah] dan diakui secara internasional oleh PBB melalui badan International Telecommunication Union (ITU).
-• Manfaat Terverifikasi: Mewujudkan pemerataan akses materi berkualitas di daerah pelosok, mendigitalisasi tata kelola sekolah, serta meraih predikat juara pertama (Winner) kategori e-Government di ajang dunia WSIS Prizes 2026 di Jenewa [Kementerian Pendidikan Dasar dan Menengah].`, 
-      source: 'e-ujian.id · 2026', 
-      url: 'https://e-ujian.id/peta-pendidikan-modern-indonesia/' 
-    }
-  ] 
+• Manfaat Terverifikasi: Mewujudkan pemerataan akses materi berkualitas di daerah pelosok, mendigitalisasi tata kelola sekolah, serta meraih predikat juara pertama (Winner) kategori e-Government di ajang dunia WSIS Prizes 2026 di Jenewa [Kementerian Pendidikan Dasar dan Menengah].`,
+          source: "e-ujian.id · 2026",
+          url: "https://e-ujian.id/peta-pendidikan-modern-indonesia/",
+        },
+      ],
+    },
+  },
+  en: {
+    impact: {
+      eyebrow: "Data contoh",
+      title: "Dampak pembelajaran.",
+      description: "",
+      items: [
+        {
+          value: "85%",
+          label: "Penyelesaian kursus",
+          detail:
+            "Berdasarkan data riset efektivitas e-learning dan platform pendidikan digital",
+        },
+        {
+          value: "81,1%",
+          label: "Kemajuan belajar",
+          detail:
+            "Data peningkatan hasil belajar pasca-penggunaan platform edukasi digital interaktif dari pengujian kelas eksperimen pendidikan.",
+        },
+        {
+          value: "97,6%",
+          label: "Pembelajar aktif",
+          detail:
+            "Estimasi persentase penerapan pembelajaran jarak jauh dan pemanfaatan platform digital bagi dunia pendidikan di Indonesia oleh Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi",
+        },
+      ],
+    },
+    evidence: {
+      label: "Placeholder bukti kuantitatif",
+      summary:
+        "Integrasi platform pembelajaran digital dan Learning Management System (LMS) terbukti mampu meningkatkan efektivitas pembelajaran, motivasi, serta keterlibatan aktif siswa melalui penyajian materi yang lebih fleksibel dan berpusat pada peserta didik.",
+      caveat: "Data ini dummy, bukan temuan nyata atau hasil EduFuture.",
+      source: "UNICEF Indonesia",
+      url: "https://www.unicef.org/indonesia/media/13421/file/AnalisisSituasiuntukLanskapPembelajaranDigitaldiIndonesia.pdf",
+    },
+    insights: {
+      eyebrow: "Berita & wawasan · contoh",
+      title: "Sorotan pendidikan digital.",
+      description:
+        "Kartu dan isi berikut adalah data dummy. Ganti judul, tanggal, ringkasan, sumber, dan tautan sebelum publikasi.",
+      readMore: "Tautan contoh",
+      items: [
+        {
+          category: "[Kategori]",
+          title:
+            "Teknologi Informasi Ubah Wajah Pendidikan: Menyiapkan Generasi Emas Lewat Digitalisasi",
+          description:
+            'JAKARTA – Dunia pendidikan kini memasuki babak baru yang penuh dengan inovasi. Dengan mengusung tema besar "BELAJAR UNTUK MASA DEPAN: Empowering Minds: Digitalizing the Future of Education", berbagai institusi pendidikan, pakar, dan pemangku kebijakan mulai mempercepat transisi menuju ekosistem belajar berbasis digital demi melahirkan generasi siap kerja di masa depan. Pergeseran ini bukan lagi sekadar tren teknologi, melainkan sebuah kebutuhan mutlak. Pemanfaatan teknologi seperti kecerdasan buatan (Artificial Intelligence), platform belajar berbasis awan (cloud), dan metode interaktif tidak hanya mengubah cara mengajar, tetapi juga memberdayakan pikiran (empowering minds) siswa agar mampu berpikir kritis, kreatif, dan adaptif menghadapi tantangan global.',
+          source: "[Refo Indonesia] · [10 Agustus]",
+          url: "https://www.refoindonesia.com/pentingnya-digitalisasi-pendidikan-menuju-generasi-indonesia-emas-2045/",
+        },
+        {
+          category: "[Riset]",
+          title:
+            "Dampak dan Batasan Teknologi Pembelajaran Modern: Ringkasan Riset",
+          description: `• Temuan Utama: Integrasi teknologi pembelajaran—seperti Learning Management Systems (LMS), kecerdasan buatan (AI), dan media interaktif—terbukti secara signifikan meningkatkan keterlibatan, motivasi, dan hasil akademik siswa melalui pembelajaran yang mandiri (personalized learning). Namun, riset juga menemukan dampak negatif berupa risiko ketergantungan gawai, maraknya jalan pintas pengerjaan tugas lewat AI (cognitive outsourcing), serta penurunan rentang konsentrasi (shorter attention span) akibat paparan distraksi digital.
+• Konteks Penelitian: Studi dilakukan dalam masa akselerasi transformasi digital pasca-pandemi. Fokus utamanya adalah mengevaluasi transisi metode belajar konvensional ke arah blended learning (pembelajaran campuran) demi mempersiapkan kompetensi digital siswa untuk bersaing di era modern.
+• Batasan Penelitian: Efektivitas temuan positif tersebut sangat bergantung pada kestabilan infrastruktur internet dan kelengkapan gawai. Akibatnya, hasil penelitian ini belum bisa digeneralisasi untuk wilayah pelosok atau sekolah dengan keterbatasan fasilitas digital dan rendahnya literasi digital guru. Selain itu, sebagian besar riset masih bersifat jangka pendek sehingga memiliki keterbatasan dalam mengukur dampak psikologis jangka panjang pada anak.`,
+          source: "[Kompas.com] · [15 Oktober 2025]",
+          url: "https://www.kompas.com/skola/read/2024/08/06/210000769/bagaimana-teknologi-pembelajaran-memengaruhi-proses-pembelajaran-",
+        },
+        {
+          category: "[Inovasi]",
+          title:
+            "Peta Inovasi Pendidikan Modern: Manfaat dan Pengakuan Global Aplikasi Sekolah",
+          description: `• Ringkasan Inovasi: Pengembangan Superaplikasi Rumah Pendidikan yang menyediakan modul belajar interaktif dan ruang kelas dinamis, didukung oleh pengadaan Papan Interaktif Digital di ruang kelas [Kementerian Pendidikan Dasar dan Menengah].
+• Pihak Terkait: Digerakkan oleh Kementerian Pendidikan Dasar dan Menengah (Kemendikdasmen) RI [Kementerian Pendidikan Dasar dan Menengah] dan diakui secara internasional oleh PBB melalui badan International Telecommunication Union (ITU).
+• Manfaat Terverifikasi: Mewujudkan pemerataan akses materi berkualitas di daerah pelosok, mendigitalisasi tata kelola sekolah, serta meraih predikat juara pertama (Winner) kategori e-Government di ajang dunia WSIS Prizes 2026 di Jenewa [Kementerian Pendidikan Dasar dan Menengah].`,
+          source: "e-ujian.id · 2026",
+          url: "https://e-ujian.id/peta-pendidikan-modern-indonesia/",
+        },
+      ],
     },
   },
   zh: {
