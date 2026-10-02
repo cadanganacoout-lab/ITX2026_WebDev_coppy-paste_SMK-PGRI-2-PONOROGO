@@ -655,7 +655,7 @@ const additionalTranslations = {
       viewCourse: "Lihat jalur belajar",
       empty: "Tidak ada kursus yang cocok dengan pencarian.",
       items: [
-        {
+      {
           category: "ai",
           label: "AI & DATA",
           level: "Menengah",
@@ -664,6 +664,7 @@ const additionalTranslations = {
           description:
             "Rancang pengalaman adaptif dan pahami batas penggunaan AI dalam belajar.",
           skills: ["AI literacy", "Prompt design", "Etika data"],
+          url: "https://www.coursera.org/" // <-- Tambahkan link untuk kursus 1
         },
         {
           category: "design",
@@ -897,38 +898,38 @@ const additionalTranslations = {
         },
       ],
     },
-    insights: {
-      eyebrow: "News & insights",
-      title: "Perspectives from education.",
-      description:
-        "Selected trusted sources on digital learning, technology, and education evidence.",
-      readMore: "Read source",
-      items: [
-        {
-          category: "Research · India",
-          title: "Technology-aided instruction and learning outcomes",
-          description:
-            "A randomized controlled trial measured a personalized, technology-aided learning program.",
-          source: "American Economic Association · 2019",
-          url: "https://www.aeaweb.org/articles?id=10.1257/aer.20171112",
-        },
-        {
-          category: "Global strategy",
-          title: "UNICEF Digital Education Strategy",
-          description:
-            "An approach to technology use that is inclusive, sustainable, and learner-centered.",
-          source: "UNICEF Digital Education",
-          url: "https://www.unicef.org/digitaleducation/",
-        },
-        {
-          category: "Education technology",
-          title: "Digital technologies in education",
-          description:
-            "Opportunities and risks around technology, AI, connectivity, and the essential role of teachers.",
-          source: "World Bank",
-          url: "https://www.worldbank.org/en/topic/edutech",
-        },
-      ],
+   insights: { 
+  eyebrow: 'News & insights · example', 
+  title: 'Digital education highlights.', 
+  description: 'The following cards and content are dummy data. Replace titles, dates, summaries, sources, and links before publication.', 
+  readMore: 'Example link', 
+  items: [
+    { 
+      category: '[Category]', 
+      title: 'Information Technology Transforms the Face of Education: Preparing the Golden Generation Through Digitalization', 
+      description: 'JAKARTA – The world of education is now entering a new chapter full of innovation. Carrying the grand theme "LEARNING FOR THE FUTURE: Empowering Minds: Digitalizing the Future of Education", various educational institutions, experts, and policymakers are beginning to accelerate the transition toward a digital-based learning ecosystem to produce a generation ready for the workforce of the future. This shift is no longer just a technological trend, but an absolute necessity. The utilization of technologies such as Artificial Intelligence (AI), cloud-based learning platforms, and interactive methods not only transforms teaching methods, but also empowers students\' minds to think critically, creatively, and adaptively in facing global challenges.', 
+      source: '[Refo Indonesia] · [August 10]', 
+      url: 'https://www.refoindonesia.com/pentingnya-digitalisasi-pendidikan-menuju-generasi-indonesia-emas-2045/' 
+    }, 
+    { 
+      category: '[Research]', 
+      title: 'Impact and Limitations of Modern Learning Technology: Research Summary', 
+      description: `• Main Findings: The integration of learning technologies—such as Learning Management Systems (LMS), artificial intelligence (AI), and interactive media—has been proven to significantly enhance student engagement, motivation, and academic results through personalized learning. However, research also highlights negative impacts such as the risk of device dependency, the prevalence of shortcuts in completing assignments via AI (cognitive outsourcing), and a shortened attention span due to digital distraction exposure.
+• Research Context: The study was conducted during the post-pandemic acceleration of digital transformation. The primary focus was evaluating the transition from conventional learning methods toward blended learning to prepare students' digital competencies for the modern era.
+• Research Limitations: The effectiveness of these positive findings heavily depends on stable internet infrastructure and device availability. Consequently, these research results cannot yet be generalized to remote areas or schools with limited digital facilities and low teacher digital literacy. Furthermore, most research remains short-term, posing limitations in measuring long-term psychological impacts on children.`, 
+      source: '[Kompas.com] · [15 October 2025]', 
+      url: 'https://www.kompas.com/skola/read/2024/08/06/210000769/bagaimana-teknologi-pembelajaran-memengaruhi-proses-pembelajaran-' 
+    }, 
+    { 
+      category: '[Innovation]', 
+      title: 'Modern Education Innovation Map: Benefits and Global Recognition of School Applications', 
+      description: `• Innovation Summary: The development of the Rumah Pendidikan Superapp providing interactive learning modules and dynamic virtual classrooms, supported by the procurement of Digital Interactive Whiteboards in classrooms [Ministry of Primary and Secondary Education].
+• Stakeholders Involved: Driven by the Ministry of Primary and Secondary Education (Kemendikdasmen) of the Republic of Indonesia [Ministry of Primary and Secondary Education] and internationally recognized by the United Nations through the International Telecommunication Union (ITU).
+• Verified Benefits: Realizing equitable access to quality materials in remote regions, digitalizing school governance, and winning first place (Winner) in the e-Government category at the global WSIS Prizes 2026 event in Geneva [Ministry of Primary and Secondary Education].`, 
+      source: 'e-ujian.id · 2026', 
+      url: 'https://e-ujian.id/peta-pendidikan-modern-indonesia/' 
+    }
+  ]
     },
     community: {
       eyebrow: "Learning ecosystem",
@@ -1821,7 +1822,7 @@ const demoContent = {
 • Konteks Penelitian: Studi dilakukan dalam masa akselerasi transformasi digital pasca-pandemi. Fokus utamanya adalah mengevaluasi transisi metode belajar konvensional ke arah blended learning (pembelajaran campuran) demi mempersiapkan kompetensi digital siswa untuk bersaing di era modern.
 • Batasan Penelitian: Efektivitas temuan positif tersebut sangat bergantung pada kestabilan infrastruktur internet dan kelengkapan gawai. Akibatnya, hasil penelitian ini belum bisa digeneralisasi untuk wilayah pelosok atau sekolah dengan keterbatasan fasilitas digital dan rendahnya literasi digital guru. Selain itu, sebagian besar riset masih bersifat jangka pendek sehingga memiliki keterbatasan dalam mengukur dampak psikologis jangka panjang pada anak.`, 
       source: '[Kompas.com] · [15 Oktober 2025]', 
-      url: '' 
+      url: 'https://www.kompas.com/skola/read/2024/08/06/210000769/bagaimana-teknologi-pembelajaran-memengaruhi-proses-pembelajaran-' 
     }, 
     { 
       category: '[Inovasi]', 
@@ -1829,8 +1830,8 @@ const demoContent = {
       description: `• Ringkasan Inovasi: Pengembangan Superaplikasi Rumah Pendidikan yang menyediakan modul belajar interaktif dan ruang kelas dinamis, didukung oleh pengadaan Papan Interaktif Digital di ruang kelas [Kementerian Pendidikan Dasar dan Menengah].
 • Pihak Terkait: Digerakkan oleh Kementerian Pendidikan Dasar dan Menengah (Kemendikdasmen) RI [Kementerian Pendidikan Dasar dan Menengah] dan diakui secara internasional oleh PBB melalui badan International Telecommunication Union (ITU).
 • Manfaat Terverifikasi: Mewujudkan pemerataan akses materi berkualitas di daerah pelosok, mendigitalisasi tata kelola sekolah, serta meraih predikat juara pertama (Winner) kategori e-Government di ajang dunia WSIS Prizes 2026 di Jenewa [Kementerian Pendidikan Dasar dan Menengah].`, 
-      source: 'Kementerian Pendidikan Dasar dan Menengah · 2026', 
-      url: '' 
+      source: 'e-ujian.id · 2026', 
+      url: 'https://e-ujian.id/peta-pendidikan-modern-indonesia/' 
     }
   ] 
     },
