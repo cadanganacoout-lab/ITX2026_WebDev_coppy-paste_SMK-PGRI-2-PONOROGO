@@ -7,13 +7,15 @@ EduFuture adalah prototipe landing page untuk konsep platform pembelajaran digit
 ## Fitur saat ini
 
 - Landing page dengan bagian hero, pengantar, cara kerja, dampak, katalog kursus, program pembelajaran, wawasan, ekosistem pembelajaran, FAQ, kontak, dan footer.
+- Peta navigasi website interaktif bergaya 3D yang menghubungkan bagian utama dan dapat digunakan untuk membuka tiap bagian.
 - Headline tema utama: **“Empowering Minds: Digitalizing the Future of Education.”**
 - Katalog contoh dengan filter kategori dan pencarian berdasarkan judul atau skill.
 - Empat langkah alur belajar: pilih tujuan, ikuti kursus, praktikkan kemampuan, dan raih sertifikat. Alur ini adalah konsep, bukan layanan sertifikasi yang sudah aktif.
 - Pemilih bahasa: Bahasa Indonesia, English, Mandarin, Spanish, Arabic, dan French.
-- Tata letak RTL saat bahasa Arab dipilih.
+- Terjemahan per bahasa untuk konten halaman, statistik hero, keunggulan, serta label aksesibilitas.
+- Tata letak RTL dan atribut `lang` dokumen diperbarui saat bahasa Arab dipilih.
 - Dark mode dengan preferensi tema dan bahasa yang disimpan di `localStorage`.
-- Ilustrasi laptop 3D bergaya CSS dan animasi ringan.
+- Ilustrasi laptop 3D dan peta navigasi bergaya 3D berbasis CSS, tanpa dependensi 3D tambahan.
 - Tata letak responsif untuk desktop dan perangkat mobile.
 - Pengaturan gerakan `prefers-reduced-motion`.
 
@@ -53,15 +55,20 @@ edtech-future/
 ├── index.html          # HTML awal, judul halaman, dan metadata
 ├── ROADMAP.md          # Tahapan pengembangan dan peta pengeditan konten
 ├── package.json        # Dependensi dan perintah npm
+├── package-lock.json   # Versi dependensi yang terkunci
+├── .oxlintrc.json      # Konfigurasi Oxlint
 ├── vite.config.js      # Konfigurasi React dan Tailwind untuk Vite
+├── public/             # Ikon dan aset statis publik
 └── src/
     ├── main.jsx        # Titik masuk React
     ├── App.jsx         # Komposisi halaman dan interaksi antarmuka
     ├── App.css         # Styling section, responsivitas, ilustrasi, dan tema
     ├── index.css       # CSS global dan variabel warna dasar
-    ├── i18n.js         # Terjemahan dan data konten per bahasa
-    └── assets/         # Aset statis yang digunakan aplikasi
+    ├── i18n.js         # Terjemahan dan data konten enam bahasa
+    └── assets/         # Aset proyek, termasuk hero.png dan aset bawaan Vite/React
 ```
+
+`dist/` adalah hasil build yang dibuat oleh Vite; `node_modules/` berisi dependensi lokal. Keduanya bukan lokasi untuk mengedit sumber aplikasi.
 
 ## Mengubah konten
 
@@ -69,6 +76,7 @@ Sebagian besar teks dan data ada di **`src/i18n.js`**:
 
 - Teks antarmuka per bahasa berada pada `resources[bahasa].translation`.
 - Konten bagian Cara Kerja, kursus, FAQ, komunitas, dan kontak berada pada `additionalTranslations[bahasa]`.
+- Statistik hero, keunggulan bagian Tentang, dan label aksesibilitas per bahasa berada pada `localizedDisplayContent`.
 - Metrik dampak, bukti kuantitatif, dan berita/wawasan contoh berada pada `demoContent[bahasa]`.
 
 Bahasa yang didukung saat ini menggunakan kode `id`, `en`, `zh`, `es`, `ar`, dan `fr`. Jika mengubah konten, perbarui semua bahasa agar halaman tidak menampilkan terjemahan yang tidak konsisten.
@@ -109,7 +117,7 @@ Objek `demoContent[bahasa]` memakai teks placeholder yang sengaja mudah dikenali
 
 ## Bahasa dan aksesibilitas
 
-Bahasa awal adalah Bahasa Indonesia. Terjemahan dan konfigurasi bahasa berada di `src/i18n.js`; pilihan bahasa diperbarui pada atribut `lang` dan arah dokumen pada elemen `<html>`. Arabic menggunakan `dir="rtl"`.
+Bahasa awal adalah Bahasa Indonesia. Bahasa yang didukung menggunakan kode `id`, `en`, `zh`, `es`, `ar`, dan `fr`. Terjemahan berada di `src/i18n.js`; pilihan bahasa disimpan dengan kunci `edtech-language` dan memperbarui atribut `lang` serta arah dokumen pada elemen `<html>`. Bahasa Arab menggunakan `dir="rtl"`. Terjemahkan konten visual dan label pembaca layar bersama-sama agar tidak tertinggal saat mengganti bahasa.
 
 Saat menambah bahasa, tambahkan resource terjemahan di `src/i18n.js` dan opsi bahasanya di daftar `languages` pada `src/App.jsx`. Periksa kembali pemotongan teks, urutan ikon, arah layout, kontras, navigasi keyboard, dan pembaca layar untuk setiap bahasa.
 
