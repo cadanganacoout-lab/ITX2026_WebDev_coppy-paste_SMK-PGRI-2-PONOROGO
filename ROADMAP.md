@@ -8,12 +8,14 @@ Dokumen ini merangkum arah pengembangan proyek dan lokasi utama untuk mengubah t
 | --- | --- |
 | `index.html` | Kerangka HTML, bahasa awal, judul tab, dan metadata halaman. |
 | `src/main.jsx` | Titik masuk React; memuat konfigurasi bahasa dan CSS global. |
-| `src/App.jsx` | Komposisi halaman, navigasi, interaksi filter/pencarian kursus, tema terang/gelap, dan seluruh section. |
+| `src/App.jsx` | Komposisi halaman, navigasi, peta navigasi website interaktif, filter/pencarian kursus, tema terang/gelap, dan seluruh section. |
 | `src/i18n.js` | Teks terjemahan enam bahasa dan data konten contoh: kursus, langkah belajar, metrik, berita/wawasan, FAQ, serta peran komunitas. |
 | `src/App.css` | Layout, komponen, responsivitas, ilustrasi 3D berbasis CSS, dan warna dark mode. |
 | `src/index.css` | Reset dan aturan CSS global serta variabel tema dasar. |
 | `vite.config.js` | Konfigurasi Vite, React, dan Tailwind CSS. |
 | `package.json` | Dependensi dan perintah `dev`, `build`, dan `lint`. |
+
+Peta navigasi website berada pada bagian **Peta navigasi 3D** di halaman. Peta ini merangkum alur dari Beranda ke bagian Tentang, Cara kerja, Kursus, Program, Dampak, Wawasan, Komunitas, FAQ, dan Kontak; klik sebuah titik untuk melihat ringkasan, lalu gunakan tombolnya untuk menuju bagian terkait. Tampilan 3D dibuat dengan CSS sehingga tidak memerlukan library 3D terpisah.
 
 ## Tempat mengedit data
 

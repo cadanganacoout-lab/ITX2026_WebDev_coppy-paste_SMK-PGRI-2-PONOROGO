@@ -7,13 +7,14 @@ EduFuture adalah prototipe landing page untuk konsep platform pembelajaran digit
 ## Fitur saat ini
 
 - Landing page dengan bagian hero, pengantar, cara kerja, dampak, katalog kursus, program pembelajaran, wawasan, ekosistem pembelajaran, FAQ, kontak, dan footer.
+- Peta navigasi website interaktif bergaya 3D yang menghubungkan bagian utama dan dapat digunakan untuk membuka tiap bagian.
 - Headline tema utama: **“Empowering Minds: Digitalizing the Future of Education.”**
 - Katalog contoh dengan filter kategori dan pencarian berdasarkan judul atau skill.
 - Empat langkah alur belajar: pilih tujuan, ikuti kursus, praktikkan kemampuan, dan raih sertifikat. Alur ini adalah konsep, bukan layanan sertifikasi yang sudah aktif.
 - Pemilih bahasa: Bahasa Indonesia, English, Mandarin, Spanish, Arabic, dan French.
 - Tata letak RTL saat bahasa Arab dipilih.
 - Dark mode dengan preferensi tema dan bahasa yang disimpan di `localStorage`.
-- Ilustrasi laptop 3D bergaya CSS dan animasi ringan.
+- Ilustrasi laptop 3D dan peta navigasi bergaya 3D berbasis CSS, tanpa dependensi 3D tambahan.
 - Tata letak responsif untuk desktop dan perangkat mobile.
 - Pengaturan gerakan `prefers-reduced-motion`.
 
