@@ -26,8 +26,8 @@ const resources = {
         artLabel: "Ilustrasi platform pembelajaran digital",
         artTagTop: "PENDIDIKAN × TEKNOLOGI",
         artTagBottom: "BELAJAR UNTUK MASA DEPAN",
-        screenKicker: "LANJUTKAN BELAJAR",
-        screenTitle: "Desain pengalaman belajar",
+        screenKicker: "JELAJAHI",
+        screenTitle: "Ubah ide menjadi aksi",
         themeLabel: "Empowering Minds: Digitalizing the Future of Education",
         scroll: "Gulir ke tentang platform",
       },
@@ -101,6 +101,7 @@ const resources = {
         tagline:
           "Memberdayakan pikiran. Mendigitalisasi masa depan pendidikan.",
         copyright: "Dibuat untuk masa depan pembelajaran.",
+        backToTop: "Kembali ke atas",
       },
     },
   },
@@ -128,8 +129,8 @@ const resources = {
         artLabel: "Illustration of a digital learning platform",
         artTagTop: "EDUCATION × TECHNOLOGY",
         artTagBottom: "LEARN FOR WHAT’S NEXT",
-        screenKicker: "CONTINUE LEARNING",
-        screenTitle: "Learning experience design",
+        screenKicker: "EXPLORE",
+        screenTitle: "Ideas into action",
         themeLabel: "Empowering Minds: Digitalizing the Future of Education",
         scroll: "Scroll to learn about the platform",
       },
@@ -202,6 +203,7 @@ const resources = {
       footer: {
         tagline: "Empowering minds. Digitalizing the future of education.",
         copyright: "Made for the future of learning.",
+        backToTop: "Back to top",
       },
     },
   },
@@ -229,8 +231,8 @@ const resources = {
         artLabel: "数字学习平台插画",
         artTagTop: "教育 × 科技",
         artTagBottom: "学习，迎接未来",
-        screenKicker: "继续学习",
-        screenTitle: "学习体验设计",
+        screenKicker: "探索",
+        screenTitle: "让想法付诸行动",
         themeLabel: "Empowering Minds: Digitalizing the Future of Education",
         scroll: "向下了解平台",
       },
@@ -292,6 +294,7 @@ const resources = {
       footer: {
         tagline: "启发思维，数字化教育未来。",
         copyright: "为学习的未来而设计。",
+        backToTop: "返回顶部",
       },
     },
   },
@@ -319,8 +322,8 @@ const resources = {
         artLabel: "Ilustración de una plataforma de aprendizaje digital",
         artTagTop: "EDUCACIÓN × TECNOLOGÍA",
         artTagBottom: "APRENDER PARA LO QUE VIENE",
-        screenKicker: "CONTINUAR APRENDIENDO",
-        screenTitle: "Diseño de experiencias",
+        screenKicker: "EXPLORAR",
+        screenTitle: "Ideas en acción",
         themeLabel: "Empowering Minds: Digitalizing the Future of Education",
         scroll: "Desplazarse para conocer la plataforma",
       },
@@ -393,6 +396,7 @@ const resources = {
       footer: {
         tagline: "Inspirar mentes. Digitalizar el futuro de la educación.",
         copyright: "Creado para el futuro del aprendizaje.",
+        backToTop: "Volver arriba",
       },
     },
   },
@@ -420,8 +424,8 @@ const resources = {
         artLabel: "رسم توضيحي لمنصة تعلم رقمية",
         artTagTop: "التعليم × التقنية",
         artTagBottom: "تعلم من أجل المستقبل",
-        screenKicker: "تابع التعلم",
-        screenTitle: "تصميم تجربة التعلم",
+        screenKicker: "استكشف",
+        screenTitle: "حوّل الأفكار إلى عمل",
         themeLabel: "Empowering Minds: Digitalizing the Future of Education",
         scroll: "انتقل لمعرفة المزيد عن المنصة",
       },
@@ -488,6 +492,7 @@ const resources = {
       footer: {
         tagline: "تمكين العقول. رقمنة مستقبل التعليم.",
         copyright: "صُنع من أجل مستقبل التعلم.",
+        backToTop: "العودة إلى الأعلى",
       },
     },
   },
@@ -515,8 +520,8 @@ const resources = {
         artLabel: "Illustration d’une plateforme d’apprentissage numérique",
         artTagTop: "ÉDUCATION × TECHNOLOGIE",
         artTagBottom: "APPRENDRE POUR DEMAIN",
-        screenKicker: "REPRENDRE L’APPRENTISSAGE",
-        screenTitle: "Conception pédagogique",
+        screenKicker: "EXPLORER",
+        screenTitle: "Des idées à l’action",
         themeLabel: "Empowering Minds: Digitalizing the Future of Education",
         scroll: "Défiler pour découvrir la plateforme",
       },
@@ -589,6 +594,7 @@ const resources = {
       footer: {
         tagline: "Éveiller les esprits. Numériser l’avenir de l’éducation.",
         copyright: "Créé pour l’avenir de l’apprentissage.",
+        backToTop: "Retour en haut",
       },
     },
   },
@@ -1775,6 +1781,10 @@ const roadmapTranslations = {
         "Pilih titik untuk melihat isi setiap bagian, lalu buka bagian yang ingin dijelajahi.",
       stepLabel: "Bagian",
       action: "Buka bagian ini",
+      previous: "Bagian sebelumnya",
+      next: "Bagian berikutnya",
+      restart: "Mulai dari awal",
+      progressLabel: "Progres navigasi",
       nodes: [
         {
           title: "Beranda",
@@ -1789,7 +1799,7 @@ const roadmapTranslations = {
         {
           title: "Cara kerja",
           description:
-            "Lihat gambaran alur belajar dari memilih tujuan hingga menunjukkan pencapaian.",
+            "Ikuti alur demo: pilih jalur contoh, atur waktu, lalu catat latihan.",
         },
         {
           title: "Kursus",
@@ -1838,6 +1848,10 @@ const roadmapTranslations = {
         "Select a point to preview each section, then open the part of the site you want to explore.",
       stepLabel: "Section",
       action: "Open this section",
+      previous: "Previous section",
+      next: "Next section",
+      restart: "Start over",
+      progressLabel: "Navigation progress",
       nodes: [
         {
           title: "Home",
@@ -1852,7 +1866,7 @@ const roadmapTranslations = {
         {
           title: "How it works",
           description:
-            "See the learning flow from choosing a goal to showcasing an achievement.",
+            "Try the demo flow: choose a sample path, set study time, and track practice.",
         },
         {
           title: "Courses",
@@ -1899,6 +1913,10 @@ const roadmapTranslations = {
       description: "选择一个节点预览对应板块，然后打开想要浏览的内容。",
       stepLabel: "板块",
       action: "打开此板块",
+      previous: "上一板块",
+      next: "下一板块",
+      restart: "重新开始",
+      progressLabel: "导航进度",
       nodes: [
         {
           title: "首页",
@@ -1940,6 +1958,10 @@ const roadmapTranslations = {
         "Selecciona un punto para ver cada sección y abre la parte del sitio que quieras explorar.",
       stepLabel: "Sección",
       action: "Abrir esta sección",
+      previous: "Sección anterior",
+      next: "Sección siguiente",
+      restart: "Empezar de nuevo",
+      progressLabel: "Progreso de navegación",
       nodes: [
         {
           title: "Inicio",
@@ -2002,6 +2024,10 @@ const roadmapTranslations = {
         "اختر نقطة لمعاينة كل قسم، ثم افتح الجزء الذي تريد استكشافه.",
       stepLabel: "القسم",
       action: "افتح هذا القسم",
+      previous: "القسم السابق",
+      next: "القسم التالي",
+      restart: "ابدأ من جديد",
+      progressLabel: "تقدم التنقل",
       nodes: [
         {
           title: "الرئيسية",
@@ -2058,6 +2084,10 @@ const roadmapTranslations = {
         "Sélectionnez un point pour prévisualiser une rubrique, puis ouvrez la partie du site souhaitée.",
       stepLabel: "Rubrique",
       action: "Ouvrir cette rubrique",
+      previous: "Rubrique précédente",
+      next: "Rubrique suivante",
+      restart: "Recommencer",
+      progressLabel: "Progression de navigation",
       nodes: [
         {
           title: "Accueil",
@@ -2072,7 +2102,7 @@ const roadmapTranslations = {
         {
           title: "Fonctionnement",
           description:
-            "Suivez le parcours d’apprentissage, du choix d’un objectif à la valorisation des acquis.",
+            "Essayez le parcours démo : choisissez un exemple, définissez un temps et suivez vos exercices.",
         },
         {
           title: "Cours",
@@ -2123,173 +2153,634 @@ const localizedHeroWords = {
   fr: ["Apprendre ensemble", "Grandir chaque jour", "Créer l’avenir", "Apprendre pour tous"],
 };
 
+const productTranslations = {
+  id: {
+    how: {
+      eyebrow: "Alur demo",
+      title: "Coba langkah belajar yang sederhana.",
+      description: "Alur prototipe menunjukkan cara memilih jalur contoh dan mencatat latihan.",
+      steps: [
+        { title: "Pilih topik", description: "Pilih salah satu jalur keterampilan digital di katalog demo." },
+        { title: "Atur waktu", description: "Tentukan waktu belajar mingguan yang realistis untuk Anda." },
+        { title: "Coba latihan", description: "Gunakan tiga prompt latihan umum sebagai titik awal belajar mandiri." },
+        { title: "Catat progres", description: "Tandai aktivitas yang dicoba; progres disimpan di browser ini." },
+      ],
+    },
+    programs: {
+      eyebrow: "Arah pengembangan",
+      title: "Prinsip untuk pengalaman belajar digital.",
+      description: "Ini adalah arah konsep, bukan fitur layanan yang sudah aktif.",
+      discover: "Lihat katalog demo",
+      items: [
+        { title: "Belajar sesuai tujuan", description: "Rencana ke depan: susun materi berdasarkan tujuan dan kebutuhan pembelajar; personalisasi otomatis belum tersedia." },
+        { title: "Akses yang inklusif", description: "Rancang pengalaman yang mudah digunakan lintas bahasa, perangkat, dan kebutuhan aksesibilitas." },
+        { title: "Latihan dan penerapan", description: "Dukung pemahaman dengan latihan serta proyek yang ditinjau pendidik; demo saat ini hanya memberi prompt umum." },
+        { title: "Teknologi yang bertanggung jawab", description: "Gunakan teknologi secara transparan dengan perhatian pada privasi, akses, dan pengawasan manusia." },
+      ],
+    },
+    participate: {
+      eyebrow: "Coba prototipe",
+      title: "Mulai susun langkah belajar.",
+      description: "Pilih topik contoh dan buat rencana latihan simulasi; belum ada materi kursus atau pendaftaran.",
+      cta: "Buka katalog demo",
+    },
+    prototypeScope: {
+      eyebrow: "Ruang lingkup prototipe",
+      title: "Yang bisa dicoba sekarang.",
+      description: "EduFuture adalah konsep yang didemokan lewat antarmuka dan alat perencana belajar sederhana.",
+      items: [
+        { value: "01", label: "Pilih jalur", detail: "Jelajahi empat contoh topik keterampilan digital." },
+        { value: "02", label: "Susun rencana", detail: "Buat urutan aktivitas tiga minggu dari keterampilan pilihan." },
+        { value: "03", label: "Lacak progres", detail: "Tandai aktivitas dan simpan progres di browser ini." },
+      ],
+      note: "Konten jalur, materi, durasi, dan progres adalah simulasi lokal; belum ada kursus, akun, backend, atau sertifikat resmi.",
+    },
+    planner: {
+      eyebrow: "Alat demo",
+      title: "Rencanakan langkah belajar pertama",
+      description: "Pilih topik dan waktu belajar mingguan untuk membuat rencana latihan tiga minggu.",
+      trackLabel: "Topik belajar",
+      timeLabel: "Waktu per minggu",
+      hoursOption: "{{hours}} jam per minggu",
+      progress: "{{completed}} dari {{total}} aktivitas selesai",
+      progressLabel: "Progres aktivitas belajar",
+      reset: "Atur ulang progres",
+      note: "Rencana dibuat dari keterampilan contoh pada kartu kursus. Ini bukan materi ajar atau kurikulum resmi; progres tersimpan hanya di browser ini.",
+      steps: [
+        { week: "Minggu 1" },
+        { week: "Minggu 2" },
+        { week: "Minggu 3" },
+      ],
+    },
+    plannerStepTitles: [
+      "Pahami {{skill}}",
+      "Latih {{skill}}",
+      "Buat proyek mini dengan {{skill}}",
+    ],
+    plannerStepDescriptions: [
+      "Tinjau konsep dasar {{skill}} dan catat satu pertanyaan. Alokasikan {{hours}} jam minggu ini.",
+      "Coba {{skill}} lewat latihan kecil, lalu catat hal yang masih perlu dipelajari. Alokasikan {{hours}} jam minggu ini.",
+      "Gunakan {{skill}} untuk membuat hasil sederhana dan refleksikan prosesnya. Alokasikan {{hours}} jam minggu ini.",
+    ],
+    references: {
+      eyebrow: "Referensi eksternal",
+      title: "Sumber untuk menjelajahi pendidikan digital.",
+      description: "Bacaan pilihan sebagai konteks tema; sumber ini bukan hasil atau dukungan terhadap EduFuture.",
+      readMore: "Buka sumber",
+      items: [
+        { category: "Penelitian · 2019", title: "Disrupting Education? Experimental Evidence on Technology-Aided Instruction in India", description: "Penelitian tentang pengajaran berbantuan teknologi di India; hasilnya tidak mengukur EduFuture.", source: "American Economic Review", url: "https://www.aeaweb.org/articles?id=10.1257/aer.20171112" },
+        { category: "Sumber kebijakan", title: "Digital Education", description: "Sumber UNICEF tentang pendekatan dan inisiatif pendidikan digital.", source: "UNICEF", url: "https://www.unicef.org/digitaleducation/" },
+        { category: "Gambaran topik", title: "Education and Technology", description: "Sumber World Bank untuk konteks teknologi pendidikan dan penerapannya.", source: "World Bank", url: "https://www.worldbank.org/en/topic/edutech" },
+      ],
+    },
+  },
+  en: {
+    how: {
+      eyebrow: "Demo flow",
+      title: "Try a simple learning flow.",
+      description: "The prototype shows how to choose a sample path and track practice.",
+      steps: [
+        { title: "Choose a topic", description: "Select a digital-skills path from the demo catalog." },
+        { title: "Set your time", description: "Choose a realistic weekly study-time goal." },
+        { title: "Try the prompts", description: "Use three generic practice prompts as a starting point for self-study." },
+        { title: "Track progress", description: "Check off activities you try; progress stays in this browser." },
+      ],
+    },
+    programs: {
+      eyebrow: "Product direction",
+      title: "Principles for digital learning experiences.",
+      description: "These are concept directions, not live service features.",
+      discover: "View demo catalog",
+      items: [
+        { title: "Learning with purpose", description: "Future direction: shape materials around learner goals and needs; automated personalization is not available." },
+        { title: "Inclusive access", description: "Design experiences that work across languages, devices, and accessibility needs." },
+        { title: "Practice and application", description: "Support understanding with educator-reviewed practice and projects; this demo offers generic prompts only." },
+        { title: "Responsible technology", description: "Use technology transparently, with attention to privacy, access, and human oversight." },
+      ],
+    },
+    participate: {
+      eyebrow: "Try the prototype",
+      title: "Start planning your learning steps.",
+      description: "Choose a sample topic and make a simulated practice plan; course materials and enrollment are not available.",
+      cta: "Open demo catalog",
+    },
+    prototypeScope: {
+      eyebrow: "Prototype scope",
+      title: "What you can try today.",
+      description: "EduFuture is a concept demonstrated through an interactive interface and a simple learning planner.",
+      items: [
+        { value: "01", label: "Choose a path", detail: "Explore four sample digital-skills topics." },
+        { value: "02", label: "Make a plan", detail: "Build a three-week activity sequence from a chosen skill path." },
+        { value: "03", label: "Track progress", detail: "Check off activities and save progress in this browser." },
+      ],
+      note: "Tracks, materials, durations, and progress are local simulations; courses, accounts, a backend, and official certificates are not provided.",
+    },
+    planner: {
+      eyebrow: "Interactive demo",
+      title: "Plan your first learning steps",
+      description: "Choose a topic and weekly study time to create a three-week practice plan.",
+      trackLabel: "Learning topic",
+      timeLabel: "Time per week",
+      hoursOption: "{{hours}} hours per week",
+      progress: "{{completed}} of {{total}} activities complete",
+      progressLabel: "Learning activity progress",
+      reset: "Reset progress",
+      note: "The plan uses sample skills from the course cards. It is not course material or an official curriculum; progress is stored only in this browser.",
+      steps: [
+        { week: "Week 1" },
+        { week: "Week 2" },
+        { week: "Week 3" },
+      ],
+    },
+    plannerStepTitles: [
+      "Understand {{skill}}",
+      "Practice {{skill}}",
+      "Create a mini project with {{skill}}",
+    ],
+    plannerStepDescriptions: [
+      "Review the basics of {{skill}} and write down one question. Set aside {{hours}} hours this week.",
+      "Try {{skill}} in a small exercise and note what you still need to learn. Set aside {{hours}} hours this week.",
+      "Use {{skill}} to make a small artifact and reflect on the process. Set aside {{hours}} hours this week.",
+    ],
+    references: {
+      eyebrow: "External references",
+      title: "Sources for exploring digital education.",
+      description: "Selected background reading; these sources are not EduFuture results or endorsements.",
+      readMore: "Open source",
+      items: [
+        { category: "Research · 2019", title: "Disrupting Education? Experimental Evidence on Technology-Aided Instruction in India", description: "Research on technology-aided instruction in India; it does not evaluate EduFuture.", source: "American Economic Review", url: "https://www.aeaweb.org/articles?id=10.1257/aer.20171112" },
+        { category: "Policy resource", title: "Digital Education", description: "UNICEF resource on digital education approaches and initiatives.", source: "UNICEF", url: "https://www.unicef.org/digitaleducation/" },
+        { category: "Topic overview", title: "Education and Technology", description: "World Bank resource for context on education technology and its use.", source: "World Bank", url: "https://www.worldbank.org/en/topic/edutech" },
+      ],
+    },
+  },
+  zh: {
+    how: {
+      eyebrow: "演示流程",
+      title: "体验简单的学习流程。",
+      description: "原型演示如何选择示例路径并记录练习进度。",
+      steps: [
+        { title: "选择主题", description: "从演示目录中选择一个数字技能路径。" },
+        { title: "安排时间", description: "设定切合实际的每周学习时间。" },
+        { title: "尝试练习", description: "使用三个通用练习提示作为自主学习的起点。" },
+        { title: "跟踪进度", description: "勾选尝试过的活动；进度保存在当前浏览器。" },
+      ],
+    },
+    programs: {
+      eyebrow: "产品方向",
+      title: "数字学习体验的设计原则。",
+      description: "以下是概念方向，并非已上线的服务功能。",
+      discover: "查看演示目录",
+      items: [
+        { title: "目标导向学习", description: "未来方向：根据学习者目标和需求设计材料；目前没有自动个性化功能。" },
+        { title: "包容性访问", description: "设计适用于不同语言、设备和无障碍需求的体验。" },
+        { title: "练习与应用", description: "通过教育者审阅的练习和项目支持理解；当前演示仅提供通用提示。" },
+        { title: "负责任地使用技术", description: "透明地使用技术，并关注隐私、可访问性和人工监督。" },
+      ],
+    },
+    participate: {
+      eyebrow: "体验原型",
+      title: "开始规划学习步骤。",
+      description: "选择一个示例主题并创建模拟练习计划；目前没有课程材料或报名功能。",
+      cta: "打开演示目录",
+    },
+    prototypeScope: {
+      eyebrow: "原型范围",
+      title: "当前可体验的功能。",
+      description: "EduFuture 是一个通过交互界面和简易学习规划器展示的概念原型。",
+      items: [
+        { value: "01", label: "选择路径", detail: "浏览四个数字技能示例主题。" },
+        { value: "02", label: "制定计划", detail: "根据所选技能路径生成三周活动安排。" },
+        { value: "03", label: "跟踪进度", detail: "勾选活动并将进度保存在当前浏览器。" },
+      ],
+      note: "学习路径、材料、时长和进度均为本地模拟；目前不提供正式课程、账户、后端或证书。",
+    },
+    planner: {
+      eyebrow: "互动演示",
+      title: "规划你的第一步学习",
+      description: "选择主题和每周学习时间，生成三周练习计划。",
+      trackLabel: "学习主题",
+      timeLabel: "每周时间",
+      hoursOption: "每周 {{hours}} 小时",
+      progress: "已完成 {{completed}} / {{total}} 项活动",
+      progressLabel: "学习活动进度",
+      reset: "重置进度",
+      note: "计划使用课程卡片中的示例技能生成，并非课程材料或正式课程大纲；进度仅保存在当前浏览器。",
+      steps: [{ week: "第 1 周" }, { week: "第 2 周" }, { week: "第 3 周" }],
+    },
+    plannerStepTitles: ["了解 {{skill}}", "练习 {{skill}}", "使用 {{skill}} 制作小项目"],
+    plannerStepDescriptions: [
+      "回顾 {{skill}} 的基础并记录一个问题。本周安排 {{hours}} 小时。",
+      "通过小练习尝试 {{skill}}，并记录待学习内容。本周安排 {{hours}} 小时。",
+      "使用 {{skill}} 制作一个简单成果并回顾过程。本周安排 {{hours}} 小时。",
+    ],
+    references: {
+      eyebrow: "外部参考资料",
+      title: "了解数字教育的资料。",
+      description: "以下资料用于主题背景参考，不代表 EduFuture 的成果或背书。",
+      readMore: "打开来源",
+      items: [
+        { category: "研究 · 2019", title: "Disrupting Education? Experimental Evidence on Technology-Aided Instruction in India", description: "关于印度技术辅助教学的研究；并未评估 EduFuture。", source: "American Economic Review", url: "https://www.aeaweb.org/articles?id=10.1257/aer.20171112" },
+        { category: "政策资源", title: "Digital Education", description: "联合国儿童基金会关于数字教育方法与倡议的资源。", source: "UNICEF", url: "https://www.unicef.org/digitaleducation/" },
+        { category: "主题概览", title: "Education and Technology", description: "世界银行关于教育技术及其应用背景的资料。", source: "World Bank", url: "https://www.worldbank.org/en/topic/edutech" },
+      ],
+    },
+  },
+  es: {
+    how: {
+      eyebrow: "Flujo de demostración",
+      title: "Prueba un recorrido de aprendizaje sencillo.",
+      description: "El prototipo muestra cómo elegir una ruta de ejemplo y registrar la práctica.",
+      steps: [
+        { title: "Elige un tema", description: "Selecciona una ruta de habilidades digitales del catálogo demo." },
+        { title: "Define tu tiempo", description: "Elige un objetivo semanal de estudio realista." },
+        { title: "Prueba las actividades", description: "Usa tres propuestas genéricas como punto de partida para estudiar por tu cuenta." },
+        { title: "Registra el progreso", description: "Marca las actividades que pruebes; el progreso queda en este navegador." },
+      ],
+    },
+    programs: {
+      eyebrow: "Dirección del producto",
+      title: "Principios para experiencias de aprendizaje digital.",
+      description: "Son líneas conceptuales, no funciones de un servicio activo.",
+      discover: "Ver catálogo demo",
+      items: [
+        { title: "Aprender con propósito", description: "Dirección futura: adaptar materiales a los objetivos y necesidades; aún no hay personalización automática." },
+        { title: "Acceso inclusivo", description: "Diseñar experiencias para distintos idiomas, dispositivos y necesidades de accesibilidad." },
+        { title: "Práctica y aplicación", description: "Apoyar el aprendizaje con prácticas y proyectos revisados por educadores; la demo solo ofrece propuestas genéricas." },
+        { title: "Tecnología responsable", description: "Usar la tecnología con transparencia y atención a la privacidad, el acceso y la supervisión humana." },
+      ],
+    },
+    participate: {
+      eyebrow: "Prueba el prototipo",
+      title: "Empieza a planificar tus pasos de aprendizaje.",
+      description: "Elige un tema de ejemplo y crea un plan simulado; no hay materiales de cursos ni inscripción.",
+      cta: "Abrir catálogo demo",
+    },
+    prototypeScope: {
+      eyebrow: "Alcance del prototipo",
+      title: "Lo que puedes probar ahora.",
+      description: "EduFuture es un concepto demostrado mediante una interfaz interactiva y un planificador sencillo.",
+      items: [
+        { value: "01", label: "Elegir una ruta", detail: "Explora cuatro temas de ejemplo sobre habilidades digitales." },
+        { value: "02", label: "Crear un plan", detail: "Genera una secuencia de actividades de tres semanas." },
+        { value: "03", label: "Seguir el progreso", detail: "Marca actividades y guarda el progreso en este navegador." },
+      ],
+      note: "Las rutas, los materiales, la duración y el progreso son simulaciones locales; no hay cursos, cuentas, backend ni certificados oficiales.",
+    },
+    planner: {
+      eyebrow: "Demostración interactiva",
+      title: "Planifica tus primeros pasos de aprendizaje",
+      description: "Elige un tema y el tiempo semanal para crear un plan de práctica de tres semanas.",
+      trackLabel: "Tema de aprendizaje",
+      timeLabel: "Tiempo por semana",
+      hoursOption: "{{hours}} horas por semana",
+      progress: "{{completed}} de {{total}} actividades completadas",
+      progressLabel: "Progreso de actividades",
+      reset: "Restablecer progreso",
+      note: "El plan usa habilidades de ejemplo de las tarjetas de cursos; no es material didáctico ni un plan oficial. El progreso solo se guarda en este navegador.",
+      steps: [{ week: "Semana 1" }, { week: "Semana 2" }, { week: "Semana 3" }],
+    },
+    plannerStepTitles: ["Comprende {{skill}}", "Practica {{skill}}", "Crea un proyecto pequeño con {{skill}}"],
+    plannerStepDescriptions: [
+      "Repasa los conceptos básicos de {{skill}} y anota una pregunta. Dedica {{hours}} horas esta semana.",
+      "Prueba {{skill}} con un ejercicio breve y anota qué necesitas aprender. Dedica {{hours}} horas esta semana.",
+      "Usa {{skill}} para crear algo sencillo y reflexiona sobre el proceso. Dedica {{hours}} horas esta semana.",
+    ],
+    references: {
+      eyebrow: "Referencias externas",
+      title: "Fuentes para explorar la educación digital.",
+      description: "Lecturas de contexto; no son resultados ni respaldos de EduFuture.",
+      readMore: "Abrir fuente",
+      items: [
+        { category: "Investigación · 2019", title: "Disrupting Education? Experimental Evidence on Technology-Aided Instruction in India", description: "Investigación sobre enseñanza asistida por tecnología en India; no evalúa EduFuture.", source: "American Economic Review", url: "https://www.aeaweb.org/articles?id=10.1257/aer.20171112" },
+        { category: "Recurso de políticas", title: "Digital Education", description: "Recurso de UNICEF sobre enfoques e iniciativas de educación digital.", source: "UNICEF", url: "https://www.unicef.org/digitaleducation/" },
+        { category: "Resumen temático", title: "Education and Technology", description: "Recurso del Banco Mundial sobre tecnología educativa y su aplicación.", source: "World Bank", url: "https://www.worldbank.org/en/topic/edutech" },
+      ],
+    },
+  },
+  ar: {
+    how: {
+      eyebrow: "مسار العرض التجريبي",
+      title: "جرّب خطوات تعلم بسيطة.",
+      description: "يوضح النموذج كيفية اختيار مسار تجريبي وتسجيل التدريب.",
+      steps: [
+        { title: "اختر موضوعًا", description: "اختر مسارًا للمهارات الرقمية من الكتالوج التجريبي." },
+        { title: "حدد وقتك", description: "اختر هدفًا أسبوعيًا واقعيًا لوقت الدراسة." },
+        { title: "جرّب الأنشطة", description: "استخدم ثلاثة اقتراحات تدريب عامة كنقطة بداية للتعلم الذاتي." },
+        { title: "تابع التقدم", description: "حدّد الأنشطة التي جربتها؛ يُحفظ التقدم في هذا المتصفح." },
+      ],
+    },
+    programs: {
+      eyebrow: "اتجاه المنتج",
+      title: "مبادئ لتجارب التعلم الرقمي.",
+      description: "هذه توجهات مفاهيمية وليست ميزات خدمة متاحة.",
+      discover: "عرض الكتالوج التجريبي",
+      items: [
+        { title: "تعلم هادف", description: "اتجاه مستقبلي: تصميم المواد وفق أهداف المتعلم واحتياجاته؛ لا يتوفر تخصيص تلقائي الآن." },
+        { title: "وصول شامل", description: "تصميم تجارب تناسب اللغات والأجهزة واحتياجات إمكانية الوصول المختلفة." },
+        { title: "التدريب والتطبيق", description: "دعم الفهم عبر تدريبات ومشروعات يراجعها المعلمون؛ يقدم العرض الحالي اقتراحات عامة فقط." },
+        { title: "تقنية مسؤولة", description: "استخدام التقنية بشفافية مع مراعاة الخصوصية والوصول والإشراف البشري." },
+      ],
+    },
+    participate: {
+      eyebrow: "جرّب النموذج الأولي",
+      title: "ابدأ بتخطيط خطوات التعلم.",
+      description: "اختر موضوعًا تجريبيًا وأنشئ خطة تدريب محاكاة؛ لا تتوفر مواد دورات أو تسجيل.",
+      cta: "افتح الكتالوج التجريبي",
+    },
+    prototypeScope: {
+      eyebrow: "نطاق النموذج الأولي",
+      title: "ما يمكنك تجربته الآن.",
+      description: "EduFuture مفهوم تجريبي يعرضه واجه تفاعلية ومخطط تعلم بسيط.",
+      items: [
+        { value: "01", label: "اختر مسارًا", detail: "استكشف أربعة موضوعات تجريبية للمهارات الرقمية." },
+        { value: "02", label: "أنشئ خطة", detail: "أنشئ تسلسل أنشطة لمدة ثلاثة أسابيع حسب المهارة." },
+        { value: "03", label: "تابع التقدم", detail: "حدّد الأنشطة المكتملة واحفظ التقدم في هذا المتصفح." },
+      ],
+      note: "المسارات والمواد والمدة والتقدم محاكاة محلية؛ لا توجد دورات أو حسابات أو واجهة خلفية أو شهادات رسمية.",
+    },
+    planner: {
+      eyebrow: "عرض تفاعلي",
+      title: "خطط لخطواتك الأولى في التعلم",
+      description: "اختر موضوعًا ووقتًا أسبوعيًا للدراسة لإنشاء خطة تدريب لثلاثة أسابيع.",
+      trackLabel: "موضوع التعلم",
+      timeLabel: "الوقت في الأسبوع",
+      hoursOption: "{{hours}} ساعات أسبوعيًا",
+      progress: "اكتمل {{completed}} من {{total}} أنشطة",
+      progressLabel: "تقدم أنشطة التعلم",
+      reset: "إعادة ضبط التقدم",
+      note: "تعتمد الخطة على مهارات نموذجية في بطاقات الدورات، وليست مواد تعليمية أو منهجًا رسميًا؛ يُحفظ التقدم في هذا المتصفح فقط.",
+      steps: [{ week: "الأسبوع 1" }, { week: "الأسبوع 2" }, { week: "الأسبوع 3" }],
+    },
+    plannerStepTitles: ["تعرّف على {{skill}}", "تدرّب على {{skill}}", "أنشئ مشروعًا صغيرًا باستخدام {{skill}}"],
+    plannerStepDescriptions: [
+      "راجع أساسيات {{skill}} وسجّل سؤالًا واحدًا. خصص {{hours}} ساعة هذا الأسبوع.",
+      "جرّب {{skill}} بتمرين قصير وسجّل ما تحتاج إلى تعلمه. خصص {{hours}} ساعة هذا الأسبوع.",
+      "استخدم {{skill}} لإنشاء نتيجة بسيطة وتأمل في العملية. خصص {{hours}} ساعة هذا الأسبوع.",
+    ],
+    references: {
+      eyebrow: "مراجع خارجية",
+      title: "مصادر لاستكشاف التعليم الرقمي.",
+      description: "مواد مختارة للسياق، وليست نتائج أو تأييدًا لـ EduFuture.",
+      readMore: "افتح المصدر",
+      items: [
+        { category: "بحث · 2019", title: "Disrupting Education? Experimental Evidence on Technology-Aided Instruction in India", description: "بحث حول التعليم المدعوم بالتكنولوجيا في الهند؛ لا يقيّم EduFuture.", source: "American Economic Review", url: "https://www.aeaweb.org/articles?id=10.1257/aer.20171112" },
+        { category: "مصدر سياسات", title: "Digital Education", description: "مورد من UNICEF حول مناهج ومبادرات التعليم الرقمي.", source: "UNICEF", url: "https://www.unicef.org/digitaleducation/" },
+        { category: "نظرة عامة", title: "Education and Technology", description: "مورد من البنك الدولي عن تكنولوجيا التعليم وسياق استخدامها.", source: "World Bank", url: "https://www.worldbank.org/en/topic/edutech" },
+      ],
+    },
+  },
+  fr: {
+    how: {
+      eyebrow: "Parcours de démonstration",
+      title: "Essayez un parcours d’apprentissage simple.",
+      description: "Le prototype montre comment choisir un parcours d’exemple et suivre ses exercices.",
+      steps: [
+        { title: "Choisir un sujet", description: "Sélectionnez un parcours de compétences numériques dans le catalogue démo." },
+        { title: "Définir son temps", description: "Choisissez un objectif hebdomadaire réaliste." },
+        { title: "Essayer les activités", description: "Utilisez trois suggestions génériques comme point de départ pour l’autoformation." },
+        { title: "Suivre sa progression", description: "Cochez les activités essayées ; la progression reste dans ce navigateur." },
+      ],
+    },
+    programs: {
+      eyebrow: "Orientation du produit",
+      title: "Principes pour des expériences d’apprentissage numérique.",
+      description: "Il s’agit de pistes conceptuelles, pas de fonctionnalités disponibles.",
+      discover: "Voir le catalogue démo",
+      items: [
+        { title: "Apprendre avec un objectif", description: "Piste future : adapter les contenus aux objectifs et besoins ; aucune personnalisation automatisée n’est disponible." },
+        { title: "Accès inclusif", description: "Concevoir des expériences adaptées aux langues, appareils et besoins d’accessibilité." },
+        { title: "Pratique et application", description: "Soutenir la compréhension avec des exercices et projets validés par des éducateurs ; la démo propose seulement des suggestions génériques." },
+        { title: "Technologie responsable", description: "Utiliser la technologie avec transparence et attention à la confidentialité, à l’accès et au contrôle humain." },
+      ],
+    },
+    participate: {
+      eyebrow: "Essayer le prototype",
+      title: "Commencez à planifier vos étapes d’apprentissage.",
+      description: "Choisissez un sujet d’exemple et créez un plan d’exercice simulé ; aucun cours ni inscription n’est disponible.",
+      cta: "Ouvrir le catalogue démo",
+    },
+    prototypeScope: {
+      eyebrow: "Périmètre du prototype",
+      title: "Ce que vous pouvez essayer.",
+      description: "EduFuture est un concept présenté par une interface interactive et un planificateur d’apprentissage simple.",
+      items: [
+        { value: "01", label: "Choisir un parcours", detail: "Découvrez quatre exemples de compétences numériques." },
+        { value: "02", label: "Créer un plan", detail: "Générez une séquence d’activités sur trois semaines." },
+        { value: "03", label: "Suivre la progression", detail: "Cochez les activités et enregistrez la progression dans ce navigateur." },
+      ],
+      note: "Les parcours, contenus, durées et progressions sont simulés localement ; aucun cours, compte, backend ou certificat officiel n’est proposé.",
+    },
+    planner: {
+      eyebrow: "Démo interactive",
+      title: "Planifiez vos premières étapes d’apprentissage",
+      description: "Choisissez un sujet et un temps d’étude hebdomadaire pour créer un plan d’entraînement de trois semaines.",
+      trackLabel: "Sujet d’apprentissage",
+      timeLabel: "Temps par semaine",
+      hoursOption: "{{hours}} heures par semaine",
+      progress: "{{completed}} activité(s) sur {{total}} terminée(s)",
+      progressLabel: "Progression des activités",
+      reset: "Réinitialiser la progression",
+      note: "Le plan utilise des compétences d’exemple des cartes de cours ; ce n’est ni un cours ni un programme officiel. La progression reste dans ce navigateur.",
+      steps: [{ week: "Semaine 1" }, { week: "Semaine 2" }, { week: "Semaine 3" }],
+    },
+    plannerStepTitles: ["Comprendre {{skill}}", "Pratiquer {{skill}}", "Créer un mini-projet avec {{skill}}"],
+    plannerStepDescriptions: [
+      "Revoyez les bases de {{skill}} et notez une question. Prévoyez {{hours}} heures cette semaine.",
+      "Essayez {{skill}} dans un exercice court et notez ce qu’il reste à apprendre. Prévoyez {{hours}} heures cette semaine.",
+      "Utilisez {{skill}} pour créer un résultat simple et réfléchissez au processus. Prévoyez {{hours}} heures cette semaine.",
+    ],
+    references: {
+      eyebrow: "Références externes",
+      title: "Sources pour explorer l’éducation numérique.",
+      description: "Lectures de contexte ; elles ne constituent ni des résultats ni une approbation d’EduFuture.",
+      readMore: "Ouvrir la source",
+      items: [
+        { category: "Recherche · 2019", title: "Disrupting Education? Experimental Evidence on Technology-Aided Instruction in India", description: "Recherche sur l’enseignement assisté par la technologie en Inde ; elle n’évalue pas EduFuture.", source: "American Economic Review", url: "https://www.aeaweb.org/articles?id=10.1257/aer.20171112" },
+        { category: "Ressource politique", title: "Digital Education", description: "Ressource de l’UNICEF sur les approches et initiatives d’éducation numérique.", source: "UNICEF", url: "https://www.unicef.org/digitaleducation/" },
+        { category: "Aperçu thématique", title: "Education and Technology", description: "Ressource de la Banque mondiale sur les technologies éducatives et leur usage.", source: "World Bank", url: "https://www.worldbank.org/en/topic/edutech" },
+      ],
+    },
+  },
+};
+
 const localizedDisplayContent = {
   id: {
     heroMetrics: [
-      { value: "5K+", label: "Pembelajar aktif" },
-      { value: "4.9/5", label: "Rating pengalaman" },
-      { value: "92%", label: "Tingkat kembali belajar" },
+      { value: "4", label: "Jalur belajar contoh" },
+      { value: "6", label: "Bahasa antarmuka" },
+      { value: "Lokal", label: "Progres tersimpan di browser" },
     ],
     aboutHighlights: [
       {
-        title: "Pembelajaran adaptif",
-        detail: "Rute belajar yang menyesuaikan kebutuhan dan ritme setiap pembelajar.",
+        title: "Contoh jalur belajar",
+        detail: "Empat topik keterampilan digital untuk dijelajahi dalam katalog demo.",
       },
       {
-        title: "Praktik nyata",
-        detail: "Tugas dan proyek yang menghubungkan teori dengan penerapan.",
+        title: "Perencana belajar",
+        detail: "Susun latihan tiga minggu berdasarkan keterampilan yang dipilih.",
       },
       {
-        title: "Komunitas aktif",
-        detail: "Umpan balik dan kolaborasi untuk menjaga motivasi serta rasa memiliki.",
+        title: "Antarmuka inklusif",
+        detail: "Enam bahasa, dukungan tata letak RTL, dan progres lokal.",
       },
     ],
     ui: {
       homeLabel: "Beranda EduFuture",
-      heroMetricsLabel: "Statistik platform",
-      highlightsLabel: "Keunggulan platform",
-      roadmapMapLabel: "Klik area kosong peta atau tekan Enter untuk melihat bagian berikutnya",
+      heroMetricsLabel: "Fitur prototipe",
+      highlightsLabel: "Ruang lingkup prototipe",
+      roadmapMapLabel: "Gunakan tombol navigasi atau tombol panah. Klik area kosong peta atau tekan Enter untuk lanjut.",
     },
   },
   en: {
     heroMetrics: [
-      { value: "5K+", label: "Active learners" },
-      { value: "4.9/5", label: "Experience rating" },
-      { value: "92%", label: "Learners returning to study" },
+      { value: "4", label: "Sample learning paths" },
+      { value: "6", label: "Interface languages" },
+      { value: "Local", label: "Progress saved in browser" },
     ],
     aboutHighlights: [
       {
-        title: "Adaptive learning",
-        detail: "Learning paths that adapt to each learner’s needs and pace.",
+        title: "Sample learning paths",
+        detail: "Explore four digital-skills topics in the demo catalog.",
       },
       {
-        title: "Hands-on practice",
-        detail: "Assignments and projects that connect theory with real-world use.",
+        title: "Learning planner",
+        detail: "Arrange three weeks of practice around a selected skill path.",
       },
       {
-        title: "Active community",
-        detail: "Feedback and collaboration that build motivation and belonging.",
+        title: "Inclusive interface",
+        detail: "Six languages, RTL layout support, and locally saved progress.",
       },
     ],
     ui: {
       homeLabel: "EduFuture home",
-      heroMetricsLabel: "Platform statistics",
-      highlightsLabel: "Platform highlights",
-      roadmapMapLabel: "Click an empty area of the map or press Enter to view the next section",
+      heroMetricsLabel: "Prototype features",
+      highlightsLabel: "Prototype scope",
+      roadmapMapLabel: "Use the navigation buttons or arrow keys. Click an empty area or press Enter to continue.",
     },
   },
   zh: {
     heroMetrics: [
-      { value: "5K+", label: "活跃学习者" },
-      { value: "4.9/5", label: "体验评分" },
-      { value: "92%", label: "继续学习率" },
+      { value: "4", label: "示例学习路径" },
+      { value: "6", label: "界面语言" },
+      { value: "本地", label: "进度保存在浏览器" },
     ],
     aboutHighlights: [
       {
-        title: "自适应学习",
-        detail: "根据每位学习者的需求和节奏调整学习路径。",
+        title: "示例学习路径",
+        detail: "在演示目录中探索四个数字技能主题。",
       },
       {
-        title: "实践应用",
-        detail: "通过任务和项目将理论与实际应用联系起来。",
+        title: "学习规划器",
+        detail: "围绕所选技能路径安排三周练习。",
       },
       {
-        title: "活跃社区",
-        detail: "通过反馈与协作提升学习动力和归属感。",
+        title: "包容性界面",
+        detail: "支持六种语言、RTL 布局和本地进度保存。",
       },
     ],
     ui: {
       homeLabel: "EduFuture 首页",
-      heroMetricsLabel: "平台统计数据",
-      highlightsLabel: "平台特色",
-      roadmapMapLabel: "点击地图空白区域或按 Enter 查看下一部分",
+      heroMetricsLabel: "原型功能",
+      highlightsLabel: "原型范围",
+      roadmapMapLabel: "使用导航按钮或方向键。点击地图空白处或按 Enter 继续。",
     },
   },
   es: {
     heroMetrics: [
-      { value: "5K+", label: "Estudiantes activos" },
-      { value: "4.9/5", label: "Valoración de la experiencia" },
-      { value: "92%", label: "Estudiantes que vuelven a aprender" },
+      { value: "4", label: "Rutas de ejemplo" },
+      { value: "6", label: "Idiomas de interfaz" },
+      { value: "Local", label: "Progreso guardado en el navegador" },
     ],
     aboutHighlights: [
       {
-        title: "Aprendizaje adaptativo",
-        detail: "Rutas de aprendizaje que se ajustan a las necesidades y al ritmo de cada persona.",
+        title: "Rutas de aprendizaje de ejemplo",
+        detail: "Explora cuatro temas de habilidades digitales en el catálogo demo.",
       },
       {
-        title: "Práctica real",
-        detail: "Tareas y proyectos que conectan la teoría con su aplicación.",
+        title: "Planificador de aprendizaje",
+        detail: "Organiza tres semanas de práctica según la habilidad elegida.",
       },
       {
-        title: "Comunidad activa",
-        detail: "Comentarios y colaboración para fortalecer la motivación y el sentido de pertenencia.",
+        title: "Interfaz inclusiva",
+        detail: "Seis idiomas, diseño RTL y progreso guardado localmente.",
       },
     ],
     ui: {
       homeLabel: "Inicio de EduFuture",
-      heroMetricsLabel: "Estadísticas de la plataforma",
-      highlightsLabel: "Ventajas de la plataforma",
-      roadmapMapLabel: "Haz clic en un espacio vacío del mapa o pulsa Enter para ver la siguiente sección",
+      heroMetricsLabel: "Funciones del prototipo",
+      highlightsLabel: "Alcance del prototipo",
+      roadmapMapLabel: "Usa los botones de navegación o las flechas. Haz clic en un espacio vacío o pulsa Enter para continuar.",
     },
   },
   ar: {
     heroMetrics: [
-      { value: "5K+", label: "متعلمون نشطون" },
-      { value: "4.9/5", label: "تقييم التجربة" },
-      { value: "92%", label: "معدل العودة إلى التعلم" },
+      { value: "4", label: "مسارات تجريبية" },
+      { value: "6", label: "لغات الواجهة" },
+      { value: "محلي", label: "حفظ التقدم في المتصفح" },
     ],
     aboutHighlights: [
       {
-        title: "تعلم تكيفي",
-        detail: "مسارات تعلم تتكيف مع احتياجات كل متعلم ووتيرته.",
+        title: "مسارات تعلم تجريبية",
+        detail: "استكشف أربعة موضوعات للمهارات الرقمية في الكتالوج التجريبي.",
       },
       {
-        title: "تطبيق عملي",
-        detail: "مهام ومشروعات تربط النظرية بالتطبيق العملي.",
+        title: "مخطط التعلم",
+        detail: "نظّم ثلاثة أسابيع من التدريب وفق المسار المختار.",
       },
       {
-        title: "مجتمع نشط",
-        detail: "تغذية راجعة وتعاون يعززان الدافعية والشعور بالانتماء.",
+        title: "واجهة شاملة",
+        detail: "ست لغات، ودعم RTL، وحفظ التقدم محليًا.",
       },
     ],
     ui: {
       homeLabel: "الصفحة الرئيسية لـ EduFuture",
-      heroMetricsLabel: "إحصاءات المنصة",
-      highlightsLabel: "مزايا المنصة",
-      roadmapMapLabel: "انقر على مساحة فارغة في الخريطة أو اضغط Enter لعرض القسم التالي",
+      heroMetricsLabel: "ميزات النموذج الأولي",
+      highlightsLabel: "نطاق النموذج الأولي",
+      roadmapMapLabel: "استخدم أزرار التنقل أو مفاتيح الأسهم. انقر على مساحة فارغة أو اضغط Enter للمتابعة.",
     },
   },
   fr: {
     heroMetrics: [
-      { value: "5K+", label: "Apprenants actifs" },
-      { value: "4.9/5", label: "Note de l’expérience" },
-      { value: "92%", label: "Taux de retour à l’apprentissage" },
+      { value: "4", label: "Parcours d’exemple" },
+      { value: "6", label: "Langues de l’interface" },
+      { value: "Local", label: "Progression enregistrée dans le navigateur" },
     ],
     aboutHighlights: [
       {
-        title: "Apprentissage adaptatif",
-        detail: "Des parcours qui s’adaptent aux besoins et au rythme de chaque apprenant.",
+        title: "Parcours d’apprentissage d’exemple",
+        detail: "Explorez quatre thèmes de compétences numériques dans le catalogue démo.",
       },
       {
-        title: "Pratique concrète",
-        detail: "Des exercices et projets qui relient la théorie à la pratique.",
+        title: "Planificateur d’apprentissage",
+        detail: "Organisez trois semaines de pratique selon le parcours choisi.",
       },
       {
-        title: "Communauté active",
-        detail: "Des retours et une collaboration qui renforcent la motivation et le sentiment d’appartenance.",
+        title: "Interface inclusive",
+        detail: "Six langues, prise en charge RTL et progression enregistrée localement.",
       },
     ],
     ui: {
       homeLabel: "Accueil EduFuture",
-      heroMetricsLabel: "Statistiques de la plateforme",
-      highlightsLabel: "Atouts de la plateforme",
-      roadmapMapLabel: "Cliquez sur une zone vide de la carte ou appuyez sur Entrée pour afficher la section suivante",
+      heroMetricsLabel: "Fonctionnalités du prototype",
+      highlightsLabel: "Périmètre du prototype",
+      roadmapMapLabel: "Utilisez les boutons de navigation ou les flèches. Cliquez sur une zone vide ou appuyez sur Entrée pour continuer.",
     },
   },
 };
 
 for (const [language, translation] of Object.entries(localizedDisplayContent)) {
   Object.assign(resources[language].translation, translation);
+}
+
+for (const [language, translation] of Object.entries(productTranslations)) {
+  const { plannerStepTitles, plannerStepDescriptions, ...localizedContent } = translation;
+  localizedContent.planner.steps = localizedContent.planner.steps.map((step, index) => ({
+    ...step,
+    title: plannerStepTitles[index],
+    description: plannerStepDescriptions[index],
+  }));
+  Object.assign(resources[language].translation, localizedContent);
 }
 
 for (const [language, translation] of Object.entries(additionalTranslations)) {
@@ -2310,25 +2801,23 @@ const demoContent = {
     impact: {
       eyebrow: "Data contoh",
       title: "Dampak pembelajaran.",
-      description: "",
+      description:
+        "",
       items: [
         {
-          value: "85%",
+          value: "85%%",
           label: "Penyelesaian kursus",
-          detail:
-            "Berdasarkan data riset efektivitas e-learning dan platform pendidikan digital",
+          detail: "Berdasarkan data riset efektivitas e-learning dan platform pendidikan digital",
         },
         {
           value: "81,1%",
           label: "Kemajuan belajar",
-          detail:
-            "Data peningkatan hasil belajar pasca-penggunaan platform edukasi digital interaktif dari pengujian kelas eksperimen pendidikan.",
+          detail: "Data peningkatan hasil belajar pasca-penggunaan platform edukasi digital interaktif dari pengujian kelas eksperimen pendidikan.",
         },
         {
           value: "97,6%",
           label: "Pembelajar aktif",
-          detail:
-            "Estimasi persentase penerapan pembelajaran jarak jauh dan pemanfaatan platform digital bagi dunia pendidikan di Indonesia oleh Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi",
+          detail: "Estimasi persentase penerapan pembelajaran jarak jauh dan pemanfaatan platform digital bagi dunia pendidikan di Indonesia oleh Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi",
         },
       ],
     },
@@ -2340,112 +2829,99 @@ const demoContent = {
       source: "UNICEF Indonesia",
       url: "https://www.unicef.org/indonesia/media/13421/file/AnalisisSituasiuntukLanskapPembelajaranDigitaldiIndonesia.pdf",
     },
-    insights: {
-      eyebrow: "Berita & wawasan · contoh",
-      title: "Sorotan pendidikan digital.",
-      description:
-        "Kartu dan isi berikut adalah data dummy. Ganti judul, tanggal, ringkasan, sumber, dan tautan sebelum publikasi.",
-      readMore: "Tautan contoh",
-      items: [
-        {
-          category: "[Kategori]",
-          title:
-            "Teknologi Informasi Ubah Wajah Pendidikan: Menyiapkan Generasi Emas Lewat Digitalisasi",
-          description:
-            'JAKARTA – Dunia pendidikan kini memasuki babak baru yang penuh dengan inovasi. Dengan mengusung tema besar "BELAJAR UNTUK MASA DEPAN: Empowering Minds: Digitalizing the Future of Education", berbagai institusi pendidikan, pakar, dan pemangku kebijakan mulai mempercepat transisi menuju ekosistem belajar berbasis digital demi melahirkan generasi siap kerja di masa depan. Pergeseran ini bukan lagi sekadar tren teknologi, melainkan sebuah kebutuhan mutlak. Pemanfaatan teknologi seperti kecerdasan buatan (Artificial Intelligence), platform belajar berbasis awan (cloud), dan metode interaktif tidak hanya mengubah cara mengajar, tetapi juga memberdayakan pikiran (empowering minds) siswa agar mampu berpikir kritis, kreatif, dan adaptif menghadapi tantangan global.',
-          source: "[Refo Indonesia] · [10 Agustus]",
-          url: "https://www.refoindonesia.com/pentingnya-digitalisasi-pendidikan-menuju-generasi-indonesia-emas-2045/",
-        },
-        {
-          category: "[Riset]",
-          title:
-            "Dampak dan Batasan Teknologi Pembelajaran Modern: Ringkasan Riset",
-          description: `• Temuan Utama: Integrasi teknologi pembelajaran—seperti Learning Management Systems (LMS), kecerdasan buatan (AI), dan media interaktif—terbukti secara signifikan meningkatkan keterlibatan, motivasi, dan hasil akademik siswa melalui pembelajaran yang mandiri (personalized learning). Namun, riset juga menemukan dampak negatif berupa risiko ketergantungan gawai, maraknya jalan pintas pengerjaan tugas lewat AI (cognitive outsourcing), serta penurunan rentang konsentrasi (shorter attention span) akibat paparan distraksi digital.
+   insights: { 
+  eyebrow: 'Berita & wawasan · contoh', 
+  title: 'Sorotan pendidikan digital.', 
+  description: 'Kartu dan isi berikut adalah data dummy. Ganti judul, tanggal, ringkasan, sumber, dan tautan sebelum publikasi.', 
+  readMore: 'Tautan contoh', 
+  items: [
+    { 
+      category: '[Kategori]', 
+      title: 'Teknologi Informasi Ubah Wajah Pendidikan: Menyiapkan Generasi Emas Lewat Digitalisasi', 
+      description: 'JAKARTA – Dunia pendidikan kini memasuki babak baru yang penuh dengan inovasi. Dengan mengusung tema besar "BELAJAR UNTUK MASA DEPAN: Empowering Minds: Digitalizing the Future of Education", berbagai institusi pendidikan, pakar, dan pemangku kebijakan mulai mempercepat transisi menuju ekosistem belajar berbasis digital demi melahirkan generasi siap kerja di masa depan. Pergeseran ini bukan lagi sekadar tren teknologi, melainkan sebuah kebutuhan mutlak. Pemanfaatan teknologi seperti kecerdasan buatan (Artificial Intelligence), platform belajar berbasis awan (cloud), dan metode interaktif tidak hanya mengubah cara mengajar, tetapi juga memberdayakan pikiran (empowering minds) siswa agar mampu berpikir kritis, kreatif, dan adaptif menghadapi tantangan global.', 
+      source: '[Refo Indonesia] · [10 Agustus]', 
+      url: 'https://www.refoindonesia.com/pentingnya-digitalisasi-pendidikan-menuju-generasi-indonesia-emas-2045/' 
+    }, 
+    { 
+      category: '[Riset]', 
+      title: 'Dampak dan Batasan Teknologi Pembelajaran Modern: Ringkasan Riset', 
+      description: `• Temuan Utama: Integrasi teknologi pembelajaran—seperti Learning Management Systems (LMS), kecerdasan buatan (AI), dan media interaktif—terbukti secara signifikan meningkatkan keterlibatan, motivasi, dan hasil akademik siswa melalui pembelajaran yang mandiri (personalized learning). Namun, riset juga menemukan dampak negatif berupa risiko ketergantungan gawai, maraknya jalan pintas pengerjaan tugas lewat AI (cognitive outsourcing), serta penurunan rentang konsentrasi (shorter attention span) akibat paparan distraksi digital.
 • Konteks Penelitian: Studi dilakukan dalam masa akselerasi transformasi digital pasca-pandemi. Fokus utamanya adalah mengevaluasi transisi metode belajar konvensional ke arah blended learning (pembelajaran campuran) demi mempersiapkan kompetensi digital siswa untuk bersaing di era modern.
-• Batasan Penelitian: Efektivitas temuan positif tersebut sangat bergantung pada kestabilan infrastruktur internet dan kelengkapan gawai. Akibatnya, hasil penelitian ini belum bisa digeneralisasi untuk wilayah pelosok atau sekolah dengan keterbatasan fasilitas digital dan rendahnya literasi digital guru. Selain itu, sebagian besar riset masih bersifat jangka pendek sehingga memiliki keterbatasan dalam mengukur dampak psikologis jangka panjang pada anak.`,
-          source: "[Kompas.com] · [15 Oktober 2025]",
-          url: "https://www.kompas.com/skola/read/2024/08/06/210000769/bagaimana-teknologi-pembelajaran-memengaruhi-proses-pembelajaran-",
-        },
-        {
-          category: "[Inovasi]",
-          title:
-            "Peta Inovasi Pendidikan Modern: Manfaat dan Pengakuan Global Aplikasi Sekolah",
-          description: `• Ringkasan Inovasi: Pengembangan Superaplikasi Rumah Pendidikan yang menyediakan modul belajar interaktif dan ruang kelas dinamis, didukung oleh pengadaan Papan Interaktif Digital di ruang kelas [Kementerian Pendidikan Dasar dan Menengah].
+• Batasan Penelitian: Efektivitas temuan positif tersebut sangat bergantung pada kestabilan infrastruktur internet dan kelengkapan gawai. Akibatnya, hasil penelitian ini belum bisa digeneralisasi untuk wilayah pelosok atau sekolah dengan keterbatasan fasilitas digital dan rendahnya literasi digital guru. Selain itu, sebagian besar riset masih bersifat jangka pendek sehingga memiliki keterbatasan dalam mengukur dampak psikologis jangka panjang pada anak.`, 
+      source: '[Kompas.com] · [15 Oktober 2025]', 
+      url: 'https://www.kompas.com/skola/read/2024/08/06/210000769/bagaimana-teknologi-pembelajaran-memengaruhi-proses-pembelajaran-' 
+    }, 
+    { 
+      category: '[Inovasi]', 
+      title: 'Peta Inovasi Pendidikan Modern: Manfaat dan Pengakuan Global Aplikasi Sekolah', 
+      description: `• Ringkasan Inovasi: Pengembangan Superaplikasi Rumah Pendidikan yang menyediakan modul belajar interaktif dan ruang kelas dinamis, didukung oleh pengadaan Papan Interaktif Digital di ruang kelas [Kementerian Pendidikan Dasar dan Menengah].
 • Pihak Terkait: Digerakkan oleh Kementerian Pendidikan Dasar dan Menengah (Kemendikdasmen) RI [Kementerian Pendidikan Dasar dan Menengah] dan diakui secara internasional oleh PBB melalui badan International Telecommunication Union (ITU).
-• Manfaat Terverifikasi: Mewujudkan pemerataan akses materi berkualitas di daerah pelosok, mendigitalisasi tata kelola sekolah, serta meraih predikat juara pertama (Winner) kategori e-Government di ajang dunia WSIS Prizes 2026 di Jenewa [Kementerian Pendidikan Dasar dan Menengah].`,
-          source: "e-ujian.id · 2026",
-          url: "https://e-ujian.id/peta-pendidikan-modern-indonesia/",
-        },
-      ],
+• Manfaat Terverifikasi: Mewujudkan pemerataan akses materi berkualitas di daerah pelosok, mendigitalisasi tata kelola sekolah, serta meraih predikat juara pertama (Winner) kategori e-Government di ajang dunia WSIS Prizes 2026 di Jenewa [Kementerian Pendidikan Dasar dan Menengah].`, 
+      source: 'e-ujian.id · 2026', 
+      url: 'https://e-ujian.id/peta-pendidikan-modern-indonesia/' 
+    }
+  ] 
     },
   },
   en: {
     impact: {
-      eyebrow: "Data contoh",
-      title: "Dampak pembelajaran.",
+      eyebrow: "Example data",
+      title: "Learning impact.",
       description: "",
       items: [
         {
           value: "85%",
-          label: "Penyelesaian kursus",
-          detail:
-            "Berdasarkan data riset efektivitas e-learning dan platform pendidikan digital",
+          label: "Course completion",
+          detail: "Based on research into the effectiveness of e-learning and digital education platforms",
         },
         {
-          value: "81,1%",
-          label: "Kemajuan belajar",
-          detail:
-            "Data peningkatan hasil belajar pasca-penggunaan platform edukasi digital interaktif dari pengujian kelas eksperimen pendidikan.",
+          value: "81.1%",
+          label: "Learning progress",
+          detail: "Data on learning gains after using an interactive digital education platform in an experimental classroom study.",
         },
         {
-          value: "97,6%",
-          label: "Pembelajar aktif",
-          detail:
-            "Estimasi persentase penerapan pembelajaran jarak jauh dan pemanfaatan platform digital bagi dunia pendidikan di Indonesia oleh Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi",
+          value: "97.6%",
+          label: "Active learners",
+          detail: "Estimated adoption of distance learning and digital platforms in Indonesian education, according to the Ministry of Education, Culture, Research, and Technology",
         },
       ],
     },
     evidence: {
-      label: "Placeholder bukti kuantitatif",
+      label: "Quantitative evidence placeholder",
       summary:
-        "Integrasi platform pembelajaran digital dan Learning Management System (LMS) terbukti mampu meningkatkan efektivitas pembelajaran, motivasi, serta keterlibatan aktif siswa melalui penyajian materi yang lebih fleksibel dan berpusat pada peserta didik.",
-      caveat: "Data ini dummy, bukan temuan nyata atau hasil EduFuture.",
+        "Integrating digital learning platforms and learning management systems (LMS) can improve learning effectiveness, motivation, and student engagement through flexible, learner-centered materials.",
+      caveat: "These are demo data, not verified findings or EduFuture results.",
       source: "UNICEF Indonesia",
       url: "https://www.unicef.org/indonesia/media/13421/file/AnalisisSituasiuntukLanskapPembelajaranDigitaldiIndonesia.pdf",
     },
     insights: {
-      eyebrow: "Berita & wawasan · contoh",
-      title: "Sorotan pendidikan digital.",
+      eyebrow: "News & insights · examples",
+      title: "Digital education highlights.",
       description:
-        "Kartu dan isi berikut adalah data dummy. Ganti judul, tanggal, ringkasan, sumber, dan tautan sebelum publikasi.",
-      readMore: "Tautan contoh",
+        "These cards contain demo content. Replace titles, dates, summaries, sources, and links before publishing.",
+      readMore: "Example link",
       items: [
         {
-          category: "[Kategori]",
-          title:
-            "Teknologi Informasi Ubah Wajah Pendidikan: Menyiapkan Generasi Emas Lewat Digitalisasi",
+          category: "[News]",
+          title: "How technology is changing education and preparing the next generation",
           description:
-            'JAKARTA – Dunia pendidikan kini memasuki babak baru yang penuh dengan inovasi. Dengan mengusung tema besar "BELAJAR UNTUK MASA DEPAN: Empowering Minds: Digitalizing the Future of Education", berbagai institusi pendidikan, pakar, dan pemangku kebijakan mulai mempercepat transisi menuju ekosistem belajar berbasis digital demi melahirkan generasi siap kerja di masa depan. Pergeseran ini bukan lagi sekadar tren teknologi, melainkan sebuah kebutuhan mutlak. Pemanfaatan teknologi seperti kecerdasan buatan (Artificial Intelligence), platform belajar berbasis awan (cloud), dan metode interaktif tidak hanya mengubah cara mengajar, tetapi juga memberdayakan pikiran (empowering minds) siswa agar mampu berpikir kritis, kreatif, dan adaptif menghadapi tantangan global.',
-          source: "[Refo Indonesia] · [10 Agustus]",
+            "Education is entering a new era of innovation. Schools, experts, and policymakers are accelerating the shift to digital learning to prepare learners for the future. Artificial intelligence, cloud-based platforms, and interactive methods can support critical thinking, creativity, and adaptability.",
+          source: "Refo Indonesia · August 10",
           url: "https://www.refoindonesia.com/pentingnya-digitalisasi-pendidikan-menuju-generasi-indonesia-emas-2045/",
         },
         {
-          category: "[Riset]",
-          title:
-            "Dampak dan Batasan Teknologi Pembelajaran Modern: Ringkasan Riset",
-          description: `• Temuan Utama: Integrasi teknologi pembelajaran—seperti Learning Management Systems (LMS), kecerdasan buatan (AI), dan media interaktif—terbukti secara signifikan meningkatkan keterlibatan, motivasi, dan hasil akademik siswa melalui pembelajaran yang mandiri (personalized learning). Namun, riset juga menemukan dampak negatif berupa risiko ketergantungan gawai, maraknya jalan pintas pengerjaan tugas lewat AI (cognitive outsourcing), serta penurunan rentang konsentrasi (shorter attention span) akibat paparan distraksi digital.
-• Konteks Penelitian: Studi dilakukan dalam masa akselerasi transformasi digital pasca-pandemi. Fokus utamanya adalah mengevaluasi transisi metode belajar konvensional ke arah blended learning (pembelajaran campuran) demi mempersiapkan kompetensi digital siswa untuk bersaing di era modern.
-• Batasan Penelitian: Efektivitas temuan positif tersebut sangat bergantung pada kestabilan infrastruktur internet dan kelengkapan gawai. Akibatnya, hasil penelitian ini belum bisa digeneralisasi untuk wilayah pelosok atau sekolah dengan keterbatasan fasilitas digital dan rendahnya literasi digital guru. Selain itu, sebagian besar riset masih bersifat jangka pendek sehingga memiliki keterbatasan dalam mengukur dampak psikologis jangka panjang pada anak.`,
-          source: "[Kompas.com] · [15 Oktober 2025]",
+          category: "[Research]",
+          title: "Benefits and limitations of modern learning technology",
+          description:
+            "Learning platforms, AI, and interactive media may improve engagement, motivation, and academic outcomes through personalized learning. Risks include device dependence, AI-assisted shortcuts, and shorter attention spans. Results also depend on internet access, devices, and teacher digital literacy; many studies are short-term.",
+          source: "Kompas.com · October 15, 2025",
           url: "https://www.kompas.com/skola/read/2024/08/06/210000769/bagaimana-teknologi-pembelajaran-memengaruhi-proses-pembelajaran-",
         },
         {
-          category: "[Inovasi]",
-          title:
-            "Peta Inovasi Pendidikan Modern: Manfaat dan Pengakuan Global Aplikasi Sekolah",
-          description: `• Ringkasan Inovasi: Pengembangan Superaplikasi Rumah Pendidikan yang menyediakan modul belajar interaktif dan ruang kelas dinamis, didukung oleh pengadaan Papan Interaktif Digital di ruang kelas [Kementerian Pendidikan Dasar dan Menengah].
-• Pihak Terkait: Digerakkan oleh Kementerian Pendidikan Dasar dan Menengah (Kemendikdasmen) RI [Kementerian Pendidikan Dasar dan Menengah] dan diakui secara internasional oleh PBB melalui badan International Telecommunication Union (ITU).
-• Manfaat Terverifikasi: Mewujudkan pemerataan akses materi berkualitas di daerah pelosok, mendigitalisasi tata kelola sekolah, serta meraih predikat juara pertama (Winner) kategori e-Government di ajang dunia WSIS Prizes 2026 di Jenewa [Kementerian Pendidikan Dasar dan Menengah].`,
+          category: "[Innovation]",
+          title: "Modern education innovation: digital tools for schools",
+          description:
+            "Indonesia's Rumah Pendidikan initiative brings together interactive learning modules and digital classrooms. The program aims to expand access to quality learning materials, modernize school administration, and has received international recognition at the 2026 WSIS Prizes.",
           source: "e-ujian.id · 2026",
           url: "https://e-ujian.id/peta-pendidikan-modern-indonesia/",
         },
