@@ -28,7 +28,7 @@
   --ef-muted: #a6b3c7;
   --ef-line: #2c3a4d;
   --ef-green: #78aaff;
-  --ef-green-dark: #6799f0;
+  --ef-green-dark: #1f56b4;
   --ef-green-soft: #1d3557;
   --ef-gold: #8bb5ff;
   --ef-danger: #ffaaaa;
@@ -54,7 +54,7 @@
 
 .ef-app button,
 .ef-app a {
-  color: inherit;
+  color: var(--ef-privacy-ink);
 }
 
 .ef-app ::selection {
@@ -309,7 +309,7 @@
 
 .ef-button-primary {
   color: #fafafa;
-  background: var(--ef-green);
+  background: var(--ef-green-dark);
 }
 
 .ef-button-primary:hover:not(:disabled) {
@@ -318,7 +318,7 @@
 
 .ef-button-quiet {
   color: var(--ef-privacy-ink);
-  background: transparent;
+  background: var(--ef-green-dark);
   border-color: var(--ef-line);
 }
 
@@ -1192,6 +1192,7 @@ progress::-moz-progress-bar {
   border-radius: 9px;
   color: var(--ef-ink);
   background: var(--ef-green-soft);
+  margin-bottom: 11px;
   font-size: 11px;
   line-height: 1.6;
 }

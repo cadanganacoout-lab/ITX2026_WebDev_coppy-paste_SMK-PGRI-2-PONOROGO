@@ -4466,7 +4466,7 @@
 
 .site-shell[data-theme='dark'] .site-header {
   border-bottom-color: rgb(148 170 201 / 16%);
-  background: rgb(15 25 39 / 96%);
+  background: rgb(55 96 155 / 96%);
   box-shadow: 0 6px 20px rgb(0 0 0 / 14%);
   backdrop-filter: blur(14px);
 }
@@ -4738,7 +4738,7 @@
   }
 
   .site-shell .mobile-nav-heading {
-    gap: 8px;
+    gap: 35px;
     padding: 10px 8px;
     border-radius: 15px;
   }

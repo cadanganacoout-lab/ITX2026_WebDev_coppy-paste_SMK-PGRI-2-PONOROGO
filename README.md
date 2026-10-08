@@ -118,7 +118,3 @@ Lihat **[`ROADMAP.md`](./ROADMAP.md)** untuk prioritas pengembangan berikutnya, 
 3. Verifikasi asal aset yang belum memiliki catatan dan lisensi paket yang didistribusikan.
 4. Uji alur refleksi, progres, timer, simulasi, ekspor/impor/reset, dan rencana dengan pengguna sasaran.
 5. Uji enam bahasa, RTL, keyboard, mobile, `npm run lint`, dan `npm run build`.
-
-## Lisensi
-
-Lisensi kode proyek belum ditetapkan. Jangan mengasumsikan kode atau aset proyek boleh digunakan ulang sampai pemilik menetapkan lisensi dan asal seluruh aset pihak ketiga sudah diverifikasi.
