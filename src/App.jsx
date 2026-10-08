@@ -1,10 +1,9 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import {
   AnimatePresence,
   motion,
   useReducedMotion,
 } from 'framer-motion'
-import { createPortal } from 'react-dom'
 import {
   ArrowDown,
   ArrowRight,
@@ -13,8 +12,6 @@ import {
   BrainCircuit,
   BookOpen,
   CheckCircle2,
-  ChevronLeft,
-  ChevronRight,
   ChevronDown,
   ExternalLink,
   Globe2,
@@ -31,6 +28,9 @@ import {
 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import './App.css'
+import brandLogo from './assets/edufuture-logo.png'
+
+const OrientationApp = lazy(() => import('./OrientationApp.jsx'))
 
 const languages = [
   { code: 'id', label: 'Bahasa Indonesia' },
@@ -43,27 +43,9 @@ const languages = [
 
 const featureIcons = [BrainCircuit, MonitorPlay, Award, Lightbulb]
 const workflowIcons = [Globe2, BookOpen, BrainCircuit, CheckCircle2]
-const roadmapMotion = {
-  type: 'spring',
-  stiffness: 110,
-  damping: 25,
-  mass: 0.85,
-}
-const mobileRoadmapQuery = '(max-width: 700px)'
+const workflowTargets = ['#courses', '#courses', '#planner', '#orientation']
 const plannerProgressStorageKey = 'edufuture-planner-progress'
 const revealEase = [0.22, 1, 0.36, 1]
-const roadmapTargets = [
-  'home',
-  'about',
-  'how-it-works',
-  'courses',
-  'programs',
-  'impact',
-  'insights',
-  'community',
-  'faq',
-  'contact',
-]
 const reveal = {
   hidden: { opacity: 0, y: 22 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: revealEase } },
@@ -133,256 +115,23 @@ function readPlannerProgress() {
   }
 }
 
-function projectRoadmapWaypoint(index, camera) {
-  const distanceFromCamera = index - camera
-  const progress = index / Math.max(roadmapTargets.length - 1, 1)
-  const distanceScale = 1 - progress
-  const depthScale = 0.62 + distanceScale * 0.72
-  const x = 50 + Math.sin(progress * Math.PI * 2) * 16
-  const y = 96 - index * (92 / (roadmapTargets.length - 1))
-  const pinSize = Math.round(28 + distanceScale * 7)
-  const opacity = distanceFromCamera < 0 ? 0.62 : 1
-  const labelOpacity = distanceFromCamera === 0 ? 1 : 0
-
-  return {
-    depthScale,
-    distanceFromCamera,
-    distanceScale,
-    labelOpacity,
-    opacity,
-    pinSize,
-    x,
-    y,
-  }
-}
-
-function createRoadmapRibbon(points) {
-  if (points.length < 2) return ''
-
-  const toX = (point) => point.x * 10
-  const toY = (point) => point.y * 5
-  const samples = []
-  const stepsPerSegment = 16
-
-  for (let index = 0; index < points.length - 1; index += 1) {
-    const previous = points[Math.max(0, index - 1)]
-    const start = points[index]
-    const end = points[index + 1]
-    const next = points[Math.min(points.length - 1, index + 2)]
-    const startX = toX(start)
-    const startY = toY(start)
-    const endX = toX(end)
-    const endY = toY(end)
-    const controlOneX = startX + (endX - toX(previous)) / 6
-    const controlOneY = startY + (endY - toY(previous)) / 6
-    const controlTwoX = endX - (toX(next) - startX) / 6
-    const controlTwoY = endY - (toY(next) - startY) / 6
-
-    for (let step = 0; step < stepsPerSegment; step += 1) {
-      const t = step / stepsPerSegment
-      const inverseT = 1 - t
-      const x = inverseT ** 3 * startX
-        + 3 * inverseT ** 2 * t * controlOneX
-        + 3 * inverseT * t ** 2 * controlTwoX
-        + t ** 3 * endX
-      const y = inverseT ** 3 * startY
-        + 3 * inverseT ** 2 * t * controlOneY
-        + 3 * inverseT * t ** 2 * controlTwoY
-        + t ** 3 * endY
-      samples.push({ x, y })
-    }
-  }
-
-  const lastPoint = points[points.length - 1]
-  samples.push({ x: toX(lastPoint), y: toY(lastPoint) })
-
-  const edges = samples.map((point, index) => {
-    const previous = samples[Math.max(0, index - 1)]
-    const next = samples[Math.min(samples.length - 1, index + 1)]
-    const tangentX = next.x - previous.x
-    const tangentY = next.y - previous.y
-    const tangentLength = Math.hypot(tangentX, tangentY) || 1
-    const perspective = Math.max(0, Math.min(1, (point.y - 68) / 372))
-    const halfWidth = 2.25 + perspective * 0.85
-    const normalX = -tangentY / tangentLength
-    const normalY = tangentX / tangentLength
-
-    return {
-      left: { x: point.x + normalX * halfWidth, y: point.y + normalY * halfWidth },
-      right: { x: point.x - normalX * halfWidth, y: point.y - normalY * halfWidth },
-    }
-  })
-
-  const format = (point) => `${point.x.toFixed(2)} ${point.y.toFixed(2)}`
-  const leftEdge = edges.map(({ left }) => left)
-  const rightEdge = edges.map(({ right }) => right).reverse()
-  return `M ${format(leftEdge[0])} ${leftEdge.slice(1).map((point) => `L ${format(point)}`).join(' ')} ${rightEdge.map((point) => `L ${format(point)}`).join(' ')} Z`
-}
-
-function createRoadmapPath(points) {
-  if (points.length < 2) return ''
-  const toX = (point) => point.x * 10
-  const toY = (point) => point.y * 5
-  let path = `M ${toX(points[0])} ${toY(points[0])}`
-
-  for (let index = 0; index < points.length - 1; index += 1) {
-    const previous = points[Math.max(0, index - 1)]
-    const start = points[index]
-    const end = points[index + 1]
-    const next = points[Math.min(points.length - 1, index + 2)]
-    const controlOneX = toX(start) + (toX(end) - toX(previous)) / 6
-    const controlOneY = toY(start) + (toY(end) - toY(previous)) / 6
-    const controlTwoX = toX(end) - (toX(next) - toX(start)) / 6
-    const controlTwoY = toY(end) - (toY(next) - toY(start)) / 6
-    path += ` C ${controlOneX} ${controlOneY}, ${controlTwoX} ${controlTwoY}, ${toX(end)} ${toY(end)}`
-  }
-
-  return path
-}
-
-function RoadmapWaypoint({
-  activePopupIndex,
-  camera,
-  currentIndex,
-  index,
-  node,
-  onPopupChange,
-  target,
-}) {
-  const waypoint = projectRoadmapWaypoint(index, camera)
-  const isCurrent = index === currentIndex
-  const isPopupOpen = activePopupIndex === index
-  const waypointRef = useRef(null)
-  const popupRef = useRef(null)
-  const closePopupTimer = useRef(null)
-
-  useLayoutEffect(() => {
-    if (!isPopupOpen) return undefined
-
-    let frameId
-    const positionPopup = () => {
-      const anchor = waypointRef.current?.querySelector('.roadmap-pin')
-      const popup = popupRef.current
-      if (!anchor || !popup) return
-
-      const anchorRect = anchor.getBoundingClientRect()
-      const popupWidth = popup.offsetWidth
-      const popupHeight = popup.offsetHeight
-      const anchorCenterX = anchorRect.left + anchorRect.width / 2
-      const desiredLeft = anchorCenterX - popupWidth / 2
-      const left = Math.min(
-        Math.max(8, desiredLeft),
-        window.innerWidth - popupWidth - 8,
-      )
-      const openBelow = anchorRect.top - popupHeight - 12 < 8
-      const desiredTop = openBelow
-        ? anchorRect.bottom + 12
-        : anchorRect.top - popupHeight - 12
-      const top = Math.min(
-        Math.max(8, desiredTop),
-        window.innerHeight - popupHeight - 8,
-      )
-      const arrowX = Math.min(
-        Math.max(18, anchorCenterX - left - 5),
-        popupWidth - 18,
-      )
-
-      popup.style.left = `${left}px`
-      popup.style.top = `${top}px`
-      popup.style.setProperty('--popup-arrow-x', `${arrowX}px`)
-      popup.classList.toggle('popup-below', openBelow)
-      frameId = window.requestAnimationFrame(positionPopup)
-    }
-
-    positionPopup()
-    return () => window.cancelAnimationFrame(frameId)
-  }, [isPopupOpen])
-
-  useEffect(() => () => window.clearTimeout(closePopupTimer.current), [])
-
-  const openPopup = () => {
-    window.clearTimeout(closePopupTimer.current)
-    onPopupChange(index)
-  }
-  const schedulePopupClose = () => {
-    window.clearTimeout(closePopupTimer.current)
-    closePopupTimer.current = window.setTimeout(() => {
-      onPopupChange((activeIndex) => activeIndex === index ? null : activeIndex)
-    }, 140)
-  }
-
-  return (
-    <a
-      className={`roadmap-waypoint${waypoint.x < 50 ? ' label-end' : ' label-start'}${isCurrent ? ' is-current' : ''}`}
-      dir="auto"
-      href={`#${target}`}
-      onBlur={schedulePopupClose}
-      onFocus={openPopup}
-      onMouseEnter={openPopup}
-      onMouseLeave={schedulePopupClose}
-      ref={waypointRef}
-      style={{
-        '--waypoint-x': `${waypoint.x}%`,
-        '--waypoint-y': `${waypoint.y}%`,
-        '--waypoint-size': `${waypoint.pinSize}px`,
-        '--waypoint-depth': `${Math.round(waypoint.depthScale * 36)}px`,
-        '--waypoint-distance': waypoint.distanceScale,
-        '--waypoint-label-opacity': isCurrent ? 1 : waypoint.labelOpacity,
-        opacity: isCurrent ? 1 : waypoint.opacity,
-        zIndex: isCurrent ? 20 : Math.round(1 + waypoint.depthScale * 10),
-      }}
-      aria-label={`${String(index + 1).padStart(2, '0')}: ${node.title}`}
-      aria-describedby={isPopupOpen ? `roadmap-tooltip-${target}` : undefined}
-      aria-current={isCurrent ? 'step' : undefined}
-      tabIndex={waypoint.distanceFromCamera < 0 ? -1 : 0}
-    >
-      <span className="roadmap-pin" aria-hidden="true">
-        {String(index + 1).padStart(2, '0')}
-      </span>
-      <span className="roadmap-waypoint-label">{node.title}</span>
-      {isPopupOpen && createPortal(
-        <span
-          className="roadmap-waypoint-popup roadmap-floating-popup"
-          id={`roadmap-tooltip-${target}`}
-          onMouseEnter={openPopup}
-          onMouseLeave={schedulePopupClose}
-          ref={popupRef}
-          role="tooltip"
-        >
-          <span>{String(index + 1).padStart(2, '0')}</span>
-          <strong>{node.title}</strong>
-          <span className="roadmap-waypoint-description">{node.description}</span>
-        </span>,
-        document.body,
-      )}
-    </a>
-  )
-}
-
 function App() {
   const { t, i18n } = useTranslation()
   const currentLanguage = languages.some(({ code }) => code === i18n.language)
     ? i18n.language
     : 'en'
   const [menuOpen, setMenuOpen] = useState(false)
-  const [isMobileRoadmap, setIsMobileRoadmap] = useState(
-    () => window.matchMedia(mobileRoadmapQuery).matches,
-  )
   const [courseFilter, setCourseFilter] = useState('all')
   const [courseSearch, setCourseSearch] = useState('')
   const [plannerTrack, setPlannerTrack] = useState('ai')
   const [plannerHours, setPlannerHours] = useState('2')
   const [plannerProgress, setPlannerProgress] = useState(readPlannerProgress)
-  const [roadmapCamera, setRoadmapCamera] = useState(0)
-  const [roadmapPopupIndex, setRoadmapPopupIndex] = useState(null)
-  const [roadmapSceneSize, setRoadmapSceneSize] = useState({ width: 0, height: 0 })
   const [movingWordState, setMovingWordState] = useState({
     language: currentLanguage,
     index: 0,
   })
   const [openFaqItems, setOpenFaqItems] = useState(() => new Set())
   const shouldReduceMotion = useReducedMotion()
-  const roadmapSceneRef = useRef(null)
   const revealVariants = shouldReduceMotion
     ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0, transition: { duration: 0 } } }
     : reveal
@@ -393,7 +142,6 @@ function App() {
   ))
   const featureCards = t('programs.items', { returnObjects: true })
   const workflowSteps = t('how.steps', { returnObjects: true })
-  const roadmapNodes = t('roadmap.nodes', { returnObjects: true })
   const courses = t('courses.items', { returnObjects: true })
   const plannerSteps = t('planner.steps', { returnObjects: true })
   const faqItems = t('faq.items', { returnObjects: true })
@@ -428,30 +176,6 @@ function App() {
 
     return () => window.clearInterval(interval)
   }, [currentLanguage, movingWords.length, shouldReduceMotion])
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(mobileRoadmapQuery)
-    const updateMobileRoadmapMotion = () => setIsMobileRoadmap(mediaQuery.matches)
-
-    updateMobileRoadmapMotion()
-    mediaQuery.addEventListener('change', updateMobileRoadmapMotion)
-    return () => mediaQuery.removeEventListener('change', updateMobileRoadmapMotion)
-  }, [])
-
-  useLayoutEffect(() => {
-    const scene = roadmapSceneRef.current
-    if (!scene) return undefined
-
-    const updateSceneSize = () => {
-      const { width, height } = scene.getBoundingClientRect()
-      setRoadmapSceneSize({ width, height })
-    }
-    updateSceneSize()
-
-    const observer = new ResizeObserver(updateSceneSize)
-    observer.observe(scene)
-    return () => observer.disconnect()
-  }, [])
 
   useEffect(() => {
     const updateDocumentLanguage = (language) => {
@@ -507,37 +231,6 @@ function App() {
   }
 
   const closeMenu = () => setMenuOpen(false)
-  const roadmapZoom = 1 + roadmapCamera * 0.1
-  const roadmapProgress = roadmapNodes.length > 1
-    ? roadmapCamera / (roadmapNodes.length - 1)
-    : 0
-  const roadmapFocus = projectRoadmapWaypoint(roadmapCamera, roadmapCamera)
-  const roadmapFocusScreenX = roadmapSceneSize.width * (roadmapCamera >= 3 ? 0.56 : 0.5)
-  const roadmapFocusScreenY = roadmapSceneSize.height * 0.5
-  const roadmapWaypointX = (roadmapFocus.x / 100) * roadmapSceneSize.width
-  const roadmapWaypointY = (roadmapFocus.y / 100) * roadmapSceneSize.height
-  const roadmapCameraPanX = roadmapFocusScreenX - roadmapSceneSize.width * 0.5
-    - (roadmapWaypointX - roadmapSceneSize.width * 0.5) * roadmapZoom
-  const roadmapCameraPanY = roadmapFocusScreenY - roadmapSceneSize.height * 0.5
-    - (roadmapWaypointY - roadmapSceneSize.height * 0.5) * roadmapZoom
-  const roadmapMotionTransition = isMobileRoadmap
-    || shouldReduceMotion
-    ? { type: 'tween', duration: 0 }
-    : roadmapMotion
-  const roadmapPath = createRoadmapPath(
-    roadmapNodes.map((_, index) => projectRoadmapWaypoint(index, 0)),
-  )
-  const roadmapRibbonPath = createRoadmapRibbon(
-    roadmapNodes.map((_, index) => projectRoadmapWaypoint(index, 0)),
-  )
-  const changeRoadmapCamera = (direction) => {
-    setRoadmapPopupIndex(null)
-    setRoadmapCamera((position) => Math.min(
-      roadmapNodes.length - 1,
-      Math.max(0, position + direction),
-    ))
-  }
-
   useLayoutEffect(() => {
     if (!menuOpen) return undefined
 
@@ -651,12 +344,7 @@ function App() {
             onClick={closeMenu}
             aria-label={t("ui.homeLabel")}
           >
-            <span className="brand-mark">
-              <Globe2 size={19} strokeWidth={2.2} />
-            </span>
-            <span>
-              Edu<span className="brand-accent">Future</span>
-            </span>
+            <img className="brand-logo" src={brandLogo} alt="EduFuture" />
           </a>
 
           <button
@@ -682,15 +370,7 @@ function App() {
             aria-label={t("nav.label")}
           >
             <div className="mobile-nav-heading">
-              <span className="mobile-nav-brand-mark">
-                <Globe2 size={19} strokeWidth={2.2} />
-              </span>
-              <span className="mobile-nav-brand-copy">
-                <strong>
-                  Edu<span className="brand-accent">Future</span>
-                </strong>
-                <small>{t("nav.label")}</small>
-              </span>
+              <img className="mobile-nav-brand-logo" src={brandLogo} alt="EduFuture" />
               <button
                 aria-label={t("nav.closeMenu")}
                 className="mobile-nav-close"
@@ -703,14 +383,14 @@ function App() {
             <a href="#about" onClick={closeMenu}>
               {t("nav.about")}
             </a>
-            <a href="#roadmap" onClick={closeMenu}>
-              {t("nav.roadmap")}
-            </a>
             <a href="#how-it-works" onClick={closeMenu}>
               {t("nav.how")}
             </a>
             <a href="#courses" onClick={closeMenu}>
               {t("nav.courses")}
+            </a>
+            <a href="#orientation" onClick={closeMenu}>
+              {t("nav.orientation")}
             </a>
             <a href="#insights" onClick={closeMenu}>
               {t("nav.insights")}
@@ -798,6 +478,9 @@ function App() {
               <a className="button button-secondary" href="#about">
                 {t("hero.secondary")}
               </a>
+              <a className="button button-secondary" href="#orientation">
+                {t("nav.orientation")}
+              </a>
             </div>
             <div className="hero-metrics" aria-label={t("ui.heroMetricsLabel")}>
               {heroMetrics.map((metric) => (
@@ -883,6 +566,19 @@ function App() {
           </a>
         </section>
 
+        <aside className="prototype-notice">
+          <p className="sr-only">{t("prototypeNotice")}</p>
+          <div className="prototype-notice-window" aria-hidden="true">
+            <div className="prototype-notice-track">
+              {[0, 1, 2].map((copy) => (
+                <span className="prototype-notice-copy" key={copy}>
+                  {t("prototypeNotice")}
+                </span>
+              ))}
+            </div>
+          </div>
+        </aside>
+
         <section
           className="theme-statement section-wrap"
           aria-label={t("hero.themeLabel")}
@@ -922,179 +618,6 @@ function App() {
           </motion.div>
         </section>
 
-        <section className="roadmap-section section-wrap" id="roadmap">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">{t("roadmap.eyebrow")}</p>
-              <h2>{t("roadmap.title")}</h2>
-            </div>
-            <p className="section-side-note">{t("roadmap.description")}</p>
-          </div>
-
-          <div className="roadmap-map">
-            <div className="roadmap-toolbar">
-              <div className="roadmap-progress-copy">
-                <span className="roadmap-progress-label">
-                  {t("roadmap.stepLabel")} {String(roadmapCamera + 1).padStart(2, '0')} / {String(roadmapNodes.length).padStart(2, '0')}
-                </span>
-                <strong>{roadmapNodes[roadmapCamera]?.title}</strong>
-                <div
-                  aria-label={`${t("roadmap.progressLabel")}: ${Math.round(roadmapProgress * 100)}%`}
-                  aria-valuemax={roadmapNodes.length - 1}
-                  aria-valuemin={0}
-                  aria-valuenow={roadmapCamera}
-                  className="roadmap-progress-track"
-                  role="progressbar"
-                >
-                  <span style={{ width: `${roadmapProgress * 100}%` }} />
-                </div>
-              </div>
-              <div className="roadmap-toolbar-controls">
-                <button
-                  aria-label={t("roadmap.previous")}
-                  className="roadmap-control-button"
-                  disabled={roadmapCamera === 0}
-                  onClick={() => changeRoadmapCamera(-1)}
-                  type="button"
-                >
-                  <ChevronLeft aria-hidden="true" size={18} />
-                </button>
-                <button
-                  aria-label={t("roadmap.restart")}
-                  className="roadmap-control-button roadmap-restart-button"
-                  disabled={roadmapCamera === 0}
-                  onClick={() => {
-                    setRoadmapPopupIndex(null)
-                    setRoadmapCamera(0)
-                  }}
-                  type="button"
-                >
-                  <RotateCcw aria-hidden="true" size={16} />
-                  <span>{t("roadmap.restart")}</span>
-                </button>
-                <button
-                  aria-label={t("roadmap.next")}
-                  className="roadmap-control-button roadmap-next-button"
-                  disabled={roadmapCamera >= roadmapNodes.length - 1}
-                  onClick={() => changeRoadmapCamera(1)}
-                  type="button"
-                >
-                  <ChevronRight aria-hidden="true" size={18} />
-                </button>
-              </div>
-            </div>
-            <div
-              aria-label={t("ui.roadmapMapLabel")}
-              className={`roadmap-scene${roadmapCamera >= roadmapNodes.length - 1 ? ' is-max-zoom' : ''}`}
-              ref={roadmapSceneRef}
-              onClick={(event) => {
-                if (
-                  event.target instanceof Element
-                  && event.target.closest('.roadmap-waypoint')
-                ) return
-                changeRoadmapCamera(1)
-              }}
-              onContextMenu={(event) => {
-                event.preventDefault()
-                changeRoadmapCamera(-1)
-              }}
-              onKeyDown={(event) => {
-                if (event.target !== event.currentTarget) return
-                const direction = event.key === 'ArrowRight' ? 1
-                  : event.key === 'ArrowLeft' ? -1
-                    : event.key === 'Enter' || event.key === ' ' ? 1
-                      : 0
-                if (!direction) return
-                event.preventDefault()
-                changeRoadmapCamera(direction)
-              }}
-              role="group"
-              tabIndex={0}
-            >
-              <span className="roadmap-camera-status" aria-live="polite">
-                {t("roadmap.stepLabel")} {String(roadmapCamera + 1).padStart(2, '0')} / {String(roadmapNodes.length).padStart(2, '0')} · {roadmapZoom.toFixed(1)}×
-              </span>
-              <motion.div
-                animate={{
-                  x: roadmapCameraPanX,
-                  y: roadmapCameraPanY,
-                  scale: roadmapZoom,
-                  rotateX: 7,
-                }}
-                className="roadmap-world"
-                initial={false}
-                style={{ transformPerspective: 1200 }}
-                transition={roadmapMotionTransition}
-              >
-                <svg
-                  aria-hidden="true"
-                  className="roadmap-road"
-                  preserveAspectRatio="none"
-                  viewBox="0 0 1000 500"
-                >
-                  <defs>
-                    <linearGradient id="roadmap-line-depth" x1="0%" x2="0%" y1="100%" y2="0%">
-                      <stop offset="0" stopColor="#2864ba" />
-                      <stop offset="0.5" stopColor="#568bd5" />
-                      <stop offset="1" stopColor="#a8d5fb" />
-                    </linearGradient>
-                    <linearGradient id="roadmap-progress-glow" x1="0%" x2="100%" y1="0%" y2="0%">
-                      <stop offset="0" stopColor="#f0bd63" />
-                      <stop offset="1" stopColor="#ffe5a8" />
-                    </linearGradient>
-                  </defs>
-                  <path
-                    className="roadmap-ribbon-shadow"
-                    d={roadmapRibbonPath}
-                  />
-                  <path
-                    className="roadmap-ribbon"
-                    d={roadmapRibbonPath}
-                  />
-                  <path
-                    className="roadmap-trail-shadow"
-                    d={roadmapPath}
-                  />
-                  <path
-                    id="roadmap-route-path"
-                    className="roadmap-trail-base"
-                    d={roadmapPath}
-                  />
-                  <path
-                    className="roadmap-trail-highlight"
-                    d={roadmapPath}
-                  />
-                  <path
-                    className="roadmap-trail-center"
-                    d={roadmapPath}
-                  />
-                  <path
-                    className="roadmap-progress-path"
-                    d={roadmapPath}
-                    pathLength="1"
-                    style={{
-                      strokeDasharray: 1,
-                      strokeDashoffset: 1 - roadmapProgress,
-                    }}
-                  />
-                </svg>
-                {roadmapNodes.map((node, index) => (
-                  <RoadmapWaypoint
-                    index={index}
-                    key={roadmapTargets[index]}
-                    node={node}
-                    camera={roadmapCamera}
-                    currentIndex={roadmapCamera}
-                    activePopupIndex={roadmapPopupIndex}
-                    onPopupChange={setRoadmapPopupIndex}
-                    target={roadmapTargets[index]}
-                  />
-                ))}
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
         <section className="how-section section-wrap" id="how-it-works">
           <div className="section-heading">
             <div>
@@ -1107,8 +630,9 @@ function App() {
             {workflowSteps.map((step, index) => {
               const Icon = workflowIcons[index];
               return (
-                <motion.article
+                <motion.a
                   className="workflow-step"
+                  href={workflowTargets[index]}
                   key={step.title}
                   initial="hidden"
                   whileInView="visible"
@@ -1122,7 +646,7 @@ function App() {
                   </span>
                   <h3>{step.title}</h3>
                   <p>{step.description}</p>
-                </motion.article>
+                </motion.a>
               );
             })}
           </div>
@@ -1235,7 +759,7 @@ function App() {
                 <p className="no-courses">{t("courses.empty")}</p>
               )}
             </div>
-            <section className="learning-planner" aria-labelledby="planner-title">
+            <section className="learning-planner" id="planner" aria-labelledby="planner-title">
               <div className="planner-heading">
                 <div>
                   <p className="eyebrow">{t('planner.eyebrow')}</p>
@@ -1329,6 +853,16 @@ function App() {
           </div>
         </section>
 
+        <section
+          aria-label={t("nav.orientation")}
+          className="orientation-feature"
+          id="orientation"
+        >
+          <Suspense fallback={<p className="orientation-loading" role="status">{t("nav.orientation")}…</p>}>
+            <OrientationApp embedded appLanguage={currentLanguage} appTheme={darkMode ? "dark" : "light"} />
+          </Suspense>
+        </section>
+
         <section className="program-section" id="programs">
           <div className="section-wrap">
             <div className="section-heading">
@@ -1374,20 +908,34 @@ function App() {
         <section className="insights-section section-wrap" id="insights">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">{t("references.eyebrow")}</p>
-              <h2>{t("references.title")}</h2>
+              <p className="eyebrow">{t("insights.eyebrow")}</p>
+              <h2>{t("insights.title")}</h2>
             </div>
-            <p className="section-side-note">{t("references.description")}</p>
+            <p className="section-side-note">{t("insights.description")}</p>
           </div>
+          <aside className="evidence-note" aria-label={t("evidence.label")}>
+            <span className="evidence-icon" aria-hidden="true">
+              <BookOpen size={20} strokeWidth={1.8} />
+            </span>
+            <div className="evidence-copy">
+              <span className="evidence-label">{t("evidence.label")}</span>
+              <p>{t("evidence.summary")}</p>
+              <small>{t("evidence.caveat")}</small>
+            </div>
+            <a href={t("evidence.url")} target="_blank" rel="noopener noreferrer">
+              {t("evidence.source")}
+              <ExternalLink aria-hidden="true" size={15} />
+            </a>
+          </aside>
           <div className="insights-grid">
-            {t("references.items", { returnObjects: true }).map((item) => (
+            {t("insights.items", { returnObjects: true }).map((item) => (
               <article className="insight-card" key={item.title}>
                 <span className="insight-category">{item.category}</span>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
                 <span className="insight-source">{item.source}</span>
-                <a href={item.url} target="_blank" rel="noreferrer">
-                  {t("references.readMore")} <ExternalLink size={15} />
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                  {t("insights.readMore")} <ExternalLink size={15} />
                 </a>
               </article>
             ))}
@@ -1499,21 +1047,15 @@ function App() {
         <div className="footer-main section-wrap">
           <div className="footer-identity">
             <a className="brand footer-brand" href="#home">
-              <span className="brand-mark">
-                <Globe2 size={19} strokeWidth={2.2} />
-              </span>
-              <span>
-                Edu<span className="brand-accent">Future</span>
-              </span>
+              <img className="brand-logo" src={brandLogo} alt="EduFuture" />
             </a>
             <p>{t("footer.tagline")}</p>
           </div>
           <nav aria-label={t("nav.label")} className="footer-links">
             <a href="#about">{t("nav.about")}</a>
-            <a href="#roadmap">{t("nav.roadmap")}</a>
             <a href="#programs">{t("nav.programs")}</a>
             <a href="#courses">{t("courses.title")}</a>
-            <a href="#insights">{t("references.title")}</a>
+            <a href="#insights">{t("insights.title")}</a>
             <a href="#faq">{t("faq.title")}</a>
           </nav>
         </div>

@@ -1,4 +1,4 @@
-import i18n from "i18next";
+  import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 const resources = {
@@ -19,8 +19,8 @@ const resources = {
         title: "Empowering Minds:",
         highlight: "Digitalizing the Future of Education",
         description:
-          "Temukan pengalaman belajar digital yang membantu setiap orang mengembangkan pengetahuan, kreativitas, dan keterampilan masa depan.",
-        primary: "Jelajahi kursus",
+          "EduFuture membantu siswa dan pembelajar mandiri menemukan titik awal belajar digital melalui refleksi singkat, rekomendasi langkah, dan rencana latihan sederhana.",
+        primary: "Jelajahi topik",
         secondary: "Cara kerja platform",
         note: "Belajar sesuai tujuan dan ritme Anda",
         artLabel: "Ilustrasi platform pembelajaran digital",
@@ -32,10 +32,10 @@ const resources = {
         scroll: "Gulir ke tentang platform",
       },
       about: {
-        eyebrow: "Mengapa ini penting",
-        title: "Belajar seharusnya berkembang bersama setiap orang.",
+        eyebrow: "Tujuan EduFuture",
+        title: "Bantu pembelajar menentukan langkah belajar digital berikutnya.",
         description:
-          "Teknologi membuka cara baru untuk belajar, berkarya, dan mengembangkan potensi. Kami membayangkan pengalaman digital yang relevan, inklusif, dan membantu pembelajar mengambil langkah berikutnya.",
+          "Website ini dibuat sebagai toolkit orientasi bagi siswa SMA/SMK, mahasiswa baru, dan pembelajar mandiri pemula. Pengguna dapat mengenali kebutuhan belajarnya, menjelajahi contoh keterampilan digital, lalu menyusun rencana belajar tiga minggu. EduFuture masih berupa prototipe: katalog dan rencana yang ditampilkan adalah contoh, bukan kursus resmi.",
         link: "Temukan cara belajar",
       },
       impact: {
@@ -122,8 +122,8 @@ const resources = {
         title: "Empowering Minds:",
         highlight: "Digitalizing the Future of Education",
         description:
-          "Discover digital learning experiences that help everyone grow their knowledge, creativity, and future-ready skills.",
-        primary: "Explore courses",
+          "EduFuture helps students and independent learners find a clear starting point for digital learning through a short reflection, practical next steps, and a simple study plan.",
+        primary: "Explore topics",
         secondary: "How it works",
         note: "Learn at your own pace and toward your goals",
         artLabel: "Illustration of a digital learning platform",
@@ -135,10 +135,10 @@ const resources = {
         scroll: "Scroll to learn about the platform",
       },
       about: {
-        eyebrow: "Why this matters",
-        title: "Learning should grow with everyone.",
+        eyebrow: "EduFuture’s purpose",
+        title: "Helping learners choose their next step in digital learning.",
         description:
-          "Technology opens new ways to learn, create, and grow. We imagine digital experiences that are relevant and inclusive, helping learners take their next step.",
+          "This website is an orientation toolkit for secondary-school students, new university students, and beginner independent learners. It helps them reflect on how they learn, explore example digital skills, and make a three-week study plan. EduFuture is a prototype: its catalog and plans are examples, not official courses.",
         link: "Discover how it works",
       },
       impact: {
@@ -224,8 +224,8 @@ const resources = {
         title: "Empowering Minds:",
         highlight: "Digitalizing the Future of Education",
         description:
-          "探索数字学习体验，帮助每个人拓展知识、创造力与面向未来的技能。",
-        primary: "探索课程",
+          "EduFuture 通过简短的学习反思、可实践的下一步建议和简单计划，帮助学生与自主学习者找到数字学习的起点。",
+        primary: "探索主题",
         secondary: "了解学习方式",
         note: "按照自己的目标与节奏学习",
         artLabel: "数字学习平台插画",
@@ -237,10 +237,10 @@ const resources = {
         scroll: "向下了解平台",
       },
       about: {
-        eyebrow: "为何重要",
-        title: "学习应与每个人共同成长。",
+        eyebrow: "EduFuture 的目标",
+        title: "帮助学习者确定数字学习的下一步。",
         description:
-          "科技开启了学习、创造与成长的新方式。我们希望打造相关且包容的数字体验，帮助学习者迈出下一步。",
+          "本网站是面向中学生、新入学大学生和初学者的学习导览工具，帮助他们反思学习需求、探索数字技能示例，并制定三周学习计划。EduFuture 目前是原型：目录和计划仅为示例，并非正式课程。",
         link: "了解学习方式",
       },
       impact: {
@@ -315,8 +315,8 @@ const resources = {
         title: "Empowering Minds:",
         highlight: "Digitalizing the Future of Education",
         description:
-          "Descubre experiencias de aprendizaje digital que ayudan a todos a desarrollar conocimientos, creatividad y habilidades para el futuro.",
-        primary: "Explorar cursos",
+          "EduFuture ayuda a estudiantes y personas que aprenden por su cuenta a encontrar un punto de partida para el aprendizaje digital, con una breve reflexión, próximos pasos prácticos y un plan sencillo.",
+        primary: "Explorar temas",
         secondary: "Cómo funciona",
         note: "Aprende a tu ritmo y según tus objetivos",
         artLabel: "Ilustración de una plataforma de aprendizaje digital",
@@ -328,10 +328,10 @@ const resources = {
         scroll: "Desplazarse para conocer la plataforma",
       },
       about: {
-        eyebrow: "Por qué importa",
-        title: "El aprendizaje debe crecer con todos.",
+        eyebrow: "Propósito de EduFuture",
+        title: "Ayudar a cada persona a elegir su próximo paso de aprendizaje digital.",
         description:
-          "La tecnología abre nuevas formas de aprender, crear y crecer. Imaginamos experiencias digitales relevantes e inclusivas que ayuden a cada persona a dar el siguiente paso.",
+          "Este sitio es una herramienta de orientación para estudiantes de secundaria, universitarios de primer ingreso y principiantes autodidactas. Les ayuda a reflexionar sobre sus necesidades, explorar ejemplos de habilidades digitales y crear un plan de estudio de tres semanas. EduFuture es un prototipo: el catálogo y los planes son ejemplos, no cursos oficiales.",
         link: "Descubrir cómo funciona",
       },
       impact: {
@@ -417,8 +417,8 @@ const resources = {
         title: "Empowering Minds:",
         highlight: "Digitalizing the Future of Education",
         description:
-          "اكتشف تجارب تعلم رقمية تساعد الجميع على تنمية المعرفة والإبداع والمهارات المستقبلية.",
-        primary: "استكشف الدورات",
+          "يساعد EduFuture الطلاب والمتعلمين المستقلين على إيجاد بداية واضحة للتعلم الرقمي من خلال تأمل قصير وخطوات عملية وخطة بسيطة.",
+        primary: "استكشف الموضوعات",
         secondary: "كيف يعمل",
         note: "تعلم وفق أهدافك وبالوتيرة التي تناسبك",
         artLabel: "رسم توضيحي لمنصة تعلم رقمية",
@@ -430,10 +430,10 @@ const resources = {
         scroll: "انتقل لمعرفة المزيد عن المنصة",
       },
       about: {
-        eyebrow: "لماذا يهم هذا",
-        title: "ينبغي أن يتطور التعلم مع الجميع.",
+        eyebrow: "هدف EduFuture",
+        title: "مساعدة المتعلمين على اختيار خطوتهم التالية في التعلم الرقمي.",
         description:
-          "تتيح التقنية طرقًا جديدة للتعلم والإبداع والنمو. نتصور تجارب رقمية ملائمة وشاملة تساعد المتعلمين على اتخاذ خطوتهم التالية.",
+          "هذا الموقع أداة تمهيدية لطلاب المدارس الثانوية والطلاب الجامعيين الجدد والمبتدئين في التعلم الذاتي. يساعدهم على التفكير في احتياجاتهم واستكشاف أمثلة للمهارات الرقمية وإعداد خطة تعلم لثلاثة أسابيع. EduFuture نموذج أولي؛ الكتالوج والخطط أمثلة وليست دورات رسمية.",
         link: "اكتشف كيف يعمل",
       },
       impact: {
@@ -513,8 +513,8 @@ const resources = {
         title: "Empowering Minds:",
         highlight: "Digitalizing the Future of Education",
         description:
-          "Découvrez des expériences d’apprentissage numérique qui développent les connaissances, la créativité et les compétences d’avenir de chacun.",
-        primary: "Explorer les cours",
+          "EduFuture aide les élèves et les personnes en apprentissage autonome à trouver un point de départ pour apprendre le numérique, grâce à une courte réflexion, des étapes concrètes et un plan simple.",
+        primary: "Explorer les sujets",
         secondary: "Comment ça marche",
         note: "Apprenez à votre rythme et selon vos objectifs",
         artLabel: "Illustration d’une plateforme d’apprentissage numérique",
@@ -526,10 +526,10 @@ const resources = {
         scroll: "Défiler pour découvrir la plateforme",
       },
       about: {
-        eyebrow: "Pourquoi est-ce important ?",
-        title: "L’apprentissage doit évoluer avec chacun.",
+        eyebrow: "Objectif d’EduFuture",
+        title: "Aider chacun à choisir sa prochaine étape d’apprentissage numérique.",
         description:
-          "La technologie ouvre de nouvelles façons d’apprendre, de créer et de progresser. Nous imaginons des expériences numériques pertinentes et inclusives pour aider chacun à avancer.",
+          "Ce site est un outil d’orientation destiné aux lycéens, aux nouveaux étudiants et aux débutants en autoformation. Il les aide à réfléchir à leurs besoins, à découvrir des exemples de compétences numériques et à préparer un plan d’apprentissage sur trois semaines. EduFuture est un prototype : le catalogue et les plans sont des exemples, pas des cours officiels.",
         link: "Découvrir le fonctionnement",
       },
       impact: {
@@ -620,18 +620,19 @@ const additionalTranslations = {
             "Tentukan keterampilan atau topik yang ingin Anda kembangkan.",
         },
         {
-          title: "Ikuti kursus",
+          title: "Jelajahi jalur belajar",
           description:
-            "Belajar melalui materi terstruktur, contoh, dan aktivitas interaktif.",
+            "Tinjau contoh topik, tingkat, dan durasi belajar di katalog.",
         },
         {
-          title: "Praktikkan kemampuan",
-          description: "Uji pemahaman lewat latihan dan proyek yang relevan.",
+          title: "Susun rencana",
+          description:
+            "Gunakan perencana untuk membuat target dan checklist belajar tiga minggu.",
         },
         {
-          title: "Raih sertifikat",
+          title: "Berlatih dan refleksi",
           description:
-            "Selesaikan jalur belajar dan tunjukkan pencapaian Anda.",
+            "Coba aktivitas orientasi dan tinjau progres yang tersimpan di browser.",
         },
       ],
     },
@@ -820,19 +821,19 @@ const additionalTranslations = {
           description: "Decide which skill or topic you want to develop.",
         },
         {
-          title: "Take a course",
+          title: "Explore a learning path",
           description:
-            "Learn with structured material, examples, and interactive activities.",
+            "Review example topics, levels, and durations in the catalog.",
         },
         {
-          title: "Practice your skills",
+          title: "Make a plan",
           description:
-            "Check your understanding through exercises and relevant projects.",
+            "Use the planner to set goals and a three-week learning checklist.",
         },
         {
-          title: "Earn a certificate",
+          title: "Practice and reflect",
           description:
-            "Complete a learning path and showcase your achievement.",
+            "Try the orientation activities and review progress saved in your browser.",
         },
       ],
     },
@@ -904,38 +905,38 @@ const additionalTranslations = {
         },
       ],
     },
-   insights: { 
-  eyebrow: 'News & insights · example', 
-  title: 'Digital education highlights.', 
-  description: 'The following cards and content are dummy data. Replace titles, dates, summaries, sources, and links before publication.', 
-  readMore: 'Example link', 
-  items: [
-    { 
-      category: '[Category]', 
-      title: 'Information Technology Transforms the Face of Education: Preparing the Golden Generation Through Digitalization', 
-      description: 'JAKARTA – The world of education is now entering a new chapter full of innovation. Carrying the grand theme "LEARNING FOR THE FUTURE: Empowering Minds: Digitalizing the Future of Education", various educational institutions, experts, and policymakers are beginning to accelerate the transition toward a digital-based learning ecosystem to produce a generation ready for the workforce of the future. This shift is no longer just a technological trend, but an absolute necessity. The utilization of technologies such as Artificial Intelligence (AI), cloud-based learning platforms, and interactive methods not only transforms teaching methods, but also empowers students\' minds to think critically, creatively, and adaptively in facing global challenges.', 
-      source: '[Refo Indonesia] · [August 10]', 
-      url: 'https://www.refoindonesia.com/pentingnya-digitalisasi-pendidikan-menuju-generasi-indonesia-emas-2045/' 
-    }, 
-    { 
-      category: '[Research]', 
-      title: 'Impact and Limitations of Modern Learning Technology: Research Summary', 
-      description: `• Main Findings: The integration of learning technologies—such as Learning Management Systems (LMS), artificial intelligence (AI), and interactive media—has been proven to significantly enhance student engagement, motivation, and academic results through personalized learning. However, research also highlights negative impacts such as the risk of device dependency, the prevalence of shortcuts in completing assignments via AI (cognitive outsourcing), and a shortened attention span due to digital distraction exposure.
-• Research Context: The study was conducted during the post-pandemic acceleration of digital transformation. The primary focus was evaluating the transition from conventional learning methods toward blended learning to prepare students' digital competencies for the modern era.
-• Research Limitations: The effectiveness of these positive findings heavily depends on stable internet infrastructure and device availability. Consequently, these research results cannot yet be generalized to remote areas or schools with limited digital facilities and low teacher digital literacy. Furthermore, most research remains short-term, posing limitations in measuring long-term psychological impacts on children.`, 
-      source: '[Kompas.com] · [15 October 2025]', 
-      url: 'https://www.kompas.com/skola/read/2024/08/06/210000769/bagaimana-teknologi-pembelajaran-memengaruhi-proses-pembelajaran-' 
-    }, 
-    { 
-      category: '[Innovation]', 
-      title: 'Modern Education Innovation Map: Benefits and Global Recognition of School Applications', 
-      description: `• Innovation Summary: The development of the Rumah Pendidikan Superapp providing interactive learning modules and dynamic virtual classrooms, supported by the procurement of Digital Interactive Whiteboards in classrooms [Ministry of Primary and Secondary Education].
-• Stakeholders Involved: Driven by the Ministry of Primary and Secondary Education (Kemendikdasmen) of the Republic of Indonesia [Ministry of Primary and Secondary Education] and internationally recognized by the United Nations through the International Telecommunication Union (ITU).
-• Verified Benefits: Realizing equitable access to quality materials in remote regions, digitalizing school governance, and winning first place (Winner) in the e-Government category at the global WSIS Prizes 2026 event in Geneva [Ministry of Primary and Secondary Education].`, 
-      source: 'e-ujian.id · 2026', 
-      url: 'https://e-ujian.id/peta-pendidikan-modern-indonesia/' 
-    }
-  ]
+    insights: {
+      eyebrow: "News & insights",
+      title: "Perspectives on digital education.",
+      description:
+        "Selected, trusted sources on digital learning, technology, and education evidence.",
+      readMore: "Read source",
+      items: [
+        {
+          category: "Research · India",
+          title: "Technology-aided instruction and learning outcomes",
+          description:
+            "A randomized controlled study evaluated a personalized, technology-aided learning program.",
+          source: "American Economic Association · 2019",
+          url: "https://www.aeaweb.org/articles?id=10.1257/aer.20171112",
+        },
+        {
+          category: "Global strategy",
+          title: "UNICEF Digital Education Strategy",
+          description:
+            "An approach to using technology inclusively, sustainably, and with learners at the center.",
+          source: "UNICEF Digital Education",
+          url: "https://www.unicef.org/digitaleducation/",
+        },
+        {
+          category: "Education technology",
+          title: "Digital technology in education",
+          description:
+            "Opportunities and risks of technology, AI, and connectivity, and the essential role of teachers.",
+          source: "World Bank",
+          url: "https://www.worldbank.org/en/topic/edutech",
+        },
+      ],
     },
     community: {
       eyebrow: "Learning ecosystem",
@@ -1015,11 +1016,17 @@ const additionalTranslations = {
       steps: [
         { title: "选择目标", description: "确定想要发展的技能或主题。" },
         {
-          title: "学习课程",
-          description: "通过结构化内容、示例和互动活动进行学习。",
+          title: "浏览学习路径",
+          description: "查看目录中的示例主题、等级和学习时长。",
         },
-        { title: "练习技能", description: "通过练习和相关项目检验理解。" },
-        { title: "获得证书", description: "完成学习路径并展示学习成果。" },
+        {
+          title: "制定计划",
+          description: "使用规划工具设定目标并创建三周学习清单。",
+        },
+        {
+          title: "练习与反思",
+          description: "尝试入门活动，并查看保存在浏览器中的进度。",
+        },
       ],
     },
     evidence: {
@@ -1188,18 +1195,19 @@ const additionalTranslations = {
           description: "Decide qué habilidad o tema quieres desarrollar.",
         },
         {
-          title: "Sigue un curso",
+          title: "Explora una ruta",
           description:
-            "Aprende con materiales estructurados, ejemplos y actividades interactivas.",
+            "Consulta temas, niveles y duraciones de ejemplo en el catálogo.",
         },
         {
-          title: "Practica tus habilidades",
+          title: "Prepara un plan",
           description:
-            "Comprueba lo aprendido con ejercicios y proyectos relevantes.",
+            "Usa el planificador para definir objetivos y una lista de tres semanas.",
         },
         {
-          title: "Obtén un certificado",
-          description: "Completa una ruta de aprendizaje y muestra tus logros.",
+          title: "Practica y reflexiona",
+          description:
+            "Prueba las actividades de orientación y revisa el progreso guardado en el navegador.",
         },
       ],
     },
@@ -1390,16 +1398,16 @@ const additionalTranslations = {
           description: "حدد المهارة أو الموضوع الذي تريد تطويره.",
         },
         {
-          title: "ابدأ دورة",
-          description: "تعلم من خلال محتوى منظم وأمثلة وأنشطة تفاعلية.",
+          title: "استكشف مسارًا تعليميًا",
+          description: "راجع الموضوعات والمستويات والمدد المقترحة في الدليل.",
         },
         {
-          title: "مارس مهاراتك",
-          description: "تحقق من فهمك عبر تمارين ومشروعات ذات صلة.",
+          title: "ضع خطة",
+          description: "استخدم المخطط لتحديد الأهداف وإنشاء قائمة تعلم لثلاثة أسابيع.",
         },
         {
-          title: "احصل على شهادة",
-          description: "أكمل مسار التعلم واعرض إنجازك.",
+          title: "تدرّب وتأمل",
+          description: "جرّب أنشطة التهيئة وراجع التقدم المحفوظ في المتصفح.",
         },
       ],
     },
@@ -1583,18 +1591,19 @@ const additionalTranslations = {
             "Déterminez la compétence ou le sujet que vous souhaitez développer.",
         },
         {
-          title: "Suivre un cours",
+          title: "Explorer un parcours",
           description:
-            "Apprenez grâce à des contenus structurés, des exemples et des activités interactives.",
+            "Consultez les sujets, niveaux et durées proposés dans le catalogue.",
         },
         {
-          title: "Pratiquer",
+          title: "Préparer un plan",
           description:
-            "Vérifiez vos acquis avec des exercices et des projets pertinents.",
+            "Utilisez le planificateur pour fixer des objectifs et une checklist sur trois semaines.",
         },
         {
-          title: "Obtenir un certificat",
-          description: "Terminez un parcours et valorisez vos acquis.",
+          title: "Pratiquer et réfléchir",
+          description:
+            "Essayez les activités d’orientation et consultez la progression enregistrée dans le navigateur.",
         },
       ],
     },
@@ -1771,399 +1780,17 @@ const additionalTranslations = {
   },
 };
 
-const roadmapTranslations = {
-  id: {
-    navLabel: "Peta situs",
-    roadmap: {
-      eyebrow: "Peta navigasi 3D",
-      title: "Kenali alur EduFuture.",
-      description:
-        "Pilih titik untuk melihat isi setiap bagian, lalu buka bagian yang ingin dijelajahi.",
-      stepLabel: "Bagian",
-      action: "Buka bagian ini",
-      previous: "Bagian sebelumnya",
-      next: "Bagian berikutnya",
-      restart: "Mulai dari awal",
-      progressLabel: "Progres navigasi",
-      nodes: [
-        {
-          title: "Beranda",
-          description:
-            "Mulai dengan ringkasan EduFuture dan ajakan utama untuk menjelajahi platform.",
-        },
-        {
-          title: "Tentang",
-          description:
-            "Kenali tujuan, pendekatan, dan alasan di balik konsep EduFuture.",
-        },
-        {
-          title: "Cara kerja",
-          description:
-            "Ikuti alur demo: pilih jalur contoh, atur waktu, lalu catat latihan.",
-        },
-        {
-          title: "Kursus",
-          description:
-            "Jelajahi contoh jalur belajar, topik, dan keterampilan yang tersedia.",
-        },
-        {
-          title: "Program",
-          description:
-            "Temukan pendekatan dan pengalaman belajar digital yang diperkenalkan.",
-        },
-        {
-          title: "Dampak",
-          description:
-            "Tinjau bagian dampak dan konteks bukti yang ditampilkan di website.",
-        },
-        {
-          title: "Wawasan",
-          description:
-            "Baca sorotan dan sumber pilihan tentang pendidikan digital.",
-        },
-        {
-          title: "Komunitas",
-          description:
-            "Kenali perspektif pembelajar, pendidik, kreator, dan komunitas.",
-        },
-        {
-          title: "FAQ",
-          description:
-            "Temukan jawaban tentang konsep, contoh kursus, dan rencana layanan.",
-        },
-        {
-          title: "Kontak",
-          description:
-            "Lihat informasi kontak dan peluang kolaborasi yang tersedia.",
-        },
-      ],
-    },
-  },
-  en: {
-    navLabel: "Site map",
-    roadmap: {
-      eyebrow: "3D navigation map",
-      title: "Explore the EduFuture flow.",
-      description:
-        "Select a point to preview each section, then open the part of the site you want to explore.",
-      stepLabel: "Section",
-      action: "Open this section",
-      previous: "Previous section",
-      next: "Next section",
-      restart: "Start over",
-      progressLabel: "Navigation progress",
-      nodes: [
-        {
-          title: "Home",
-          description:
-            "Start with an overview of EduFuture and the main ways to explore the platform.",
-        },
-        {
-          title: "About",
-          description:
-            "Learn about the purpose, approach, and thinking behind the EduFuture concept.",
-        },
-        {
-          title: "How it works",
-          description:
-            "Try the demo flow: choose a sample path, set study time, and track practice.",
-        },
-        {
-          title: "Courses",
-          description: "Browse example learning paths, topics, and skills.",
-        },
-        {
-          title: "Programs",
-          description:
-            "Discover the digital learning approaches and experiences introduced here.",
-        },
-        {
-          title: "Impact",
-          description:
-            "Review the impact section and the context for the evidence shown on the site.",
-        },
-        {
-          title: "Insights",
-          description:
-            "Read selected highlights and sources about digital education.",
-        },
-        {
-          title: "Community",
-          description:
-            "Explore the perspectives of learners, educators, creators, and communities.",
-        },
-        {
-          title: "FAQ",
-          description:
-            "Find answers about the concept, sample courses, and planned services.",
-        },
-        {
-          title: "Contact",
-          description:
-            "See the available contact information and collaboration options.",
-        },
-      ],
-    },
-  },
-  zh: {
-    navLabel: "网站导览",
-    roadmap: {
-      eyebrow: "3D 网站导航图",
-      title: "探索 EduFuture 网站流程。",
-      description: "选择一个节点预览对应板块，然后打开想要浏览的内容。",
-      stepLabel: "板块",
-      action: "打开此板块",
-      previous: "上一板块",
-      next: "下一板块",
-      restart: "重新开始",
-      progressLabel: "导航进度",
-      nodes: [
-        {
-          title: "首页",
-          description: "从 EduFuture 概览和探索平台的主要入口开始。",
-        },
-        {
-          title: "关于",
-          description: "了解 EduFuture 概念的目标、方法与缘由。",
-        },
-        {
-          title: "学习方式",
-          description: "查看从选择目标到展示成果的学习流程。",
-        },
-        { title: "课程", description: "浏览示例学习路径、主题与技能。" },
-        { title: "项目", description: "了解网站介绍的数字学习方法与体验。" },
-        {
-          title: "学习影响",
-          description: "查看影响板块及网站所展示证据的背景。",
-        },
-        { title: "资讯", description: "阅读数字教育精选内容与参考来源。" },
-        {
-          title: "社区",
-          description: "了解学习者、教育者、创作者与社区的不同视角。",
-        },
-        {
-          title: "常见问题",
-          description: "查找关于概念、示例课程和计划服务的解答。",
-        },
-        { title: "联系", description: "查看现有联系方式与合作机会。" },
-      ],
-    },
-  },
-  es: {
-    navLabel: "Mapa del sitio",
-    roadmap: {
-      eyebrow: "Mapa de navegación 3D",
-      title: "Explora el recorrido de EduFuture.",
-      description:
-        "Selecciona un punto para ver cada sección y abre la parte del sitio que quieras explorar.",
-      stepLabel: "Sección",
-      action: "Abrir esta sección",
-      previous: "Sección anterior",
-      next: "Sección siguiente",
-      restart: "Empezar de nuevo",
-      progressLabel: "Progreso de navegación",
-      nodes: [
-        {
-          title: "Inicio",
-          description:
-            "Empieza con una presentación de EduFuture y sus principales opciones.",
-        },
-        {
-          title: "Acerca de",
-          description:
-            "Conoce el propósito, el enfoque y las ideas del concepto EduFuture.",
-        },
-        {
-          title: "Cómo funciona",
-          description:
-            "Descubre el recorrido de aprendizaje desde elegir un objetivo hasta mostrar logros.",
-        },
-        {
-          title: "Cursos",
-          description: "Explora ejemplos de rutas, temas y habilidades.",
-        },
-        {
-          title: "Programas",
-          description:
-            "Conoce los enfoques y experiencias de aprendizaje digital que se presentan.",
-        },
-        {
-          title: "Impacto",
-          description:
-            "Consulta la sección de impacto y el contexto de la evidencia mostrada.",
-        },
-        {
-          title: "Ideas",
-          description:
-            "Lee una selección de noticias y fuentes sobre educación digital.",
-        },
-        {
-          title: "Comunidad",
-          description:
-            "Conoce las perspectivas de estudiantes, educadores, creadores y comunidades.",
-        },
-        {
-          title: "FAQ",
-          description:
-            "Encuentra respuestas sobre el concepto, los cursos de ejemplo y los servicios previstos.",
-        },
-        {
-          title: "Contacto",
-          description:
-            "Consulta la información de contacto y las opciones de colaboración disponibles.",
-        },
-      ],
-    },
-  },
-  ar: {
-    navLabel: "خريطة الموقع",
-    roadmap: {
-      eyebrow: "خريطة تنقل ثلاثية الأبعاد",
-      title: "استكشف مسار EduFuture.",
-      description:
-        "اختر نقطة لمعاينة كل قسم، ثم افتح الجزء الذي تريد استكشافه.",
-      stepLabel: "القسم",
-      action: "افتح هذا القسم",
-      previous: "القسم السابق",
-      next: "القسم التالي",
-      restart: "ابدأ من جديد",
-      progressLabel: "تقدم التنقل",
-      nodes: [
-        {
-          title: "الرئيسية",
-          description:
-            "ابدأ بنبذة عن EduFuture والطرق الرئيسية لاستكشاف المنصة.",
-        },
-        {
-          title: "عن المبادرة",
-          description: "تعرّف على الهدف والمنهج والفكرة وراء مفهوم EduFuture.",
-        },
-        {
-          title: "كيف يعمل",
-          description: "اطّلع على مسار التعلم من اختيار الهدف إلى عرض الإنجاز.",
-        },
-        {
-          title: "الدورات",
-          description: "تصفح أمثلة لمسارات التعلم والموضوعات والمهارات.",
-        },
-        {
-          title: "البرامج",
-          description: "اكتشف أساليب وتجارب التعلم الرقمي المقدمة هنا.",
-        },
-        {
-          title: "الأثر",
-          description: "راجع قسم الأثر وسياق الأدلة المعروضة في الموقع.",
-        },
-        {
-          title: "رؤى",
-          description: "اقرأ مختارات ومصادر حول التعليم الرقمي.",
-        },
-        {
-          title: "المجتمع",
-          description:
-            "تعرّف على وجهات نظر المتعلمين والمعلمين والمبدعين والمجتمعات.",
-        },
-        {
-          title: "الأسئلة الشائعة",
-          description:
-            "اعثر على إجابات حول المفهوم والدورات التجريبية والخدمات المخطط لها.",
-        },
-        {
-          title: "التواصل",
-          description: "اطّلع على معلومات التواصل وفرص التعاون المتاحة.",
-        },
-      ],
-    },
-  },
-  fr: {
-    navLabel: "Plan du site",
-    roadmap: {
-      eyebrow: "Plan de navigation 3D",
-      title: "Explorez le parcours EduFuture.",
-      description:
-        "Sélectionnez un point pour prévisualiser une rubrique, puis ouvrez la partie du site souhaitée.",
-      stepLabel: "Rubrique",
-      action: "Ouvrir cette rubrique",
-      previous: "Rubrique précédente",
-      next: "Rubrique suivante",
-      restart: "Recommencer",
-      progressLabel: "Progression de navigation",
-      nodes: [
-        {
-          title: "Accueil",
-          description:
-            "Commencez par une présentation d’EduFuture et les principales entrées du site.",
-        },
-        {
-          title: "À propos",
-          description:
-            "Découvrez l’objectif, l’approche et les idées du concept EduFuture.",
-        },
-        {
-          title: "Fonctionnement",
-          description:
-            "Essayez le parcours démo : choisissez un exemple, définissez un temps et suivez vos exercices.",
-        },
-        {
-          title: "Cours",
-          description:
-            "Parcourez des exemples de parcours, de thèmes et de compétences.",
-        },
-        {
-          title: "Programmes",
-          description:
-            "Découvrez les approches et expériences numériques présentées.",
-        },
-        {
-          title: "Impact",
-          description:
-            "Consultez la rubrique impact et le contexte des données présentées.",
-        },
-        {
-          title: "Analyses",
-          description:
-            "Lisez une sélection d’actualités et de sources sur l’éducation numérique.",
-        },
-        {
-          title: "Communauté",
-          description:
-            "Découvrez les points de vue des apprenants, éducateurs, créateurs et communautés.",
-        },
-        {
-          title: "FAQ",
-          description:
-            "Trouvez des réponses sur le concept, les exemples de cours et les services envisagés.",
-        },
-        {
-          title: "Contact",
-          description:
-            "Consultez les coordonnées et les possibilités de collaboration disponibles.",
-        },
-      ],
-    },
-  },
-};
-
-const localizedHeroWords = {
-  id: ["Belajar bersama", "Tumbuh setiap hari", "Ciptakan masa depan", "Akses untuk semua"],
-  en: ["Learn together", "Grow every day", "Shape the future", "Learning for everyone"],
-  zh: ["一起学习", "每天成长", "共创未来", "让学习触手可及"],
-  es: ["Aprender juntos", "Crecer cada día", "Crear el futuro", "Aprendizaje para todos"],
-  ar: ["نتعلم معًا", "ننمو كل يوم", "نصنع المستقبل", "التعلم متاح للجميع"],
-  fr: ["Apprendre ensemble", "Grandir chaque jour", "Créer l’avenir", "Apprendre pour tous"],
-};
-
 const productTranslations = {
   id: {
     how: {
-      eyebrow: "Alur demo",
-      title: "Coba langkah belajar yang sederhana.",
-      description: "Alur prototipe menunjukkan cara memilih jalur contoh dan mencatat latihan.",
+      eyebrow: "Cara kerja",
+      title: "Mulai belajar dalam empat langkah.",
+      description: "Perjalanan belajar yang jelas, interaktif, dan berfokus pada kemajuan yang bermakna.",
       steps: [
-        { title: "Pilih topik", description: "Pilih salah satu jalur keterampilan digital di katalog demo." },
-        { title: "Atur waktu", description: "Tentukan waktu belajar mingguan yang realistis untuk Anda." },
-        { title: "Coba latihan", description: "Gunakan tiga prompt latihan umum sebagai titik awal belajar mandiri." },
-        { title: "Catat progres", description: "Tandai aktivitas yang dicoba; progres disimpan di browser ini." },
+        { title: "Pilih tujuan", description: "Tentukan keterampilan atau topik yang ingin Anda kembangkan." },
+        { title: "Jelajahi jalur belajar", description: "Tinjau contoh topik, tingkat, dan durasi belajar di katalog." },
+        { title: "Susun rencana", description: "Gunakan perencana untuk menetapkan tujuan dan membuat checklist belajar tiga minggu." },
+        { title: "Berlatih dan refleksi", description: "Coba aktivitas orientasi dan tinjau progres yang tersimpan di browser." },
       ],
     },
     programs: {
@@ -2236,14 +1863,14 @@ const productTranslations = {
   },
   en: {
     how: {
-      eyebrow: "Demo flow",
-      title: "Try a simple learning flow.",
-      description: "The prototype shows how to choose a sample path and track practice.",
+      eyebrow: "How it works",
+      title: "Start learning in four steps.",
+      description: "A clear, interactive learning journey focused on meaningful progress.",
       steps: [
-        { title: "Choose a topic", description: "Select a digital-skills path from the demo catalog." },
-        { title: "Set your time", description: "Choose a realistic weekly study-time goal." },
-        { title: "Try the prompts", description: "Use three generic practice prompts as a starting point for self-study." },
-        { title: "Track progress", description: "Check off activities you try; progress stays in this browser." },
+        { title: "Choose a goal", description: "Decide which skill or topic you want to develop." },
+        { title: "Explore a learning path", description: "Review example topics, levels, and durations in the catalog." },
+        { title: "Make a plan", description: "Use the planner to set goals and a three-week learning checklist." },
+        { title: "Practice and reflect", description: "Try the orientation activities and review progress saved in your browser." },
       ],
     },
     programs: {
@@ -2316,14 +1943,14 @@ const productTranslations = {
   },
   zh: {
     how: {
-      eyebrow: "演示流程",
-      title: "体验简单的学习流程。",
-      description: "原型演示如何选择示例路径并记录练习进度。",
+      eyebrow: "使用方式",
+      title: "四步开启学习。",
+      description: "开启清晰、互动并注重切实进步的学习旅程。",
       steps: [
-        { title: "选择主题", description: "从演示目录中选择一个数字技能路径。" },
-        { title: "安排时间", description: "设定切合实际的每周学习时间。" },
-        { title: "尝试练习", description: "使用三个通用练习提示作为自主学习的起点。" },
-        { title: "跟踪进度", description: "勾选尝试过的活动；进度保存在当前浏览器。" },
+        { title: "选择目标", description: "确定你想发展的技能或主题。" },
+        { title: "浏览学习路径", description: "查看目录中的示例主题、等级和学习时长。" },
+        { title: "制定计划", description: "使用规划工具设定目标并创建三周学习清单。" },
+        { title: "练习与反思", description: "尝试导览活动，并查看保存在浏览器中的进度。" },
       ],
     },
     programs: {
@@ -2388,14 +2015,14 @@ const productTranslations = {
   },
   es: {
     how: {
-      eyebrow: "Flujo de demostración",
-      title: "Prueba un recorrido de aprendizaje sencillo.",
-      description: "El prototipo muestra cómo elegir una ruta de ejemplo y registrar la práctica.",
+      eyebrow: "Cómo funciona",
+      title: "Empieza a aprender en cuatro pasos.",
+      description: "Un recorrido de aprendizaje claro e interactivo, centrado en lograr avances significativos.",
       steps: [
-        { title: "Elige un tema", description: "Selecciona una ruta de habilidades digitales del catálogo demo." },
-        { title: "Define tu tiempo", description: "Elige un objetivo semanal de estudio realista." },
-        { title: "Prueba las actividades", description: "Usa tres propuestas genéricas como punto de partida para estudiar por tu cuenta." },
-        { title: "Registra el progreso", description: "Marca las actividades que pruebes; el progreso queda en este navegador." },
+        { title: "Elige un objetivo", description: "Decide qué habilidad o tema quieres desarrollar." },
+        { title: "Explora una ruta de aprendizaje", description: "Consulta temas, niveles y duraciones de ejemplo en el catálogo." },
+        { title: "Prepara un plan", description: "Usa el planificador para definir objetivos y una lista de aprendizaje de tres semanas." },
+        { title: "Practica y reflexiona", description: "Prueba las actividades de orientación y revisa el progreso guardado en el navegador." },
       ],
     },
     programs: {
@@ -2460,14 +2087,14 @@ const productTranslations = {
   },
   ar: {
     how: {
-      eyebrow: "مسار العرض التجريبي",
-      title: "جرّب خطوات تعلم بسيطة.",
-      description: "يوضح النموذج كيفية اختيار مسار تجريبي وتسجيل التدريب.",
+      eyebrow: "كيف يعمل",
+      title: "ابدأ التعلم في أربع خطوات.",
+      description: "رحلة تعلم واضحة وتفاعلية تركز على تحقيق تقدم ملموس.",
       steps: [
-        { title: "اختر موضوعًا", description: "اختر مسارًا للمهارات الرقمية من الكتالوج التجريبي." },
-        { title: "حدد وقتك", description: "اختر هدفًا أسبوعيًا واقعيًا لوقت الدراسة." },
-        { title: "جرّب الأنشطة", description: "استخدم ثلاثة اقتراحات تدريب عامة كنقطة بداية للتعلم الذاتي." },
-        { title: "تابع التقدم", description: "حدّد الأنشطة التي جربتها؛ يُحفظ التقدم في هذا المتصفح." },
+        { title: "اختر هدفًا", description: "حدد المهارة أو الموضوع الذي تريد تطويره." },
+        { title: "استكشف مسارًا تعليميًا", description: "راجع الموضوعات والمستويات والمدد المقترحة في الدليل." },
+        { title: "ضع خطة", description: "استخدم المخطط لتحديد الأهداف وإنشاء قائمة تعلم لثلاثة أسابيع." },
+        { title: "تدرّب وتأمل", description: "جرّب أنشطة التهيئة وراجع التقدم المحفوظ في المتصفح." },
       ],
     },
     programs: {
@@ -2532,14 +2159,14 @@ const productTranslations = {
   },
   fr: {
     how: {
-      eyebrow: "Parcours de démonstration",
-      title: "Essayez un parcours d’apprentissage simple.",
-      description: "Le prototype montre comment choisir un parcours d’exemple et suivre ses exercices.",
+      eyebrow: "Comment ça marche",
+      title: "Apprendre en quatre étapes.",
+      description: "Un parcours clair et interactif, axé sur des progrès concrets.",
       steps: [
-        { title: "Choisir un sujet", description: "Sélectionnez un parcours de compétences numériques dans le catalogue démo." },
-        { title: "Définir son temps", description: "Choisissez un objectif hebdomadaire réaliste." },
-        { title: "Essayer les activités", description: "Utilisez trois suggestions génériques comme point de départ pour l’autoformation." },
-        { title: "Suivre sa progression", description: "Cochez les activités essayées ; la progression reste dans ce navigateur." },
+        { title: "Choisir un objectif", description: "Déterminez la compétence ou le sujet que vous souhaitez développer." },
+        { title: "Explorer un parcours", description: "Consultez les sujets, niveaux et durées proposés dans le catalogue." },
+        { title: "Préparer un plan", description: "Utilisez le planificateur pour fixer des objectifs et créer une checklist sur trois semaines." },
+        { title: "Pratiquer et réfléchir", description: "Essayez les activités d’orientation et consultez la progression enregistrée dans le navigateur." },
       ],
     },
     programs: {
@@ -2629,7 +2256,6 @@ const localizedDisplayContent = {
       homeLabel: "Beranda EduFuture",
       heroMetricsLabel: "Fitur prototipe",
       highlightsLabel: "Ruang lingkup prototipe",
-      roadmapMapLabel: "Gunakan tombol navigasi atau tombol panah. Klik area kosong peta atau tekan Enter untuk lanjut.",
     },
   },
   en: {
@@ -2656,7 +2282,6 @@ const localizedDisplayContent = {
       homeLabel: "EduFuture home",
       heroMetricsLabel: "Prototype features",
       highlightsLabel: "Prototype scope",
-      roadmapMapLabel: "Use the navigation buttons or arrow keys. Click an empty area or press Enter to continue.",
     },
   },
   zh: {
@@ -2683,7 +2308,6 @@ const localizedDisplayContent = {
       homeLabel: "EduFuture 首页",
       heroMetricsLabel: "原型功能",
       highlightsLabel: "原型范围",
-      roadmapMapLabel: "使用导航按钮或方向键。点击地图空白处或按 Enter 继续。",
     },
   },
   es: {
@@ -2710,7 +2334,6 @@ const localizedDisplayContent = {
       homeLabel: "Inicio de EduFuture",
       heroMetricsLabel: "Funciones del prototipo",
       highlightsLabel: "Alcance del prototipo",
-      roadmapMapLabel: "Usa los botones de navegación o las flechas. Haz clic en un espacio vacío o pulsa Enter para continuar.",
     },
   },
   ar: {
@@ -2737,7 +2360,6 @@ const localizedDisplayContent = {
       homeLabel: "الصفحة الرئيسية لـ EduFuture",
       heroMetricsLabel: "ميزات النموذج الأولي",
       highlightsLabel: "نطاق النموذج الأولي",
-      roadmapMapLabel: "استخدم أزرار التنقل أو مفاتيح الأسهم. انقر على مساحة فارغة أو اضغط Enter للمتابعة.",
     },
   },
   fr: {
@@ -2764,9 +2386,26 @@ const localizedDisplayContent = {
       homeLabel: "Accueil EduFuture",
       heroMetricsLabel: "Fonctionnalités du prototype",
       highlightsLabel: "Périmètre du prototype",
-      roadmapMapLabel: "Utilisez les boutons de navigation ou les flèches. Cliquez sur une zone vide ou appuyez sur Entrée pour continuer.",
     },
   },
+};
+
+const localizedHeroWords = {
+  id: ["Belajar", "Berkreasi", "Berkembang"],
+  en: ["Learn", "Imagine", "Create"],
+  zh: ["学习", "探索", "创造"],
+  es: ["Aprender", "Crear", "Crecer"],
+  ar: ["تعلّم", "ابتكر", "تطوّر"],
+  fr: ["Apprendre", "Créer", "Grandir"],
+};
+
+const localizedPrototypeNotices = {
+  id: "EduFuture masih berupa website konsep dan prototipe; fitur serta materi yang ditampilkan adalah contoh.",
+  en: "EduFuture is still a concept website and prototype; its features and learning content are examples.",
+  zh: "EduFuture 目前仍是概念网站和原型；其中的功能与学习内容均为示例。",
+  es: "EduFuture sigue siendo un sitio conceptual y un prototipo; sus funciones y contenidos son ejemplos.",
+  ar: "لا يزال EduFuture موقعًا مفاهيميًا ونموذجًا أوليًا؛ والميزات والمحتوى المعروض أمثلة فقط.",
+  fr: "EduFuture est encore un site conceptuel et un prototype ; ses fonctionnalités et contenus sont des exemples.",
 };
 
 for (const [language, translation] of Object.entries(localizedDisplayContent)) {
@@ -2787,13 +2426,12 @@ for (const [language, translation] of Object.entries(additionalTranslations)) {
   Object.assign(resources[language].translation, translation);
 }
 
-for (const [language, translation] of Object.entries(roadmapTranslations)) {
-  resources[language].translation.nav.roadmap = translation.navLabel;
-  resources[language].translation.roadmap = translation.roadmap;
-}
-
 for (const [language, words] of Object.entries(localizedHeroWords)) {
   resources[language].translation.hero.movingWords = words;
+}
+
+for (const [language, notice] of Object.entries(localizedPrototypeNotices)) {
+  resources[language].translation.prototypeNotice = notice;
 }
 
 const demoContent = {
@@ -3180,10 +2818,20 @@ for (const [language, translation] of Object.entries(demoContent)) {
   Object.assign(resources[language].translation, translation);
 }
 
+const externalStudyUrl = "https://www.aeaweb.org/articles?id=10.1257/aer.20171112";
+for (const [language, translation] of Object.entries(additionalTranslations)) {
+  resources[language].translation.evidence = {
+    ...translation.evidence,
+    url: externalStudyUrl,
+  };
+  resources[language].translation.insights = translation.insights;
+}
+
 const navigationLabels = {
   id: {
     how: "Cara kerja",
     courses: "Kursus",
+    orientation: "Orientasi belajar",
     insights: "Wawasan",
     faq: "FAQ",
     cta: "Jelajahi kursus",
@@ -3191,6 +2839,7 @@ const navigationLabels = {
   en: {
     how: "How it works",
     courses: "Courses",
+    orientation: "Learning orientation",
     insights: "Insights",
     faq: "FAQ",
     cta: "Explore courses",
@@ -3198,6 +2847,7 @@ const navigationLabels = {
   zh: {
     how: "学习方式",
     courses: "课程",
+    orientation: "学习导览",
     insights: "资讯",
     faq: "常见问题",
     cta: "探索课程",
@@ -3205,6 +2855,7 @@ const navigationLabels = {
   es: {
     how: "Cómo funciona",
     courses: "Cursos",
+    orientation: "Orientación de aprendizaje",
     insights: "Ideas",
     faq: "FAQ",
     cta: "Explorar cursos",
@@ -3212,6 +2863,7 @@ const navigationLabels = {
   ar: {
     how: "كيف يعمل",
     courses: "الدورات",
+    orientation: "التوجيه التعليمي",
     insights: "رؤى",
     faq: "الأسئلة الشائعة",
     cta: "استكشف الدورات",
@@ -3219,6 +2871,7 @@ const navigationLabels = {
   fr: {
     how: "Fonctionnement",
     courses: "Cours",
+    orientation: "Orientation d’apprentissage",
     insights: "Actualités",
     faq: "FAQ",
     cta: "Explorer les cours",
