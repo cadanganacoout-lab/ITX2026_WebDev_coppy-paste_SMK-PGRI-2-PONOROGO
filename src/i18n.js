@@ -2470,7 +2470,7 @@ const demoContent = {
    insights: { 
   eyebrow: 'Berita & wawasan · contoh', 
   title: 'Sorotan pendidikan digital.', 
-  description: 'Kartu dan isi berikut adalah data dummy. Ganti judul, tanggal, ringkasan, sumber, dan tautan sebelum publikasi.', 
+  description: '', 
   readMore: 'Tautan contoh', 
   items: [
     { 
@@ -2535,8 +2535,7 @@ const demoContent = {
     insights: {
       eyebrow: "News & insights · examples",
       title: "Digital education highlights.",
-      description:
-        "These cards contain demo content. Replace titles, dates, summaries, sources, and links before publishing.",
+      description: "",
       readMore: "Example link",
       items: [
         {
@@ -2587,8 +2586,7 @@ const demoContent = {
     insights: {
       eyebrow: "新闻与洞察 · 示例",
       title: "数字教育精选。",
-      description:
-        "以下卡片为虚构示例。发布前请替换标题、日期、摘要、来源和链接。",
+      description: "",
       readMore: "示例链接",
       items: [
         {
@@ -2651,8 +2649,7 @@ const demoContent = {
     insights: {
       eyebrow: "Noticias e ideas · ejemplos",
       title: "Novedades de educación digital.",
-      description:
-        "Estas tarjetas contienen datos ficticios. Sustituye títulos, fechas, resúmenes, fuentes y enlaces antes de publicar.",
+      description: "",
       readMore: "Enlace de ejemplo",
       items: [
         {
@@ -2717,8 +2714,7 @@ const demoContent = {
     insights: {
       eyebrow: "أخبار ورؤى · أمثلة",
       title: "مستجدات التعليم الرقمي.",
-      description:
-        "تحتوي البطاقات على بيانات تجريبية. استبدل العناوين والتواريخ والملخصات والمصادر والروابط قبل النشر.",
+      description: "",
       readMore: "رابط تجريبي",
       items: [
         {
@@ -2781,8 +2777,7 @@ const demoContent = {
     insights: {
       eyebrow: "Actualités et analyses · exemples",
       title: "À la une de l’éducation numérique.",
-      description:
-        "Ces cartes contiennent des données fictives. Remplacez titres, dates, résumés, sources et liens avant publication.",
+      description: "",
       readMore: "Lien exemple",
       items: [
         {

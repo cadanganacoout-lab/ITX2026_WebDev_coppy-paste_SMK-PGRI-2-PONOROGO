@@ -4487,15 +4487,16 @@
 
 }
 
-.site-shell[data-theme='dark'] .language-picker,
-.site-shell[data-theme='dark'] .language-picker select {
+.site-shell[data-theme='dark'] .language-picker {
   border-color: transparent !important;
   background: transparent !important;
-  background-image: none !important;
   box-shadow: none !important;
 }
 
 .site-shell[data-theme='dark'] .language-picker select {
+  border-color: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
   color-scheme: dark;
 }
 
@@ -4987,9 +4988,7 @@
 
 .site-shell[data-theme='dark'] .site-footer {
   border: 0;
-  background:
-    radial-gradient(ellipse at 7% 0%, rgb(74 115 172 / 14%), transparent 38%),
-    linear-gradient(180deg, #121f30 0%, #0f1a29 100%);
+  background: radial-gradient(ellipse at 7% 0%, rgb(74 115 172 / 14%), transparent 38%), linear-gradient(180deg, #4f7ebc 0%, #0f1a29 100%);
 }
 
 .site-shell[data-theme='dark'] .site-footer::before {
@@ -5856,5 +5855,112 @@
   .evidence-note > a,
   .insight-card > a {
     transition: none;
+  }
+}
+
+.site-shell select {
+  min-height: 44px;
+  padding: 0 42px 0 14px;
+  appearance: auto;
+  border: 1px solid #d7e1ee;
+  border-radius: 12px;
+  color: #294362;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgb(27 54 88 / 5%);
+  font: inherit;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.site-shell select:hover:not(:disabled) {
+  border-color: #9db8d8;
+  background-color: #fbfdff;
+}
+
+.site-shell select:focus-visible {
+  border-color: #5790d2;
+  outline: 3px solid rgb(87 144 210 / 20%);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 1px rgb(87 144 210 / 12%);
+}
+
+.site-shell select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.site-shell select option {
+  color: #203a5b;
+  background-color: #fff;
+}
+
+.site-shell .language-picker select {
+  min-height: 36px;
+  padding: 0 23px 0 2px;
+  border-color: transparent;
+  border-radius: 8px;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.site-shell .language-picker select:hover:not(:disabled) {
+  border-color: transparent;
+  background-color: rgb(39 104 215 / 6%);
+}
+
+.site-shell .planner-controls select {
+  padding-right: 42px;
+}
+
+.site-shell[data-theme='dark'] select {
+  border-color: #405874;
+  color: #e0ebf8;
+  background-color: #1b304a;
+  color-scheme: dark;
+}
+
+.site-shell[data-theme='dark'] select:hover:not(:disabled) {
+  border-color: #7197c1;
+  background-color: #223b5a;
+}
+
+.site-shell[data-theme='dark'] select option {
+  color: #e8eef8;
+  background-color: #111e30;
+}
+
+.site-shell[data-theme='dark'] .language-picker select {
+  border-color: transparent !important;
+  color: #e8eef8;
+  background-color: transparent !important;
+}
+
+.site-shell[data-theme='dark'] .language-picker select:hover:not(:disabled) {
+  background-color: rgb(120 170 255 / 9%) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-shell select {
+    transition: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-shell .planner-controls select {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    padding-inline-end: 12px;
+    appearance: auto;
+    background-image: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 13px;
+  }
+
+  .site-shell .planner-controls select option {
+    font-size: 14px;
   }
 }

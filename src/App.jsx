@@ -911,7 +911,9 @@ function App() {
               <p className="eyebrow">{t("insights.eyebrow")}</p>
               <h2>{t("insights.title")}</h2>
             </div>
-            <p className="section-side-note">{t("insights.description")}</p>
+            {t("insights.description") && (
+              <p className="section-side-note">{t("insights.description")}</p>
+            )}
           </div>
           <aside className="evidence-note" aria-label={t("evidence.label")}>
             <span className="evidence-icon" aria-hidden="true">
