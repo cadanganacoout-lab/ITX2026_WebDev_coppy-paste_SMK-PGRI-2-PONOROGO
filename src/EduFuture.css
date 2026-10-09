@@ -937,8 +937,7 @@ progress::-moz-progress-bar {
   font-weight: 700;
 }
 
-.ef-field input,
-.ef-field select {
+.ef-field input {
   width: 100%;
   min-height: 45px;
   padding: 10px 12px;
@@ -1568,7 +1567,6 @@ progress::-moz-progress-bar {
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   .ef-app *,
   .ef-app *::before,
   .ef-app *::after {
@@ -1633,8 +1631,7 @@ progress::-moz-progress-bar {
     break-inside: avoid;
   }
 
-  .ef-field input,
-  .ef-field select {
+  .ef-field input {
     border-color: #cdd5cf;
     background: #fff;
   }
@@ -1724,21 +1721,126 @@ progress::-moz-progress-bar {
   }
 }
 
-@media (max-width: 640px) {
-  .ef-app .ef-field select {
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-    padding-inline-end: 12px;
-    appearance: auto;
-    background-image: none;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 13px;
+.ef-field .select-field {
+  font-weight: 500;
+}
+
+.ef-field .select-field-trigger {
+  min-height: 45px;
+  border-color: var(--ef-line);
+  border-radius: 9px;
+  color: var(--ef-ink);
+  background: var(--ef-bg);
+  font-size: 13px;
+}
+
+.ef-app[data-theme="dark"] .ef-field .select-field-trigger {
+  border-color: var(--ef-line);
+  color: var(--ef-ink);
+  background: var(--ef-bg);
+}
+
+.ef-confirm-backdrop {
+  position: fixed;
+  z-index: 120;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgb(9 18 31 / 58%);
+  backdrop-filter: blur(7px);
+  animation: ef-confirm-fade-in 160ms ease-out;
+}
+
+.ef-confirm-dialog {
+  width: min(100%, 440px);
+  padding: 28px;
+  border: 1px solid var(--ef-line);
+  border-radius: 22px;
+  color: var(--ef-ink);
+  background: var(--ef-surface);
+  box-shadow: 0 28px 90px rgb(10 26 47 / 28%);
+  animation: ef-confirm-enter 200ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.ef-confirm-icon {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+  border-radius: 15px;
+  color: var(--ef-danger);
+  background: color-mix(in srgb, var(--ef-danger) 12%, var(--ef-surface));
+}
+
+.ef-confirm-dialog h2 {
+  margin: 0;
+  color: var(--ef-ink);
+  font-size: 21px;
+  letter-spacing: -.03em;
+}
+
+.ef-confirm-dialog p {
+  margin: 12px 0 26px;
+  color: var(--ef-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.ef-confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.ef-confirm-actions .ef-button-quiet {
+  color: var(--ef-ink);
+  background: var(--ef-surface);
+}
+
+.ef-confirm-actions .ef-button-danger {
+  color: #fff;
+  border-color: #a43b3b;
+  background: #a43b3b;
+}
+
+.ef-confirm-actions .ef-button-danger:hover:not(:disabled) {
+  background: #8f3030;
+}
+
+.ef-app[data-theme="dark"] .ef-confirm-actions .ef-button-danger {
+  color: #fff;
+  border-color: #b84f4f;
+  background: #a43b3b;
+}
+
+@keyframes ef-confirm-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ef-confirm-enter {
+  from { opacity: 0; transform: translateY(8px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 520px) {
+  .ef-confirm-backdrop {
+    align-items: end;
+    padding: 12px;
   }
 
-  .ef-app .ef-field select option {
-    font-size: 14px;
+  .ef-confirm-dialog {
+    width: 100%;
+    padding: 24px;
+    border-radius: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ef-confirm-backdrop,
+  .ef-confirm-dialog {
+    animation: none;
   }
 }

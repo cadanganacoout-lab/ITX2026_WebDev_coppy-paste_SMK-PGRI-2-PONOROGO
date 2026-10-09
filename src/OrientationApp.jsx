@@ -21,6 +21,7 @@ import {
   Upload,
   X,
 } from 'lucide-react'
+import SelectField from './SelectField.jsx'
 import './EduFuture.css'
 
 const STORAGE_KEY = 'edufuture-orientation-v1'
@@ -521,6 +522,7 @@ export default function OrientationApp({ embedded = false, appLanguage, appTheme
   const firstPersist = useRef(true)
   const [storageMessage, setStorageMessage] = useState('')
   const [actionMessage, setActionMessage] = useState('')
+  const [resetDialogOpen, setResetDialogOpen] = useState(false)
   const [quizOpen, setQuizOpen] = useState(false)
   const [questionIndex, setQuestionIndex] = useState(0)
   const [answers, setAnswers] = useState([])
@@ -531,6 +533,9 @@ export default function OrientationApp({ embedded = false, appLanguage, appTheme
   const [timerEnd, setTimerEnd] = useState(null)
   const [timerRemaining, setTimerRemaining] = useState(25 * 60 * 1000)
   const fileInput = useRef(null)
+  const resetButton = useRef(null)
+  const resetCancelButton = useRef(null)
+  const resetConfirmButton = useRef(null)
   const lang = copy[appLanguage] ? appLanguage : copy[data.language] ? data.language : 'id'
   const text = copy[lang]
   const theme = appTheme === 'dark' ? 'dark' : appTheme === 'light' ? 'light' : data.theme
@@ -706,8 +711,17 @@ export default function OrientationApp({ embedded = false, appLanguage, appTheme
     }
   }
 
+  const openResetDialog = () => {
+    setResetDialogOpen(true)
+  }
+
+  const cancelResetDialog = () => {
+    setResetDialogOpen(false)
+    window.requestAnimationFrame(() => resetButton.current?.focus())
+  }
+
   const resetProgress = () => {
-    if (!window.confirm(text.resetConfirm)) return
+    setResetDialogOpen(false)
     const clean = defaultData()
     clean.language = lang
     clean.theme = theme
@@ -719,7 +733,27 @@ export default function OrientationApp({ embedded = false, appLanguage, appTheme
     setTimerRemaining(25 * 60 * 1000)
     setTimerNotice('')
     setActionMessage(text.resetDone)
+    window.requestAnimationFrame(() => resetButton.current?.focus())
   }
+
+  useEffect(() => {
+    if (!resetDialogOpen) return undefined
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    resetCancelButton.current?.focus()
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') {
+        setResetDialogOpen(false)
+        window.requestAnimationFrame(() => resetButton.current?.focus())
+      }
+    }
+    window.addEventListener('keydown', closeOnEscape)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [resetDialogOpen])
 
   const savePlan = (event) => {
     event.preventDefault()
@@ -1007,12 +1041,18 @@ export default function OrientationApp({ embedded = false, appLanguage, appTheme
                 <span>{text.goalLabel}</span>
                 <input value={data.plan.goal} onChange={(event) => updatePlan({ goal: event.target.value })} placeholder={text.goalPlaceholder} maxLength={120} />
               </label>
-              <label className="ef-field ef-hours-field">
+              <div className="ef-field ef-hours-field">
                 <span>{text.hoursLabel}</span>
-                <select value={data.plan.hours} onChange={(event) => updatePlan({ hours: Number(event.target.value) })}>
-                  {[1, 2, 3, 4, 5, 6].map((hours) => <option key={hours} value={hours}>{hours} {text.hours}</option>)}
-                </select>
-              </label>
+                <SelectField
+                  ariaLabel={text.hoursLabel}
+                  value={String(data.plan.hours)}
+                  onChange={(hours) => updatePlan({ hours: Number(hours) })}
+                  options={[1, 2, 3, 4, 5, 6].map((hours) => ({
+                    value: String(hours),
+                    label: `${hours} ${text.hours}`,
+                  }))}
+                />
+              </div>
             </div>
             <div className="ef-weeks">
               {text.weekNames.map((name, index) => (
@@ -1094,9 +1134,48 @@ export default function OrientationApp({ embedded = false, appLanguage, appTheme
             <button className="ef-button ef-button-secondary" type="button" onClick={exportProgress}><Download size={16} />{text.exportData}</button>
             <button className="ef-button ef-button-secondary" type="button" onClick={() => fileInput.current?.click()}><Upload size={16} />{text.importData}</button>
             <input ref={fileInput} className="ef-sr-only" type="file" accept="application/json,.json" onChange={importProgress} />
-            <button className="ef-button ef-button-danger" type="button" onClick={resetProgress}><RotateCcw size={16} />{text.resetData}</button>
+            <button className="ef-button ef-button-danger" ref={resetButton} type="button" onClick={openResetDialog}><RotateCcw size={16} />{text.resetData}</button>
           </div>
         </section>
+
+        {resetDialogOpen && (
+          <div
+            className="ef-confirm-backdrop"
+            onMouseDown={(event) => {
+              if (event.target === event.currentTarget) cancelResetDialog()
+            }}
+          >
+            <section
+              aria-describedby="ef-reset-description"
+              aria-labelledby="ef-reset-title"
+              aria-modal="true"
+              className="ef-confirm-dialog"
+              role="alertdialog"
+              onKeyDown={(event) => {
+                if (event.key !== 'Tab') return
+                if (event.shiftKey && document.activeElement === resetCancelButton.current) {
+                  event.preventDefault()
+                  resetConfirmButton.current?.focus()
+                } else if (!event.shiftKey && document.activeElement === resetConfirmButton.current) {
+                  event.preventDefault()
+                  resetCancelButton.current?.focus()
+                }
+              }}
+            >
+              <span className="ef-confirm-icon"><RotateCcw aria-hidden="true" size={21} /></span>
+              <h2 id="ef-reset-title">{text.resetData}</h2>
+              <p id="ef-reset-description">{text.resetConfirm}</p>
+              <div className="ef-confirm-actions">
+                <button className="ef-button ef-button-quiet" ref={resetCancelButton} type="button" onClick={cancelResetDialog}>
+                  {text.close}
+                </button>
+                <button className="ef-button ef-button-danger" ref={resetConfirmButton} type="button" onClick={resetProgress}>
+                  {text.resetData}
+                </button>
+              </div>
+            </section>
+          </div>
+        )}
 
         {!embedded && <section className="ef-faq ef-section" id="faq">
           <div className="ef-section-heading"><p className="ef-eyebrow">{text.privacyEyebrow}</p><h2>{text.faqTitle}</h2></div>

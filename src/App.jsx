@@ -27,6 +27,7 @@ import {
   X,
 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import SelectField from './SelectField.jsx'
 import './App.css'
 import brandLogo from './assets/edufuture-logo.png'
 
@@ -767,32 +768,30 @@ function App() {
                   <p>{t('planner.description')}</p>
                 </div>
                 <div className="planner-controls">
-                  <label>
+                  <div className="planner-control">
                     <span>{t('planner.trackLabel')}</span>
-                    <select
+                    <SelectField
+                      ariaLabel={t('planner.trackLabel')}
                       value={selectedPlannerCourse?.category || ''}
-                      onChange={(event) => setPlannerTrack(event.target.value)}
-                    >
-                      {courses.map((course) => (
-                        <option key={course.category} value={course.category}>
-                          {course.title}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <label>
+                      onChange={setPlannerTrack}
+                      options={courses.map((course) => ({
+                        value: course.category,
+                        label: course.title,
+                      }))}
+                    />
+                  </div>
+                  <div className="planner-control">
                     <span>{t('planner.timeLabel')}</span>
-                    <select
+                    <SelectField
+                      ariaLabel={t('planner.timeLabel')}
                       value={plannerHours}
-                      onChange={(event) => setPlannerHours(event.target.value)}
-                    >
-                      {[2, 4, 6].map((hours) => (
-                        <option key={hours} value={hours}>
-                          {t('planner.hoursOption', { hours })}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
+                      onChange={setPlannerHours}
+                      options={[2, 4, 6].map((hours) => ({
+                        value: String(hours),
+                        label: t('planner.hoursOption', { hours }),
+                      }))}
+                    />
+                  </div>
                 </div>
               </div>
               {selectedPlannerCourse && (
