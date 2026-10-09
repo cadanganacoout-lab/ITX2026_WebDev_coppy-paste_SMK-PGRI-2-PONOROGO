@@ -1,66 +1,64 @@
 # Roadmap EduFuture
 
-Dokumen ini merangkum arah pengembangan proyek dan lokasi utama untuk mengubah tampilan maupun kontennya. EduFuture saat ini masih berupa konsep/demo; kursus, metrik, berita, profil komunitas, kontak, dan beberapa teks merupakan konten contoh yang perlu ditinjau sebelum dipublikasikan.
+Dokumen ini merangkum struktur proyek dan langkah pengembangan berikutnya. EduFuture mempertahankan landing page, katalog keterampilan, wawasan, dan perencana belajar awal; peta navigasi 3D telah diganti workflow situs empat langkah yang menautkan ke fitur utama. Toolkit orientasi digital menjadi pendamping dengan refleksi, peta lima langkah, rencana tiga minggu, timer, simulasi, dan penyimpanan lokal; hasil refleksi tetap merupakan saran, bukan diagnosis.
 
 ## File utama
 
 | File | Fungsi |
 | --- | --- |
 | `index.html` | Kerangka HTML, bahasa awal, judul tab, dan metadata halaman. |
-| `src/main.jsx` | Titik masuk React; memuat konfigurasi bahasa dan CSS global. |
-| `src/App.jsx` | Komposisi halaman, navigasi, interaksi filter/pencarian kursus, tema terang/gelap, dan seluruh section. |
-| `src/i18n.js` | Teks terjemahan enam bahasa dan data konten contoh: kursus, langkah belajar, metrik, berita/wawasan, FAQ, serta peran komunitas. |
-| `src/App.css` | Layout, komponen, responsivitas, ilustrasi 3D berbasis CSS, dan warna dark mode. |
+| `src/main.jsx` | Titik masuk React dan CSS global; merender `App.jsx`. |
+| `src/App.jsx` | Landing page, workflow situs, katalog keterampilan, perencana belajar awal, dan bagian situs lainnya; menyematkan fitur orientasi. |
+| `src/i18n.js` | Terjemahan landing page dalam enam bahasa. |
+| `src/App.css` | Styling landing page, komponen, responsivitas, dan tema. |
+| `src/OrientationApp.jsx` | Refleksi enam pertanyaan, rekomendasi, peta lima langkah, rencana, timer, simulasi, privasi, dan terjemahan enam bahasa. |
+| `src/EduFuture.css` | Styling toolkit orientasi, responsivitas, tema yang mengikuti aplikasi utama, aksesibilitas visual, dan stylesheet cetak. |
 | `src/index.css` | Reset dan aturan CSS global serta variabel tema dasar. |
 | `vite.config.js` | Konfigurasi Vite, React, dan Tailwind CSS. |
 | `package.json` | Dependensi dan perintah `dev`, `build`, dan `lint`. |
+| `public/` | Ikon statis yang disajikan langsung oleh Vite. |
+| `src/assets/` | Aset proyek; `hero.png` tersedia bersama aset bawaan Vite/React. |
+| `dist/` | Hasil build produksi dari `npm run build`; bukan tempat mengedit sumber. |
+| `node_modules/` | Dependensi lokal yang dipasang npm; bukan sumber proyek. |
+
+Workflow situs empat langkah menyediakan tautan langsung ke katalog, perencana, dan toolkit orientasi. Peta orientasi lima langkah berada di dalam toolkit dan tetap berupa daftar yang dapat dibuka tanpa urutan wajib.
 
 ## Tempat mengedit data
 
-Konten terjemahan berada di `src/i18n.js`. Cari objek `additionalTranslations` untuk konten per bahasa, lalu objek `demoContent` untuk data contoh yang ditampilkan di halaman.
+Teks landing page berada di `src/i18n.js`; teks toolkit orientasi berada pada objek `copy` di `src/OrientationApp.jsx`.
 
-- **Kursus:** `additionalTranslations.<bahasa>.courses.items`. Setiap kursus memiliki `category`, `label`, `level`, `duration`, `title`, `description`, dan `skills`. Kategori harus sesuai dengan ID filter kursus di `courses.filters`.
-- **Langkah belajar:** `additionalTranslations.<bahasa>.how.steps`. Halaman saat ini menampilkan empat langkah.
-- **Statistik dampak:** `demoContent.<bahasa>.impact.items`. Nilai `XX` sengaja menjadi placeholder; ganti hanya dengan angka yang terukur dan dapat diverifikasi.
-- **Bukti kuantitatif:** `demoContent.<bahasa>.evidence`. Ganti ringkasan, catatan konteks, dan sumber dengan bukti yang benar-benar relevan. Jangan menyajikan placeholder sebagai hasil platform.
-- **Berita dan wawasan:** `demoContent.<bahasa>.insights.items`. Ganti kategori, judul, ringkasan, sumber/tanggal, dan URL. Tautan kosong memang tidak dapat diklik; isi dengan URL artikel yang sudah diperiksa.
-- **FAQ:** `additionalTranslations.<bahasa>.faq.items`.
-- **Peran komunitas:** `additionalTranslations.<bahasa>.community.roles`. Ini merupakan peran konseptual, bukan profil individu atau mitra resmi.
-- **Kontak:** teks status kontak berada di `additionalTranslations.<bahasa>.contact`. Alamat email ditampilkan jika variabel lingkungan `VITE_CONTACT_EMAIL` disediakan; jangan memasang alamat contoh sebagai kontak resmi.
-- **Teks halaman lainnya:** navigasi, hero, pengantar, bagian program, CTA, footer, serta label tema berada di `resources.<bahasa>.translation` di bagian awal `src/i18n.js`.
+- `copy.id`, `copy.en`, `copy.zh`, `copy.es`, `copy.ar`, dan `copy.fr` harus memuat padanan teks untuk fitur aktif.
+- Pertanyaan dan pilihan refleksi disusun dalam `questions`; setiap `labelKey` dan `answers` harus tersedia pada seluruh bahasa.
+- Peta orientasi berisi lima langkah per bahasa pada `copy[language].steps`.
+- Jangan mengubah hasil refleksi menjadi klasifikasi kemampuan atau diagnosis.
 
-Saat mengubah struktur atau data pada satu bahasa, perbarui konten bahasa lainnya agar pemilih bahasa tidak menampilkan terjemahan yang tertinggal. Bahasa yang tersedia didefinisikan oleh daftar `languages` di `src/App.jsx` dan resource di `src/i18n.js`.
+Saat mengubah UI, perbarui keenam bahasa, atribut pembaca layar, dan konten RTL. Pilihan bahasa disimpan bersama progres di `edufuture-orientation-v1`; saat pertama kali membuka aplikasi, beberapa pengaturan dan checklist lama dibaca untuk migrasi.
 
-## Tahapan roadmap
+## Tahapan pengembangan
 
-### 1. Lengkapi dan validasi konten
+### 1. Lengkapi dokumen kompetisi
 
-- Ganti seluruh teks dan data dummy dengan informasi yang sudah disetujui.
-- Verifikasi sumber, tanggal, konteks, dan tautan untuk setiap berita atau klaim kuantitatif.
-- Tetapkan katalog kursus, silabus, durasi, tingkat, kebijakan sertifikat, dan persyaratan penyelesaian.
-- Tambahkan profil tim/mitra hanya setelah identitas dan izin publikasinya tersedia.
-- Isi alamat kontak resmi melalui konfigurasi lingkungan.
+- Susun proposal yang memenuhi semua kolom wajib guidebook, termasuk identitas tim, perumusan masalah pendidikan, solusi, target pengguna, fitur, user flow/flowchart, teknologi, tahapan, manfaat, inovasi, mockup, tautan demo/GitHub, dan kesimpulan.
+- Ikuti format proposal: maksimal 15 halaman (di luar cover/lampiran), PDF maksimal 10 MB, A4, margin kiri 4 cm dan sisi lainnya 3 cm, Times New Roman 12, spasi 1,5.
+- Tambahkan repository GitHub yang sah dan URL-nya di dokumen pengumpulan. Panduan lomba mensyaratkan website dapat diakses online; deployment yang diakses panitia/juri harus diperiksa sebelum pengumpulan.
 
-### 2. Tinjau pengalaman belajar
+### 2. Validasi pengalaman belajar
 
-- Tentukan tautan dan tujuan untuk aksi pada setiap kartu kursus.
-- Rancang halaman detail kursus, materi, latihan interaktif, pelacakan kemajuan, dan proses penerbitan sertifikat.
-- Tentukan alur akun/pengguna dan kebutuhan backend sebelum mengklaim fitur belajar benar-benar tersedia.
+- Uji alur refleksi → rekomendasi → langkah → rencana → muat ulang; periksa keyboard serta pesan fallback storage.
+- Tinjau panduan dan aktivitas dengan pembelajar sasaran; rekomendasi harus terasa membantu dan tidak menghakimi.
+- Tentukan pengayaan yang benar-benar dibutuhkan setelah alur inti diuji. Pertahankan tanpa akun/backend dan penyimpanan lokal sebagai keputusan desain produk; jangan menjanjikan hasil belajar yang belum diukur.
 
-### 3. Siapkan berita dan data dampak
+### 3. Pastikan atribusi dan konten
 
-- Pilih sumber berita resmi atau tepercaya, aturan atribusi, dan frekuensi pembaruan.
-- Mulai dengan pengelolaan manual; pertimbangkan RSS/API setelah sumber dan lisensinya dipastikan.
-- Tetapkan metode pengukuran hasil belajar, persetujuan penggunaan data, privasi, dan cara melaporkan keterbatasan hasil.
-- Jangan mengubah data studi eksternal menjadi klaim keberhasilan EduFuture.
+- Verifikasi lisensi/asal `src/assets/hero.png`, `public/icons.svg`, dan aset bawaan yang tidak digunakan, atau hapus yang tidak memiliki izin.
+- Verifikasi tautan serta atribusi referensi eksternal sebelum pengumpulan.
+- Jika kelak menampilkan hasil belajar, tentukan metode evaluasi, privasi, persetujuan, dan pelaporan keterbatasannya.
 
-### 4. Penyempurnaan produk dan rilis
+### 4. Uji kesiapan antarmuka
 
-- Uji semua bahasa, termasuk tata letak RTL bahasa Arab.
-- Uji filter/pencarian kursus, menu mobile, penyimpanan tema dan bahasa, akses keyboard, serta pengaturan reduced motion.
+- Uji enam bahasa, RTL, peta lima langkah, planner, timer, simulasi, ekspor/impor/reset, tema, mobile, keyboard, dan reduced motion.
 - Periksa tampilan pada ukuran layar dan browser yang ditargetkan.
 - Jalankan `npm run lint` dan `npm run build` sebelum rilis.
-- Siapkan hosting, domain, analitik yang menghormati privasi, dan mekanisme pembaruan konten.
 
 ## Menjalankan proyek
 
@@ -78,4 +76,4 @@ npm run lint
 npm run build
 ```
 
-Jika diperlukan, atur `VITE_CONTACT_EMAIL` di file `.env.local` untuk alamat kontak resmi. Jangan memasukkan rahasia atau kredensial ke repository.
+Deployment URL dan repository GitHub untuk pengumpulan lomba perlu diverifikasi/dicantumkan secara terpisah. Jangan memasukkan rahasia atau kredensial ke repository.

@@ -1,8 +1,13 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+} from 'framer-motion'
 import {
   ArrowDown,
   ArrowRight,
+  ArrowUp,
   Award,
   BrainCircuit,
   BookOpen,
@@ -15,12 +20,17 @@ import {
   Menu,
   Moon,
   MonitorPlay,
+  RotateCcw,
   Search,
   Sun,
+  Sparkles,
   X,
 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import './App.css'
+import brandLogo from './assets/edufuture-logo.png'
+
+const OrientationApp = lazy(() => import('./OrientationApp.jsx'))
 
 const languages = [
   { code: 'id', label: 'Bahasa Indonesia' },
@@ -32,14 +42,17 @@ const languages = [
 ]
 
 const featureIcons = [BrainCircuit, MonitorPlay, Award, Lightbulb]
-const workflowIcons = [Globe2, BookOpen, BrainCircuit, Award]
+const workflowIcons = [Globe2, BookOpen, BrainCircuit, CheckCircle2]
+const workflowTargets = ['#courses', '#courses', '#planner', '#orientation']
+const plannerProgressStorageKey = 'edufuture-planner-progress'
+const revealEase = [0.22, 1, 0.36, 1]
 const reveal = {
   hidden: { opacity: 0, y: 22 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55 } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: revealEase } },
 }
 const scrollReveal = {
   hidden: { opacity: 0, y: 22, rotateX: 4 },
-  visible: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.65, ease: revealEase } },
 }
 
 function FaqAnswer({ answer, answerId, isOpen, questionId, shouldReduceMotion }) {
@@ -79,32 +92,90 @@ function FaqAnswer({ answer, answerId, isOpen, questionId, shouldReduceMotion })
   )
 }
 
+function readPlannerProgress() {
+  try {
+    const storedProgress = window.localStorage.getItem(plannerProgressStorageKey)
+    if (!storedProgress) return {}
+
+    const parsedProgress = JSON.parse(storedProgress)
+    if (!parsedProgress || typeof parsedProgress !== 'object' || Array.isArray(parsedProgress)) {
+      throw new TypeError('Saved learning-plan progress must be an object.')
+    }
+
+    return Object.fromEntries(
+      Object.entries(parsedProgress).filter(([, steps]) => (
+        Array.isArray(steps)
+        && steps.length === 3
+        && steps.every((step) => typeof step === 'boolean')
+      )),
+    )
+  } catch (error) {
+    console.error('Unable to load saved learning-plan progress.', error)
+    return {}
+  }
+}
+
 function App() {
   const { t, i18n } = useTranslation()
+  const currentLanguage = languages.some(({ code }) => code === i18n.language)
+    ? i18n.language
+    : 'en'
   const [menuOpen, setMenuOpen] = useState(false)
   const [courseFilter, setCourseFilter] = useState('all')
   const [courseSearch, setCourseSearch] = useState('')
+  const [plannerTrack, setPlannerTrack] = useState('ai')
+  const [plannerHours, setPlannerHours] = useState('2')
+  const [plannerProgress, setPlannerProgress] = useState(readPlannerProgress)
+  const [movingWordState, setMovingWordState] = useState({
+    language: currentLanguage,
+    index: 0,
+  })
   const [openFaqItems, setOpenFaqItems] = useState(() => new Set())
   const shouldReduceMotion = useReducedMotion()
-  const scrollRevealVariants = shouldReduceMotion ? reveal : scrollReveal
+  const revealVariants = shouldReduceMotion
+    ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0, transition: { duration: 0 } } }
+    : reveal
+  const scrollRevealVariants = shouldReduceMotion ? revealVariants : scrollReveal
   const scrollFrame = useRef(0)
   const [darkMode, setDarkMode] = useState(() => (
     window.localStorage.getItem('edtech-theme') === 'dark'
   ))
   const featureCards = t('programs.items', { returnObjects: true })
-  const impactItems = t('impact.items', { returnObjects: true })
   const workflowSteps = t('how.steps', { returnObjects: true })
   const courses = t('courses.items', { returnObjects: true })
+  const plannerSteps = t('planner.steps', { returnObjects: true })
   const faqItems = t('faq.items', { returnObjects: true })
+  const movingWords = t('hero.movingWords', { returnObjects: true })
+  const heroMetrics = t('heroMetrics', { returnObjects: true })
+  const aboutHighlights = t('aboutHighlights', { returnObjects: true })
   const filteredCourses = useMemo(() => courses.filter((course) => {
     const matchesFilter = courseFilter === 'all' || course.category === courseFilter
     const query = courseSearch.trim().toLocaleLowerCase()
     const matchesSearch = !query || `${course.title} ${course.skills.join(' ')}`.toLocaleLowerCase().includes(query)
     return matchesFilter && matchesSearch
   }), [courses, courseFilter, courseSearch])
-  const currentLanguage = languages.some(({ code }) => code === i18n.language)
-    ? i18n.language
-    : 'en'
+  const selectedPlannerCourse = courses.find((course) => course.category === plannerTrack) || courses[0]
+  const selectedPlannerProgress = plannerProgress[selectedPlannerCourse?.category] || []
+  const plannerCompletedCount = selectedPlannerProgress.filter(Boolean).length
+  const movingWordIndex = movingWordState.language === currentLanguage
+    ? movingWordState.index
+    : 0
+  const wordSlideDirection = currentLanguage === 'ar' ? -1 : 1
+
+  useEffect(() => {
+    if (shouldReduceMotion || movingWords.length < 2) return undefined
+
+    const interval = window.setInterval(() => {
+      setMovingWordState((state) => ({
+        language: currentLanguage,
+        index: state.language === currentLanguage
+          ? (state.index + 1) % movingWords.length
+          : 1 % movingWords.length,
+      }))
+    }, 2600)
+
+    return () => window.clearInterval(interval)
+  }, [currentLanguage, movingWords.length, shouldReduceMotion])
 
   useEffect(() => {
     const updateDocumentLanguage = (language) => {
@@ -116,6 +187,14 @@ function App() {
     i18n.on('languageChanged', updateDocumentLanguage)
     return () => i18n.off('languageChanged', updateDocumentLanguage)
   }, [i18n])
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(plannerProgressStorageKey, JSON.stringify(plannerProgress))
+    } catch (error) {
+      console.error('Unable to save learning-plan progress.', error)
+    }
+  }, [plannerProgress])
 
   useEffect(() => {
     const cancelScroll = () => {
@@ -152,11 +231,14 @@ function App() {
   }
 
   const closeMenu = () => setMenuOpen(false)
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!menuOpen) return undefined
 
     const previousOverflow = document.body.style.overflow
+    const previousPaddingInlineEnd = document.body.style.paddingInlineEnd
+    const computedPaddingInlineEnd = window.getComputedStyle(document.body).paddingInlineEnd
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+    document.body.style.paddingInlineEnd = `calc(${computedPaddingInlineEnd} + ${scrollbarWidth}px)`
     document.body.style.overflow = 'hidden'
     const closeOnEscape = (event) => {
       if (event.key === 'Escape') closeMenu()
@@ -165,6 +247,7 @@ function App() {
 
     return () => {
       document.body.style.overflow = previousOverflow
+      document.body.style.paddingInlineEnd = previousPaddingInlineEnd
       window.removeEventListener('keydown', closeOnEscape)
     }
   }, [menuOpen])
@@ -231,17 +314,41 @@ function App() {
     })
   }
 
+  const togglePlannerStep = (stepIndex) => {
+    setPlannerProgress((progress) => {
+      const steps = [...(progress[selectedPlannerCourse.category] || [false, false, false])]
+      steps[stepIndex] = !steps[stepIndex]
+      return { ...progress, [selectedPlannerCourse.category]: steps }
+    })
+  }
+
+  const resetPlannerProgress = () => {
+    setPlannerProgress((progress) => {
+      const nextProgress = { ...progress }
+      delete nextProgress[selectedPlannerCourse.category]
+      return nextProgress
+    })
+  }
+
   return (
-    <div className="site-shell" data-theme={darkMode ? 'dark' : 'light'} onClick={handleInternalNavigation}>
+    <div
+      className="site-shell"
+      data-theme={darkMode ? "dark" : "light"}
+      onClick={handleInternalNavigation}
+    >
       <header className="site-header">
         <div className="site-header-inner">
-          <a className="brand" href="#home" onClick={closeMenu} aria-label="EduFuture home">
-            <span className="brand-mark"><Globe2 size={19} strokeWidth={2.2} /></span>
-            <span>Edu<span className="brand-accent">Future</span></span>
+          <a
+            className="brand"
+            href="#home"
+            onClick={closeMenu}
+            aria-label={t("ui.homeLabel")}
+          >
+            <img className="brand-logo" src={brandLogo} alt="EduFuture" />
           </a>
 
           <button
-            aria-label={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
+            aria-label={menuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
             aria-expanded={menuOpen}
             className="menu-toggle"
             onClick={() => setMenuOpen((open) => !open)}
@@ -252,21 +359,20 @@ function App() {
 
           <button
             aria-hidden={!menuOpen}
-            aria-label={t('nav.closeMenu')}
-            className={`menu-backdrop${menuOpen ? ' is-open' : ''}`}
+            aria-label={t("nav.closeMenu")}
+            className={`menu-backdrop${menuOpen ? " is-open" : ""}`}
             onClick={closeMenu}
             tabIndex={menuOpen ? 0 : -1}
             type="button"
           />
-          <nav className={`main-nav${menuOpen ? ' is-open' : ''}`} aria-label={t('nav.label')}>
+          <nav
+            className={`main-nav${menuOpen ? " is-open" : ""}`}
+            aria-label={t("nav.label")}
+          >
             <div className="mobile-nav-heading">
-              <span className="mobile-nav-brand-mark"><Globe2 size={19} strokeWidth={2.2} /></span>
-              <span className="mobile-nav-brand-copy">
-                <strong>Edu<span className="brand-accent">Future</span></strong>
-                <small>{t('nav.label')}</small>
-              </span>
+              <img className="mobile-nav-brand-logo" src={brandLogo} alt="EduFuture" />
               <button
-                aria-label={t('nav.closeMenu')}
+                aria-label={t("nav.closeMenu")}
                 className="mobile-nav-close"
                 onClick={closeMenu}
                 type="button"
@@ -274,17 +380,36 @@ function App() {
                 <X size={21} />
               </button>
             </div>
-            <a href="#about" onClick={closeMenu}>{t('nav.about')}</a>
-            <a href="#how-it-works" onClick={closeMenu}>{t('nav.how')}</a>
-            <a href="#courses" onClick={closeMenu}>{t('nav.courses')}</a>
-            <a href="#insights" onClick={closeMenu}>{t('nav.insights')}</a>
-            <a href="#faq" onClick={closeMenu}>{t('nav.faq')}</a>
+            <a href="#about" onClick={closeMenu}>
+              {t("nav.about")}
+            </a>
+            <a href="#how-it-works" onClick={closeMenu}>
+              {t("nav.how")}
+            </a>
+            <a href="#courses" onClick={closeMenu}>
+              {t("nav.courses")}
+            </a>
+            <a href="#orientation" onClick={closeMenu}>
+              {t("nav.orientation")}
+            </a>
+            <a href="#insights" onClick={closeMenu}>
+              {t("nav.insights")}
+            </a>
+            <a href="#faq" onClick={closeMenu}>
+              {t("nav.faq")}
+            </a>
             <label className="language-picker">
-              <span className="sr-only">{t('nav.language')}</span>
+              <span className="sr-only">{t("nav.language")}</span>
               <Globe2 aria-hidden="true" size={16} />
-              <select value={currentLanguage} onChange={changeLanguage} aria-label={t('nav.language')}>
+              <select
+                value={currentLanguage}
+                onChange={changeLanguage}
+                aria-label={t("nav.language")}
+              >
                 {languages.map(({ code, label }) => (
-                  <option key={code} value={code}>{label}</option>
+                  <option key={code} value={code}>
+                    {label}
+                  </option>
                 ))}
               </select>
             </label>
@@ -292,14 +417,18 @@ function App() {
               className="theme-toggle"
               type="button"
               onClick={toggleTheme}
-              aria-label={darkMode ? t('theme.switchToLight') : t('theme.switchToDark')}
-              title={darkMode ? t('theme.switchToLight') : t('theme.switchToDark')}
+              aria-label={
+                darkMode ? t("theme.switchToLight") : t("theme.switchToDark")
+              }
+              title={
+                darkMode ? t("theme.switchToLight") : t("theme.switchToDark")
+              }
             >
               {darkMode ? <Sun size={17} /> : <Moon size={17} />}
-              <span>{darkMode ? t('theme.light') : t('theme.dark')}</span>
+              <span>{darkMode ? t("theme.light") : t("theme.dark")}</span>
             </button>
             <a className="nav-cta" href="#programs" onClick={closeMenu}>
-              {t('nav.cta')} <ArrowRight aria-hidden="true" size={16} />
+              {t("nav.cta")} <ArrowRight aria-hidden="true" size={16} />
             </a>
           </nav>
         </div>
@@ -311,63 +440,151 @@ function App() {
             className="hero-copy"
             initial="hidden"
             animate="visible"
-            variants={reveal}
+            variants={revealVariants}
           >
-            <p className="eyebrow"><span className="eyebrow-dot" />{t('hero.eyebrow')}</p>
-            <h1>{t('hero.title')} <span>{t('hero.highlight')}</span></h1>
-            <p className="hero-description">{t('hero.description')}</p>
+            <p className="eyebrow">
+              <span className="eyebrow-dot" />
+              {t("hero.eyebrow")}
+            </p>
+            <h1>
+              {t("hero.title")} <span>{t("hero.highlight")}</span>
+            </h1>
+            <p className="hero-wordline" aria-label={movingWords.join(", ")}>
+              <Sparkles aria-hidden="true" size={15} />
+              {shouldReduceMotion ? (
+                <span>{movingWords[0]}</span>
+              ) : (
+                <span className="hero-word-window" aria-hidden="true">
+                  <AnimatePresence initial={false} mode="wait">
+                    <motion.span
+                      animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                      className="hero-moving-word"
+                      exit={{ opacity: 0, x: wordSlideDirection * -28, filter: "blur(2px)" }}
+                      initial={{ opacity: 0, x: wordSlideDirection * 28, filter: "blur(2px)" }}
+                      key={`${currentLanguage}-${movingWordIndex}`}
+                      transition={{ duration: 0.48, ease: revealEase }}
+                    >
+                      {movingWords[movingWordIndex]}
+                    </motion.span>
+                  </AnimatePresence>
+                </span>
+              )}
+            </p>
+            <p className="hero-description">{t("hero.description")}</p>
             <div className="hero-actions">
-              <a className="button button-primary" href="#programs">
-                {t('hero.primary')} <ArrowRight aria-hidden="true" size={18} />
+              <a className="button button-primary" href="#courses">
+                {t("hero.primary")} <ArrowRight aria-hidden="true" size={18} />
               </a>
               <a className="button button-secondary" href="#about">
-                {t('hero.secondary')}
+                {t("hero.secondary")}
               </a>
+              <a className="button button-secondary" href="#orientation">
+                {t("nav.orientation")}
+              </a>
+            </div>
+            <div className="hero-metrics" aria-label={t("ui.heroMetricsLabel")}>
+              {heroMetrics.map((metric) => (
+                <div className="hero-metric" key={metric.label}>
+                  <strong>{metric.value}</strong>
+                  <span>{metric.label}</span>
+                </div>
+              ))}
             </div>
             <div className="hero-note">
               <span className="note-line" />
-              <span>{t('hero.note')}</span>
+              <span>{t("hero.note")}</span>
             </div>
           </motion.div>
 
           <motion.div
             className="hero-art"
-            aria-label={t('hero.artLabel')}
+            aria-label={t("hero.artLabel")}
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            whileHover={{ rotateY: -5, rotateX: 2, y: -3 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
+            whileHover={
+              shouldReduceMotion
+                ? undefined
+                : { rotateY: -5, rotateX: 2, y: -3 }
+            }
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.7,
+              delay: shouldReduceMotion ? 0 : 0.15,
+              ease: revealEase,
+            }}
             role="img"
           >
+            <span className="hero-orbit-ring" aria-hidden="true" />
+            <span className="hero-orbit-dot hero-orbit-dot-one" aria-hidden="true" />
+            <span className="hero-orbit-dot hero-orbit-dot-two" aria-hidden="true" />
+            <span className="hero-sparkle" aria-hidden="true"><Sparkles size={18} /></span>
             <div className="art-grid" />
-            <span className="art-tag tag-top">{t('hero.artTagTop')}</span>
-            <div className="laptop-scene">
-              <div className="laptop-screen">
-                <div className="screen-topbar"><i /><i /><i /><span>learn.space</span></div>
-                <div className="screen-content">
-                  <div className="screen-sidebar"><b /><b /><b /><b /></div>
-                  <div className="screen-main">
-                    <span className="screen-kicker">{t('hero.screenKicker')}</span>
-                    <strong>{t('hero.screenTitle')}</strong>
-                    <div className="screen-progress"><span /></div>
-                    <div className="screen-cards"><i /><i /><i /></div>
+            <span className="art-tag tag-top">{t("hero.artTagTop")}</span>
+            <div className="learning-scene" aria-hidden="true">
+              <span className="learning-halo" />
+              <div className="learning-book">
+                <span className="book-cover" />
+                <div className="book-spread">
+                  <div className="book-page book-page-left">
+                    <span className="page-label">01 / {t("hero.screenKicker")}</span>
+                    <span className="page-illustration"><BrainCircuit size={29} /></span>
+                    <span className="page-line page-line-short" />
+                    <span className="page-line" />
+                    <span className="page-line page-line-medium" />
+                  </div>
+                  <div className="book-page book-page-right">
+                    <span className="page-heading">{t("hero.screenTitle")}</span>
+                    <span className="page-line" />
+                    <span className="page-line page-line-medium" />
+                    <span className="page-line" />
+                    <span className="page-progress"><i /></span>
                   </div>
                 </div>
+                <span className="book-spine" />
               </div>
-              <div className="laptop-base" />
+              <div className="learning-float learning-float-idea">
+                <BrainCircuit size={17} />
+                <span>01</span>
+              </div>
+              <div className="learning-float learning-float-play">
+                <MonitorPlay size={17} />
+                <span>02</span>
+              </div>
+              <div className="learning-float learning-float-achieve">
+                <Award size={17} />
+                <span>03</span>
+              </div>
             </div>
-            <span className="art-tag tag-bottom">{t('hero.artTagBottom')}</span>
-            <div className="floating-chip"><BrainCircuit size={18} /><span>AI</span></div>
+            <span className="art-tag tag-bottom">{t("hero.artTagBottom")}</span>
+            <div className="floating-chip">
+              <BrainCircuit size={18} />
+              <span>AI</span>
+            </div>
           </motion.div>
 
-          <a className="scroll-cue" href="#about" aria-label={t('hero.scroll')}>
+          <a className="scroll-cue" href="#about" aria-label={t("hero.scroll")}>
             <ArrowDown size={16} />
           </a>
         </section>
 
-        <section className="theme-statement section-wrap" aria-label={t('hero.themeLabel')}>
+        <aside className="prototype-notice">
+          <p className="sr-only">{t("prototypeNotice")}</p>
+          <div className="prototype-notice-window" aria-hidden="true">
+            <div className="prototype-notice-track">
+              {[0, 1, 2].map((copy) => (
+                <span className="prototype-notice-copy" key={copy}>
+                  {t("prototypeNotice")}
+                </span>
+              ))}
+            </div>
+          </div>
+        </aside>
+
+        <section
+          className="theme-statement section-wrap"
+          aria-label={t("hero.themeLabel")}
+        >
           <span className="theme-rule" />
-          <p>{t('hero.themeLabel')}</p>
+          <p>{t("hero.themeLabel")}</p>
           <span className="theme-rule" />
         </section>
 
@@ -380,14 +597,23 @@ function App() {
             variants={scrollRevealVariants}
           >
             <div>
-              <p className="eyebrow">{t('about.eyebrow')}</p>
-              <h2>{t('about.title')}</h2>
+              <p className="eyebrow">{t("about.eyebrow")}</p>
+              <h2>{t("about.title")}</h2>
             </div>
             <div className="intro-copy">
-              <p>{t('about.description')}</p>
+              <p>{t("about.description")}</p>
               <a className="text-link" href="#programs">
-                {t('about.link')} <ArrowRight aria-hidden="true" size={17} />
+                {t("about.link")} <ArrowRight aria-hidden="true" size={17} />
               </a>
+            </div>
+            <div className="intro-highlights" aria-label={t("ui.highlightsLabel")}>
+              {aboutHighlights.map((item) => (
+                <article className="intro-highlight" key={item.title}>
+                  <span className="intro-highlight-mark" aria-hidden="true" />
+                  <h3>{item.title}</h3>
+                  <p>{item.detail}</p>
+                </article>
+              ))}
             </div>
           </motion.div>
         </section>
@@ -395,17 +621,18 @@ function App() {
         <section className="how-section section-wrap" id="how-it-works">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">{t('how.eyebrow')}</p>
-              <h2>{t('how.title')}</h2>
+              <p className="eyebrow">{t("how.eyebrow")}</p>
+              <h2>{t("how.title")}</h2>
             </div>
-            <p className="section-side-note">{t('how.description')}</p>
+            <p className="section-side-note">{t("how.description")}</p>
           </div>
           <div className="workflow-grid">
             {workflowSteps.map((step, index) => {
-              const Icon = workflowIcons[index]
+              const Icon = workflowIcons[index];
               return (
-                <motion.article
+                <motion.a
                   className="workflow-step"
+                  href={workflowTargets[index]}
                   key={step.title}
                   initial="hidden"
                   whileInView="visible"
@@ -414,11 +641,13 @@ function App() {
                   transition={{ delay: index * 0.08 }}
                 >
                   <span className="workflow-number">0{index + 1}</span>
-                  <span className="workflow-icon"><Icon size={21} strokeWidth={1.8} /></span>
+                  <span className="workflow-icon">
+                    <Icon size={21} strokeWidth={1.8} />
+                  </span>
                   <h3>{step.title}</h3>
                   <p>{step.description}</p>
-                </motion.article>
-              )
+                </motion.a>
+              );
             })}
           </div>
         </section>
@@ -426,13 +655,13 @@ function App() {
         <section className="impact-section section-wrap" id="impact">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">{t('impact.eyebrow')}</p>
-              <h2>{t('impact.title')}</h2>
+              <p className="eyebrow">{t("prototypeScope.eyebrow")}</p>
+              <h2>{t("prototypeScope.title")}</h2>
             </div>
-            <p className="section-side-note">{t('impact.description')}</p>
+            <p className="section-side-note">{t("prototypeScope.description")}</p>
           </div>
           <div className="impact-grid">
-            {impactItems.map((item, index) => (
+            {t("prototypeScope.items", { returnObjects: true }).map((item, index) => (
               <motion.div
                 className="impact-item"
                 key={`${item.label}-${index}`}
@@ -448,36 +677,31 @@ function App() {
               </motion.div>
             ))}
           </div>
-          <div className="evidence-note">
-            <div className="evidence-copy">
-              <span className="evidence-label"><CheckCircle2 size={15} />{t('evidence.label')}</span>
-              <p>{t('evidence.summary')}</p>
-              <small>{t('evidence.caveat')}</small>
-            </div>
-            {t('evidence.url') ? (
-              <a href={t('evidence.url')} target="_blank" rel="noreferrer">
-                {t('evidence.source')} <ExternalLink size={15} />
-              </a>
-            ) : (
-              <span className="evidence-source-placeholder">{t('evidence.source')}</span>
-            )}
-          </div>
+          <p className="prototype-scope-note">{t("prototypeScope.note")}</p>
         </section>
 
         <section className="courses-section" id="courses">
           <div className="section-wrap">
             <div className="section-heading">
               <div>
-                <p className="eyebrow">{t('courses.eyebrow')}</p>
-                <h2>{t('courses.title')}</h2>
+                <p className="eyebrow">{t("courses.eyebrow")}</p>
+                <h2>{t("courses.title")}</h2>
               </div>
-              <p className="section-side-note">{t('courses.description')}</p>
+              <p className="section-side-note">{t("courses.description")}</p>
             </div>
             <div className="course-controls">
-              <div className="course-filters" role="group" aria-label={t('courses.filterLabel')}>
-                {t('courses.filters', { returnObjects: true }).map((filter) => (
+              <div
+                className="course-filters"
+                role="group"
+                aria-label={t("courses.filterLabel")}
+              >
+                {t("courses.filters", { returnObjects: true }).map((filter) => (
                   <button
-                    className={courseFilter === filter.id ? 'filter-chip is-active' : 'filter-chip'}
+                    className={
+                      courseFilter === filter.id
+                        ? "filter-chip is-active"
+                        : "filter-chip"
+                    }
                     key={filter.id}
                     type="button"
                     aria-pressed={courseFilter === filter.id}
@@ -489,12 +713,12 @@ function App() {
               </div>
               <label className="course-search">
                 <Search size={16} aria-hidden="true" />
-                <span className="sr-only">{t('courses.searchLabel')}</span>
+                <span className="sr-only">{t("courses.searchLabel")}</span>
                 <input
                   type="search"
                   value={courseSearch}
                   onChange={(event) => setCourseSearch(event.target.value)}
-                  placeholder={t('courses.searchPlaceholder')}
+                  placeholder={t("courses.searchPlaceholder")}
                 />
               </label>
             </div>
@@ -514,35 +738,143 @@ function App() {
                     <BookOpen size={28} strokeWidth={1.5} />
                   </div>
                   <div className="course-content">
-                    <div className="course-meta"><span>{course.level}</span><span>{course.duration}</span></div>
+                    <div className="course-meta">
+                      <span>{course.level}</span>
+                      <span>{course.duration}</span>
+                    </div>
                     <h3>{course.title}</h3>
                     <p>{course.description}</p>
                     <div className="skill-list">
-                      {course.skills.map((skill) => <span key={skill}>{skill}</span>)}
+                      {course.skills.map((skill) => (
+                        <span key={skill}>{skill}</span>
+                      ))}
                     </div>
-                    <a href="#how-it-works">{t('courses.viewCourse')} <ArrowRight size={15} /></a>
+                    <a href="#how-it-works">
+                      {t("courses.viewCourse")} <ArrowRight size={15} />
+                    </a>
                   </div>
                 </motion.article>
               ))}
               {filteredCourses.length === 0 && (
-                <p className="no-courses">{t('courses.empty')}</p>
+                <p className="no-courses">{t("courses.empty")}</p>
               )}
             </div>
+            <section className="learning-planner" id="planner" aria-labelledby="planner-title">
+              <div className="planner-heading">
+                <div>
+                  <p className="eyebrow">{t('planner.eyebrow')}</p>
+                  <h3 id="planner-title">{t('planner.title')}</h3>
+                  <p>{t('planner.description')}</p>
+                </div>
+                <div className="planner-controls">
+                  <label>
+                    <span>{t('planner.trackLabel')}</span>
+                    <select
+                      value={selectedPlannerCourse?.category || ''}
+                      onChange={(event) => setPlannerTrack(event.target.value)}
+                    >
+                      {courses.map((course) => (
+                        <option key={course.category} value={course.category}>
+                          {course.title}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label>
+                    <span>{t('planner.timeLabel')}</span>
+                    <select
+                      value={plannerHours}
+                      onChange={(event) => setPlannerHours(event.target.value)}
+                    >
+                      {[2, 4, 6].map((hours) => (
+                        <option key={hours} value={hours}>
+                          {t('planner.hoursOption', { hours })}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+              </div>
+              {selectedPlannerCourse && (
+                <>
+                  <div className="planner-progress">
+                    <span>
+                      {t('planner.progress', {
+                        completed: plannerCompletedCount,
+                        total: plannerSteps.length,
+                      })}
+                    </span>
+                    <progress
+                      aria-label={t('planner.progressLabel')}
+                      max={plannerSteps.length}
+                      value={plannerCompletedCount}
+                    />
+                  </div>
+                  <ol className="planner-steps">
+                    {plannerSteps.map((step, index) => (
+                      <li
+                        className={`planner-step${selectedPlannerProgress[index] ? ' is-complete' : ''}`}
+                        key={step.week}
+                      >
+                        <label>
+                          <input
+                            checked={Boolean(selectedPlannerProgress[index])}
+                            onChange={() => togglePlannerStep(index)}
+                            type="checkbox"
+                          />
+                          <span className="planner-step-copy">
+                            <span className="planner-week">{step.week}</span>
+                            <strong>{t(`planner.steps.${index}.title`, {
+                              skill: selectedPlannerCourse.skills[index],
+                            })}</strong>
+                            <span>{t(`planner.steps.${index}.description`, {
+                              skill: selectedPlannerCourse.skills[index],
+                              hours: plannerHours,
+                            })}</span>
+                          </span>
+                        </label>
+                      </li>
+                    ))}
+                  </ol>
+                </>
+              )}
+              <div className="planner-note">
+                <p>{t('planner.note')}</p>
+                <button
+                  className="planner-reset"
+                  onClick={resetPlannerProgress}
+                  type="button"
+                >
+                  <RotateCcw aria-hidden="true" size={15} />
+                  {t('planner.reset')}
+                </button>
+              </div>
+            </section>
           </div>
+        </section>
+
+        <section
+          aria-label={t("nav.orientation")}
+          className="orientation-feature"
+          id="orientation"
+        >
+          <Suspense fallback={<p className="orientation-loading" role="status">{t("nav.orientation")}…</p>}>
+            <OrientationApp embedded appLanguage={currentLanguage} appTheme={darkMode ? "dark" : "light"} />
+          </Suspense>
         </section>
 
         <section className="program-section" id="programs">
           <div className="section-wrap">
             <div className="section-heading">
               <div>
-                <p className="eyebrow">{t('programs.eyebrow')}</p>
-                <h2>{t('programs.title')}</h2>
+                <p className="eyebrow">{t("programs.eyebrow")}</p>
+                <h2>{t("programs.title")}</h2>
               </div>
-              <p className="section-side-note">{t('programs.description')}</p>
+              <p className="section-side-note">{t("programs.description")}</p>
             </div>
             <div className="program-grid">
               {featureCards.map((item, index) => {
-                const Icon = featureIcons[index]
+                const Icon = featureIcons[index];
                 return (
                   <motion.article
                     className="program-card"
@@ -554,14 +886,20 @@ function App() {
                     transition={{ delay: index * 0.08 }}
                   >
                     <span className="card-number">0{index + 1}</span>
-                    <span className="card-icon"><Icon aria-hidden="true" size={22} strokeWidth={1.8} /></span>
+                    <span className="card-icon">
+                      <Icon aria-hidden="true" size={22} strokeWidth={1.8} />
+                    </span>
                     <h3>{item.title}</h3>
                     <p>{item.description}</p>
-                    <a href="#participate" aria-label={`${t('programs.discover')} ${item.title}`}>
-                      {t('programs.discover')} <ArrowRight aria-hidden="true" size={16} />
+                    <a
+                      href="#courses"
+                      aria-label={`${t("programs.discover")} ${item.title}`}
+                    >
+                      {t("programs.discover")}{" "}
+                      <ArrowRight aria-hidden="true" size={16} />
                     </a>
                   </motion.article>
-                )
+                );
               })}
             </div>
           </div>
@@ -570,25 +908,37 @@ function App() {
         <section className="insights-section section-wrap" id="insights">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">{t('insights.eyebrow')}</p>
-              <h2>{t('insights.title')}</h2>
+              <p className="eyebrow">{t("insights.eyebrow")}</p>
+              <h2>{t("insights.title")}</h2>
             </div>
-            <p className="section-side-note">{t('insights.description')}</p>
+            {t("insights.description") && (
+              <p className="section-side-note">{t("insights.description")}</p>
+            )}
           </div>
+          <aside className="evidence-note" aria-label={t("evidence.label")}>
+            <span className="evidence-icon" aria-hidden="true">
+              <BookOpen size={20} strokeWidth={1.8} />
+            </span>
+            <div className="evidence-copy">
+              <span className="evidence-label">{t("evidence.label")}</span>
+              <p>{t("evidence.summary")}</p>
+              <small>{t("evidence.caveat")}</small>
+            </div>
+            <a href={t("evidence.url")} target="_blank" rel="noopener noreferrer">
+              {t("evidence.source")}
+              <ExternalLink aria-hidden="true" size={15} />
+            </a>
+          </aside>
           <div className="insights-grid">
-            {t('insights.items', { returnObjects: true }).map((item) => (
+            {t("insights.items", { returnObjects: true }).map((item) => (
               <article className="insight-card" key={item.title}>
                 <span className="insight-category">{item.category}</span>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
-                {item.url ? (
-                  <a href={item.url} target="_blank" rel="noreferrer">
-                    {t('insights.readMore')} <ExternalLink size={15} />
-                  </a>
-                ) : (
-                  <span className="insight-placeholder">{t('insights.readMore')}</span>
-                )}
                 <span className="insight-source">{item.source}</span>
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
+                  {t("insights.readMore")} <ExternalLink size={15} />
+                </a>
               </article>
             ))}
           </div>
@@ -598,36 +948,41 @@ function App() {
           <div className="section-wrap">
             <div className="section-heading">
               <div>
-                <p className="eyebrow">{t('community.eyebrow')}</p>
-                <h2>{t('community.title')}</h2>
+                <p className="eyebrow">{t("community.eyebrow")}</p>
+                <h2>{t("community.title")}</h2>
               </div>
-              <p className="section-side-note">{t('community.description')}</p>
+              <p className="section-side-note">{t("community.description")}</p>
             </div>
             <div className="community-grid">
-              {t('community.roles', { returnObjects: true }).map((role, index) => (
-                <article className="community-card" key={role.title}>
-                  <span>0{index + 1}</span>
-                  <h3>{role.title}</h3>
-                  <p>{role.description}</p>
-                </article>
-              ))}
+              {t("community.roles", { returnObjects: true }).map(
+                (role, index) => (
+                  <article className="community-card" key={role.title}>
+                    <span>0{index + 1}</span>
+                    <h3>{role.title}</h3>
+                    <p>{role.description}</p>
+                  </article>
+                ),
+              )}
             </div>
           </div>
         </section>
 
         <section className="faq-section section-wrap" id="faq">
           <div className="faq-heading">
-            <p className="eyebrow">{t('faq.eyebrow')}</p>
-            <h2>{t('faq.title')}</h2>
-            <p>{t('faq.description')}</p>
+            <p className="eyebrow">{t("faq.eyebrow")}</p>
+            <h2>{t("faq.title")}</h2>
+            <p>{t("faq.description")}</p>
           </div>
           <div className="faq-list">
             {faqItems.map((item, index) => {
-              const isOpen = openFaqItems.has(index)
-              const questionId = `faq-question-${index}`
-              const answerId = `faq-answer-${index}`
+              const isOpen = openFaqItems.has(index);
+              const questionId = `faq-question-${index}`;
+              const answerId = `faq-answer-${index}`;
               return (
-                <div className={`faq-item${isOpen ? ' is-open' : ''}`} key={item.question}>
+                <div
+                  className={`faq-item${isOpen ? " is-open" : ""}`}
+                  key={item.question}
+                >
                   <button
                     aria-controls={answerId}
                     aria-expanded={isOpen}
@@ -636,7 +991,8 @@ function App() {
                     onClick={() => toggleFaqItem(index)}
                     type="button"
                   >
-                    {item.question}<ChevronDown size={18} />
+                    {item.question}
+                    <ChevronDown size={18} />
                   </button>
                   <FaqAnswer
                     answer={item.answer}
@@ -646,7 +1002,7 @@ function App() {
                     shouldReduceMotion={shouldReduceMotion}
                   />
                 </div>
-              )
+              );
             })}
           </div>
         </section>
@@ -654,9 +1010,9 @@ function App() {
         <section className="contact-section section-wrap" id="contact">
           <div className="contact-panel">
             <div className="contact-copy">
-              <p className="eyebrow">{t('contact.eyebrow')}</p>
-              <h2>{t('contact.title')}</h2>
-              <p>{t('contact.description')}</p>
+              <p className="eyebrow">{t("contact.eyebrow")}</p>
+              <h2>{t("contact.title")}</h2>
+              <p>{t("contact.description")}</p>
             </div>
             <div className="contact-action">
               <Mail size={21} />
@@ -665,45 +1021,56 @@ function App() {
                   {import.meta.env.VITE_CONTACT_EMAIL}
                 </a>
               ) : (
-                <span>{t('contact.pending')}</span>
+                <span>{t("contact.pending")}</span>
               )}
-              <small>{t('contact.note')}</small>
+              <small>{t("contact.note")}</small>
             </div>
           </div>
         </section>
 
         <section className="participate-section section-wrap" id="participate">
           <div className="participate-panel">
-            <div className="participate-mark"><Globe2 size={23} /></div>
+            <div className="participate-mark">
+              <Globe2 size={23} />
+            </div>
             <div className="participate-copy">
-              <p className="eyebrow">{t('participate.eyebrow')}</p>
-              <h2>{t('participate.title')}</h2>
-              <p>{t('participate.description')}</p>
+              <p className="eyebrow">{t("participate.eyebrow")}</p>
+              <h2>{t("participate.title")}</h2>
+              <p>{t("participate.description")}</p>
             </div>
             <a className="button button-light" href="#courses">
-              {t('participate.cta')} <ArrowRight aria-hidden="true" size={18} />
+              {t("participate.cta")} <ArrowRight aria-hidden="true" size={18} />
             </a>
           </div>
         </section>
       </main>
 
-      <footer className="site-footer section-wrap">
-        <a className="brand footer-brand" href="#home">
-          <span className="brand-mark"><Globe2 size={19} strokeWidth={2.2} /></span>
-          <span>Edu<span className="brand-accent">Future</span></span>
-        </a>
-        <p>{t('footer.tagline')}</p>
-        <div className="footer-links">
-          <a href="#about">{t('nav.about')}</a>
-          <a href="#programs">{t('nav.programs')}</a>
-          <a href="#courses">{t('courses.title')}</a>
-          <a href="#insights">{t('insights.title')}</a>
-          <a href="#faq">{t('faq.title')}</a>
+      <footer className="site-footer">
+        <div className="footer-main section-wrap">
+          <div className="footer-identity">
+            <a className="brand footer-brand" href="#home">
+              <img className="brand-logo" src={brandLogo} alt="EduFuture" />
+            </a>
+            <p>{t("footer.tagline")}</p>
+          </div>
+          <nav aria-label={t("nav.label")} className="footer-links">
+            <a href="#about">{t("nav.about")}</a>
+            <a href="#programs">{t("nav.programs")}</a>
+            <a href="#courses">{t("courses.title")}</a>
+            <a href="#insights">{t("insights.title")}</a>
+            <a href="#faq">{t("faq.title")}</a>
+          </nav>
         </div>
-        <span className="copyright">{t('footer.copyright')}</span>
+        <div className="footer-bottom section-wrap">
+          <span className="copyright">{t("footer.copyright")}</span>
+          <a className="footer-back-to-top" href="#home">
+            <span>{t("footer.backToTop")}</span>
+            <ArrowUp aria-hidden="true" size={15} />
+          </a>
+        </div>
       </footer>
     </div>
-  )
+  );
 }
 
 export default App
