@@ -800,7 +800,7 @@ const additionalTranslations = {
       description:
         "Untuk pertanyaan, masukan, atau peluang kolaborasi, gunakan kontak resmi platform.",
       pending: "Kontak resmi belum tersedia",
-      note: "Alamat kontak dapat diatur melalui VITE_CONTACT_EMAIL.",
+      note: "",
     },
   },
   en: {
@@ -999,7 +999,7 @@ const additionalTranslations = {
       description:
         "For questions, feedback, or collaboration opportunities, use the platform’s official contact.",
       pending: "Official contact not available yet",
-      note: "Set a contact address with VITE_CONTACT_EMAIL.",
+      note: "",
     },
   },
   zh: {
@@ -1174,7 +1174,7 @@ const additionalTranslations = {
       title: "一起打造更好的学习体验。",
       description: "如有问题、反馈或合作意向，请使用平台的官方联系方式。",
       pending: "官方联系方式尚未提供",
-      note: "通过 VITE_CONTACT_EMAIL 设置联系邮箱。",
+      note: "",
     },
   },
   es: {
@@ -1378,7 +1378,7 @@ const additionalTranslations = {
       description:
         "Para consultas, comentarios o colaboraciones, utiliza el contacto oficial de la plataforma.",
       pending: "El contacto oficial aún no está disponible",
-      note: "Configura el correo con VITE_CONTACT_EMAIL.",
+      note: "",
     },
   },
   ar: {
@@ -1570,7 +1570,7 @@ const additionalTranslations = {
       description:
         "للاستفسارات أو الملاحظات أو فرص التعاون، استخدم وسيلة التواصل الرسمية للمنصة.",
       pending: "لم تُحدد وسيلة تواصل رسمية بعد",
-      note: "يمكن ضبط البريد عبر VITE_CONTACT_EMAIL.",
+      note: "",
     },
   },
   fr: {
@@ -1775,7 +1775,7 @@ const additionalTranslations = {
       description:
         "Pour toute question, remarque ou collaboration, utilisez le contact officiel de la plateforme.",
       pending: "Le contact officiel n’est pas encore disponible",
-      note: "Configurez l’adresse avec VITE_CONTACT_EMAIL.",
+      note: "",
     },
   },
 };
